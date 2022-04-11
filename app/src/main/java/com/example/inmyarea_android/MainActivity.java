@@ -1,6 +1,8 @@
 package com.example.inmyarea_android;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.navigation.NavController;
+import androidx.navigation.NavHost;
 
 import android.os.Bundle;
 
@@ -17,20 +19,23 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MainActivity extends AppCompatActivity {
-
+    NavController navCtl;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        NavHost navHost = (NavHost)getSupportFragmentManager().findFragmentById(R.id.login_navhost);
+        navCtl = navHost.getNavController();
 
 
-        Listeners.instance.logIn("yona", "123", "user", new Listeners.logInListener() {
-            @Override
-            public void onComplete(ResponseMessage data) {
 
-                String s = data.getStatus();
-                String m = data.getMessage();
-            }
-        });
+//        Listeners.instance.logIn("yona", "123", "user", new Listeners.logInListener() {
+//            @Override
+//            public void onComplete(ResponseMessage data) {
+//
+//                String s = data.getStatus();
+//                String m = data.getMessage();
+//            }
+//        });
     }
 }

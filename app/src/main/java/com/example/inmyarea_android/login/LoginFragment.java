@@ -20,13 +20,10 @@ import com.example.inmyarea_android.model.ResponseMessage;
 
 public class LoginFragment extends Fragment {
 
-
-
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
+
         View view= inflater.inflate(R.layout.fragment_login, container, false);
 
         EditText email_Login= view.findViewById(R.id.email_input_login);
@@ -60,9 +57,7 @@ public class LoginFragment extends Fragment {
             }
 
             //we dont know the type in log in
-            Listeners.instance.logIn(email, password, "user", new Listeners.logInListener() {
-            @Override
-            public void onComplete(ResponseMessage data) {
+            Listeners.instance.logIn(email, password, "user", data -> {
 
                 String s = data.getStatus();
                 String m = data.getMessage();
@@ -71,8 +66,7 @@ public class LoginFragment extends Fragment {
                 login_But.setEnabled(true);
                 password_Login.setError(m);
 
-            }
-        });
+            });
         });
 
 

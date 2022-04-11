@@ -26,16 +26,5 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         NavHost navHost = (NavHost)getSupportFragmentManager().findFragmentById(R.id.login_navhost);
         navCtl = navHost.getNavController();
-
-
-
-//        Listeners.instance.logIn("yona", "123", "user", new Listeners.logInListener() {
-//            @Override
-//            public void onComplete(ResponseMessage data) {
-//
-//                String s = data.getStatus();
-//                String m = data.getMessage();
-//            }
-//        });
     }
 }

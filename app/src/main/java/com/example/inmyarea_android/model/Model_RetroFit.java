@@ -30,11 +30,7 @@ public class Model_RetroFit {
                 listener.onComplete(response.body());
             }
             @Override
-            public void onFailure(Call<ResponseMessage> call, Throwable t) {
-
-                String s;
-                s = "hello";
-            }
+            public void onFailure(Call<ResponseMessage> call, Throwable t) { }
         });
     }
 }

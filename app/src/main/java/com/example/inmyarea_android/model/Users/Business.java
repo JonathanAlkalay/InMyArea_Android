@@ -7,6 +7,8 @@ public class Business extends User {
     String location;
     String category;
 
+    public Business(){super();}
+
     public Business(String email,String password,String name, String ownerName,
                     String phoneNumber, String description, String location, String category) {
 

@@ -7,6 +7,8 @@ public class User {
     String name;
     String phoneNumber;
 
+    public User() {}
+
     public String getEmail() { return email; }
 
     public void setEmail(String email) { this.email = email; }

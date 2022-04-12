@@ -16,7 +16,6 @@ import android.widget.TextView;
 
 import com.example.inmyarea_android.R;
 import com.example.inmyarea_android.model.Listeners;
-import com.example.inmyarea_android.model.ResponseMessage;
 
 public class LoginFragment extends Fragment {
 
@@ -35,7 +34,6 @@ public class LoginFragment extends Fragment {
         register.setOnClickListener(v -> {
             Navigation.findNavController(view).navigate(LoginFragmentDirections.actionLoginFragmentToRegisterClientFragment());
         });
-
         login_But.setOnClickListener(v -> {
             progressBar.setVisibility(View.VISIBLE);
             String email=email_Login.getText().toString().trim();

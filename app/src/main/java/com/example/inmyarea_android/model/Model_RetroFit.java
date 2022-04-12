@@ -1,5 +1,7 @@
 package com.example.inmyarea_android.model;
 
+import com.example.inmyarea_android.model.Users.User;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -32,5 +34,20 @@ public class Model_RetroFit {
             @Override
             public void onFailure(Call<ResponseMessage> call, Throwable t) { }
         });
+    }
+
+    public void createAccount(String email, String type, User user, Listeners.createAccountListener listener) {
+
+        Call<ResponseMessage> call = nodeApiServer.createAccount(email, type, user);
+        call.enqueue(new Callback<ResponseMessage>() {
+            @Override
+            public void onResponse(Call<ResponseMessage> call, Response<ResponseMessage> response) {
+
+                listener.onComplete(response.body());
+            }
+            @Override
+            public void onFailure(Call<ResponseMessage> call, Throwable t) { }
+        });
+
     }
 }

@@ -3,7 +3,7 @@ package com.example.inmyarea_android.model.Users;
 public class User {
 
     String email;
-    String password;
+    String passWord;
     String name;
     String phoneNumber;
 
@@ -11,9 +11,9 @@ public class User {
 
     public void setEmail(String email) { this.email = email; }
 
-    public String getPassword() { return password; }
+    public String getPassWord() { return passWord; }
 
-    public void setPassword(String password) { this.password = password; }
+    public void setPassWord(String passWord) { this.passWord = passWord; }
 
     public String getName() { return name; }
 

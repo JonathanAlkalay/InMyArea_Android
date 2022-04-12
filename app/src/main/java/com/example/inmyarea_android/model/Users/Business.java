@@ -11,7 +11,7 @@ public class Business extends User {
                     String phoneNumber, String description, String location, String category) {
 
         this.email=email;
-        this.password=password;
+        this.passWord =password;
         this.name = name;
         this.ownerName = ownerName;
         this.phoneNumber = phoneNumber;

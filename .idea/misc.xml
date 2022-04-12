@@ -3,9 +3,12 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Users/luay/AndroidStudioProjects/InMyArea_Android/app/src/main/res/layout/activity_main.xml" value="0.11302083333333333" />
-        <entry key="..\:/Users/luay/AndroidStudioProjects/InMyArea_Android/app/src/main/res/layout/fragment_login.xml" value="0.264" />
-        <entry key="..\:/Users/luay/AndroidStudioProjects/InMyArea_Android/app/src/main/res/layout/fragment_register_client.xml" value="0.22826086956521738" />
+        <entry key="..\:/Users/libono/Desktop/__MACOSX/InMyArea_Android/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.115" />
+        <entry key="..\:/Users/libono/Desktop/__MACOSX/InMyArea_Android/app/src/main/res/drawable/button_shape.xml" value="0.2535" />
+        <entry key="..\:/Users/libono/Desktop/__MACOSX/InMyArea_Android/app/src/main/res/drawable/ic_launcher_background.xml" value="0.115" />
+        <entry key="..\:/Users/libono/Desktop/__MACOSX/InMyArea_Android/app/src/main/res/layout/activity_main.xml" value="0.2211690363349131" />
+        <entry key="..\:/Users/libono/Desktop/__MACOSX/InMyArea_Android/app/src/main/res/layout/fragment_login.xml" value="0.25" />
+        <entry key="..\:/Users/libono/Desktop/__MACOSX/InMyArea_Android/app/src/main/res/layout/fragment_register_client.xml" value="0.33" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.28229166666666666" />
       </map>
     </option>

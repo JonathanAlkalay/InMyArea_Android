@@ -15,6 +15,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.example.inmyarea_android.R;
+import com.example.inmyarea_android.feed.BaseActivity;
 import com.example.inmyarea_android.model.Listeners;
 
 public class LoginFragment extends Fragment {
@@ -35,6 +36,7 @@ public class LoginFragment extends Fragment {
             Navigation.findNavController(view).navigate(LoginFragmentDirections.actionLoginFragmentToRegisterClientFragment());
         });
         login_But.setOnClickListener(v -> {
+            login_But.setEnabled(false);
             progressBar.setVisibility(View.VISIBLE);
             String email=email_Login.getText().toString().trim();
             String password=password_Login.getText().toString().trim();
@@ -62,8 +64,7 @@ public class LoginFragment extends Fragment {
                 ///check if status is good and than pass to feed if not display massage
                 progressBar.setVisibility(View.GONE);
                 login_But.setEnabled(true);
-                password_Login.setError(m);
-
+                toFeedActivity(email);
             });
         });
 
@@ -72,9 +73,13 @@ public class LoginFragment extends Fragment {
     }
 
 
-    private void toFeedActivity() {
-        //Intent intent = new Intent(getContext(), BaseActivity.class);
-       // startActivity(intent);
-       // getActivity().finish();
+    private void toFeedActivity(String email) {
+        Intent intent = new Intent(getContext(), BaseActivity.class);
+        Bundle b = new Bundle();
+
+        b.putString("email", email); //Your id
+        intent.putExtras(b); //Put your id to your next Intent
+        startActivity(intent);
+        getActivity().finish();
     }
 }

@@ -1,5 +1,7 @@
 package com.example.inmyarea_android.feed;
 
+
+
 import androidx.lifecycle.ViewModelProvider;
 
 import android.os.Bundle;
@@ -18,15 +20,18 @@ import com.example.inmyarea_android.R;
 public class HomeFragment extends Fragment {
 
     private HomeViewModel mViewModel;
+    String email;
+
+
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
         View view= inflater.inflate(R.layout.home_fragment, container, false);
-        String email=getArguments().getString("email");
+        email = getArguments().getString("email");
 
         TextView homeTV=view.findViewById(R.id.home_TV);
-        homeTV.setText(email.toString());
+        homeTV.setText(email);
 
         return view;
 

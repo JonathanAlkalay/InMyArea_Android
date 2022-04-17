@@ -8,5 +8,9 @@
         android:id="@+id/homeFragment"
         android:name="com.example.inmyarea_android.feed.HomeFragment"
         android:label="home_fragment"
-        tools:layout="@layout/home_fragment" />
+        tools:layout="@layout/home_fragment" >
+        <argument
+            android:name="email"
+            app:argType="string" />
+    </fragment>
 </navigation>

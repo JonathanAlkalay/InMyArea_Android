@@ -36,10 +36,6 @@ public class BaseActivity extends AppCompatActivity {
         navCtl = navHost.getNavController();
         navCtl.setGraph(R.navigation.feednav_graph, b);
 
-        navCtl.getGraph().findNode(R.id.homeFragment)
-                .addArgument("email", new NavArgument.Builder()
-                        .setDefaultValue(finalValue)
-                        .build());
 
     }
 

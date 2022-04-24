@@ -18,7 +18,7 @@
             android:name=".feed.BaseActivity"
             android:exported="false"
             android:label="@string/title_activity_base"
-            android:theme="@style/Theme.InMyArea_Android.NoActionBar" />
+            android:theme="@style/FullScreen" />
         <activity
             android:name=".MainActivity"
             android:exported="true">

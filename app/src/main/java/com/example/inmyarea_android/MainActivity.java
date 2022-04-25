@@ -26,5 +26,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         NavHost navHost = (NavHost)getSupportFragmentManager().findFragmentById(R.id.login_navhost);
         navCtl = navHost.getNavController();
+        getSupportActionBar().hide();
     }
 }

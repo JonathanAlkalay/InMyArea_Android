@@ -9,13 +9,16 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.inmyarea_android.R;
+import com.example.inmyarea_android.login.LoginFragmentDirections;
 
 public class HomeFragment extends Fragment {
 
@@ -32,6 +35,12 @@ public class HomeFragment extends Fragment {
 
         TextView homeTV=view.findViewById(R.id.home_TV);
         homeTV.setText(email);
+
+        Button bt = view.findViewById(R.id.test_button);
+
+        bt.setOnClickListener(v -> {
+            Navigation.findNavController(view).navigate(HomeFragmentDirections.actionHomeFragmentToVideoClipRVFragment());
+        });
 
         return view;
 

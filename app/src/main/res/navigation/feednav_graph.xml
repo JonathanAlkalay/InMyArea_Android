@@ -12,5 +12,13 @@
         <argument
             android:name="email"
             app:argType="string" />
+        <action
+            android:id="@+id/action_homeFragment_to_videoClipRV_Fragment"
+            app:destination="@id/videoClipRV_Fragment" />
     </fragment>
+    <fragment
+        android:id="@+id/videoClipRV_Fragment"
+        android:name="com.example.inmyarea_android.feed.VideoClipRV_Fragment"
+        android:label="fragment_video_clip_r_v_"
+        tools:layout="@layout/fragment_video_clip_r_v_" />
 </navigation>

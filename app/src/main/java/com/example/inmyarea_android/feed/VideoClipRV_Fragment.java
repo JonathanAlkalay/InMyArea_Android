@@ -1,5 +1,6 @@
 package com.example.inmyarea_android.feed;
 
+import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -27,15 +28,15 @@ public class VideoClipRV_Fragment extends Fragment {
         final ViewPager2 videosViewPager= view.findViewById(R.id.videoViewPagger);
         List<VideoItem> videoItemList=new ArrayList<>();
         VideoItem videoItem =new VideoItem();
-        videoItem.videoURL="https://cdn.videvo.net/videvo_files/video/free/2021-04/large_watermarked/210329_06B_Bali_1080p_005_preview.mp4";
-        videoItem.videoTitle="let's see if works";
-        videoItem.videoDesc="pleasseeeeeeeeeee work, because we are need a good great score+ I love Luay ";
+        videoItem.videoURL="https://media.geeksforgeeks.org/wp-content/uploads/20201217192146/Screenrecorder-2020-12-17-19-17-36-828.mp4?_=1";
+        videoItem.videoTitle="Business Title 1";
+        videoItem.videoDesc="Business description....";
         videoItemList.add(videoItem);
 
         VideoItem videoItem2 =new VideoItem();
-        videoItem2.videoURL="https://cdn.videvo.net/videvo_files/video/free/2021-04/large_watermarked/210329_06B_Bali_1080p_005_preview.mp4";
-        videoItem2.videoTitle="let's see if works2";
-        videoItem2.videoDesc="pleasseeeeeeeeeee work2, because we are need a good great score+ I love Luay ";
+        videoItem2.videoURL="https://media.geeksforgeeks.org/wp-content/uploads/20201217192146/Screenrecorder-2020-12-17-19-17-36-828.mp4?_=1";
+        videoItem2.videoTitle="Business Title 2";
+        videoItem2.videoDesc="Business description....";
         videoItemList.add(videoItem2);
 
         videosViewPager.setAdapter(new Videodapter(videoItemList));

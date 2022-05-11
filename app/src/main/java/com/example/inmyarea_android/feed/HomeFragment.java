@@ -31,7 +31,7 @@ public class HomeFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
         View view= inflater.inflate(R.layout.home_fragment, container, false);
-        email = getArguments().getString("email");
+        email = getArguments().getString("useremail_id");
 
         TextView homeTV=view.findViewById(R.id.home_TV);
         homeTV.setText(email);
@@ -39,7 +39,7 @@ public class HomeFragment extends Fragment {
         Button bt = view.findViewById(R.id.test_button);
 
         bt.setOnClickListener(v -> {
-            Navigation.findNavController(view).navigate(HomeFragmentDirections.actionHomeFragmentToVideoClipRVFragment());
+            Navigation.findNavController(view).navigate(HomeFragmentDirections.actionHomeFragmentToVideoClipRVFragment(email));
         });
 
         return view;

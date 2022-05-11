@@ -1,6 +1,5 @@
 package com.example.inmyarea_android.feed;
 
-import android.media.MediaPlayer;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,11 +15,17 @@ import com.example.inmyarea_android.model.VideoItem;
 
 import java.util.List;
 
-public class Videodapter extends RecyclerView.Adapter<Videodapter.VideoViewHolder>{
+public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.VideoViewHolder>{
     private List<VideoItem> videoItemList;
 
-    public Videodapter(List<VideoItem> videoItemList) {
+    public VideoAdapter(List<VideoItem> videoItemList) {
         this.videoItemList = videoItemList;
+    }
+
+
+    VideoClipRV_Fragment.OnItemClickListener listener;
+    public void setOnItemClickListener(VideoClipRV_Fragment.OnItemClickListener listener){
+        this.listener = listener;
     }
 
     @NonNull
@@ -31,7 +36,7 @@ public class Videodapter extends RecyclerView.Adapter<Videodapter.VideoViewHolde
                         R.layout.singelvideo,
                         parent,
                         false
-                )
+                ),listener
         );
 
     }
@@ -55,12 +60,20 @@ public class Videodapter extends RecyclerView.Adapter<Videodapter.VideoViewHolde
         ProgressBar videoPB;
 
 
-        public VideoViewHolder(@NonNull View itemView) {
+        public VideoViewHolder(@NonNull View itemView,VideoClipRV_Fragment.OnItemClickListener listener) {
             super(itemView);
             videoView=itemView.findViewById(R.id.videoHolder_VV);
             title=itemView.findViewById(R.id.videoTitle_TV);
             des=itemView.findViewById(R.id.videoDesc_TV);
             videoPB=itemView.findViewById(R.id.singalVideo_PB);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int pos = getAdapterPosition();
+                    listener.onItemClick(pos);
+                }
+            });
         }
 
          void setVideoData(VideoItem videoItem) {

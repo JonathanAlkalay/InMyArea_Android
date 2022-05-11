@@ -28,7 +28,7 @@ public class BaseActivity extends AppCompatActivity {
         Bundle b = getIntent().getExtras();
         String value =null; // or other values
         if(b != null)
-            value = b.getString("email");
+            value = b.getString("useremail_id");
         String finalValue = value;
 
         setContentView(R.layout.activity_base);

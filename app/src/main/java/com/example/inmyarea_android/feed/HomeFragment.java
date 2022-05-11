@@ -36,7 +36,7 @@ public class HomeFragment extends Fragment {
         TextView homeTV=view.findViewById(R.id.home_TV);
         homeTV.setText(email);
 
-        Button bt = view.findViewById(R.id.test_button);
+        Button bt = view.findViewById(R.id.catagory1_BT);
 
         bt.setOnClickListener(v -> {
             Navigation.findNavController(view).navigate(HomeFragmentDirections.actionHomeFragmentToVideoClipRVFragment());

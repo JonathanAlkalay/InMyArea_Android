@@ -25,5 +25,5 @@ public interface NodeApiServerRequests {
     Call<GetAccountResponseMessage> getAccountByEmail(@Path("email")String email, @Path("type")String type);
 
     @POST("updateAccount={email}&{type}")
-    Call<MainResponseMessage> updateAccountDetails(@Path("email")String email, @Path("type")String type, @Body User user);
+    Call<MainResponseMessage> updateAccountDetails(@Path("email")String email, @Path("type")String type, @Body User updatedUser);
 }

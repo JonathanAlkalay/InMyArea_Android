@@ -75,8 +75,8 @@ public class Model_RetroFit {
         });
     }
 
-    public void updateBasicAccountDetails(String email, String type, User user, Listeners.updateAccountDetailsListener listener) {
-        Call<MainResponseMessage> call = nodeApiServer.updateAccountDetails(email, type, user);
+    public void updateBasicAccountDetails(String email, String type, User updatedUser, Listeners.updateAccountDetailsListener listener) {
+        Call<MainResponseMessage> call = nodeApiServer.updateAccountDetails(email, type, updatedUser);
         call.enqueue(new Callback<MainResponseMessage>() {
             @Override
             public void onResponse(Call<MainResponseMessage> call, Response<MainResponseMessage> response) {

@@ -4,9 +4,6 @@ import com.example.inmyarea_android.model.ResponseMessages.GetAccountResponseMes
 import com.example.inmyarea_android.model.ResponseMessages.MainResponseMessage;
 import com.example.inmyarea_android.model.Users.User;
 
-import retrofit2.http.Body;
-import retrofit2.http.Path;
-
 public class Listeners {
 
     public static final Listeners instance = new Listeners();
@@ -37,7 +34,7 @@ public class Listeners {
     public interface updateAccountDetailsListener{
         void onComplete(MainResponseMessage data);
     }
-    public void updateAccountDetails(String email, String type, User user, updateAccountDetailsListener listener){
-        retroFit.updateBasicAccountDetails(email, type, user, listener);
+    public void updateAccountDetails(String email, String type, User updatedUser, updateAccountDetailsListener listener){
+        retroFit.updateBasicAccountDetails(email, type, updatedUser, listener);
     }
 }

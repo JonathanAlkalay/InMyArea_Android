@@ -15,7 +15,6 @@ import android.widget.ProgressBar;
 import com.example.inmyarea_android.R;
 import com.example.inmyarea_android.feed.BaseActivity;
 import com.example.inmyarea_android.model.Listeners;
-import com.example.inmyarea_android.model.ResponseMessage;
 import com.example.inmyarea_android.model.Users.Client;
 
 public class RegisterClientFragment extends Fragment {

@@ -2,29 +2,24 @@ package com.example.inmyarea_android.model.Users;
 
 public class Business extends User {
 
-    String ownerName;
     String description;
     String location;
     String category;
 
     public Business(){super();}
 
-    public Business(String email,String password,String name, String ownerName,
-                    String phoneNumber, String description, String location, String category) {
+    public Business(String email,String password,String name,
+                    String phoneNumber, String description, String category) {
 
         this.email=email;
         this.passWord =password;
         this.name = name;
-        this.ownerName = ownerName;
         this.phoneNumber = phoneNumber;
         this.description = description;
-        this.location = location;
         this.category = category;
     }
 
-    public String getOwnerName() { return ownerName; }
 
-    public void setOwnerName(String ownerName) { this.ownerName = ownerName; }
 
     public String getDescription() { return description; }
 

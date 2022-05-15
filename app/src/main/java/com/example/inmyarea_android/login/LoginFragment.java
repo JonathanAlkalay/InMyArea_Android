@@ -31,9 +31,13 @@ public class LoginFragment extends Fragment {
         Button login_But = view.findViewById(R.id.login_button);
         ProgressBar progressBar= view.findViewById(R.id.progressBar_Login);
         progressBar.setVisibility(View.GONE);
-        TextView register = view.findViewById(R.id.register_LoginTV);
-        register.setOnClickListener(v -> {
+        TextView registerClient = view.findViewById(R.id.register_LoginclientTV);
+        TextView registerBusiness = view.findViewById(R.id.register_LoginbusinessTV);
+        registerClient.setOnClickListener(v -> {
             Navigation.findNavController(view).navigate(LoginFragmentDirections.actionLoginFragmentToRegisterClientFragment());
+        });
+        registerBusiness.setOnClickListener(v -> {
+            Navigation.findNavController(view).navigate(LoginFragmentDirections.actionLoginFragmentToRegisterBusinessFragment());
         });
         login_But.setOnClickListener(v -> {
             login_But.setEnabled(false);

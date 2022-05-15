@@ -15,7 +15,6 @@ import android.widget.ProgressBar;
 import com.example.inmyarea_android.R;
 import com.example.inmyarea_android.feed.BaseActivity;
 import com.example.inmyarea_android.model.Listeners;
-import com.example.inmyarea_android.model.ResponseMessage;
 import com.example.inmyarea_android.model.Users.Client;
 
 public class RegisterClientFragment extends Fragment {
@@ -26,13 +25,13 @@ public class RegisterClientFragment extends Fragment {
 
         View view= inflater.inflate(R.layout.fragment_register_client, container, false);
 
-        EditText name_register = view.findViewById(R.id.name_registetET);
+        EditText name_register = view.findViewById(R.id.name_registerET);
         EditText email_register = view.findViewById(R.id.email_registetET);
         EditText pass1 = view.findViewById(R.id.pw1_registetET);
         EditText pass2 = view.findViewById(R.id.pw2_registetET);
-        EditText phone_register = view.findViewById(R.id.phone_registetET);
-        Button regis_But= view.findViewById(R.id.register_RegisBut);
-        ProgressBar progressBar= view.findViewById(R.id.progressBar_reg);
+        EditText phone_register = view.findViewById(R.id.phone_registeET);
+        Button regis_But= view.findViewById(R.id.register_RegisBT);
+        ProgressBar progressBar= view.findViewById(R.id.progressBar_regclient);
         progressBar.setVisibility(View.GONE);
 
         regis_But.setOnClickListener(v -> {

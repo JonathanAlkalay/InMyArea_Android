@@ -37,6 +37,10 @@ public class HomeFragment extends Fragment {
         homeTV.setText(email);
 
         Button bt = view.findViewById(R.id.catagory1_BT);
+        Button profile = view.findViewById(R.id.toProflie_BT);
+        profile.setOnClickListener(v -> {
+            Navigation.findNavController(view).navigate(HomeFragmentDirections.actionHomeFragmentToProfileFragment("none","none"));
+        });
 
         bt.setOnClickListener(v -> {
             Navigation.findNavController(view).navigate(HomeFragmentDirections.actionHomeFragmentToVideoClipRVFragment(email));

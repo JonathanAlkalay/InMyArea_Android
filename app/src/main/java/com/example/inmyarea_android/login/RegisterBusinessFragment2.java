@@ -11,28 +11,56 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.example.inmyarea_android.R;
 import com.example.inmyarea_android.feed.BaseActivity;
+import com.example.inmyarea_android.model.Listeners;
+import com.example.inmyarea_android.model.Service;
+import com.example.inmyarea_android.model.Users.Business;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 
 
 public class RegisterBusinessFragment2 extends Fragment {
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view= inflater.inflate(R.layout.fragment_registe_business2, container, false);
+        String category=RegisterBusinessFragment2Args.fromBundle(getArguments()).getCategory();
+        String email=RegisterBusinessFragment2Args.fromBundle(getArguments()).getEmail();
+        ProgressBar progressBar=view.findViewById(R.id.progressBarregnus2_PB);
+        progressBar.setVisibility(View.GONE);
         TextView services=view.findViewById(R.id.services_dropdownTv);
+        StringBuilder stringBuilder = new StringBuilder();
         ArrayList<Integer> servList = new ArrayList<>();
-        String[] servArray={"Hair Coloring", "Chile Haircut", "Blowout", "Shave", "Wax", "Styled Haircut", "Blowout", "Shave", "Wax", "Styled Haircut", "Blowout", "Shave", "Wax", "Styled Haircut"};
+        String[] servArray={};
+        Service service=new Service();
+        switch (category){
+            case "Hair Styling":
+                servArray=service.HairStyling;
+                break;
+            case "Leisure":
+                servArray=service.Leisure;
+                break;
+
+            case "Pedi&Medi":
+                servArray=service.PediMeni;
+                break;
+
+            case "Cosmetics":
+                servArray=service.Cosmetics;
+                break;
+        }
         boolean[] selectedServices = new boolean[servArray.length];
 
+
+        String[] finalServArray = servArray;
         services.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -46,7 +74,7 @@ public class RegisterBusinessFragment2 extends Fragment {
                 // set dialog non cancelable
                 builder.setCancelable(false);
 
-                builder.setMultiChoiceItems(servArray, selectedServices, new DialogInterface.OnMultiChoiceClickListener() {
+                builder.setMultiChoiceItems(finalServArray, selectedServices, new DialogInterface.OnMultiChoiceClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i, boolean b) {
                         // check condition
@@ -68,11 +96,11 @@ public class RegisterBusinessFragment2 extends Fragment {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         // Initialize string builder
-                        StringBuilder stringBuilder = new StringBuilder();
+
                         // use for loop
                         for (int j = 0; j < servList.size(); j++) {
                             // concat array value
-                            stringBuilder.append(servArray[servList.get(j)]);
+                            stringBuilder.append(finalServArray[servList.get(j)]);
                             // check condition
                             if (j != servList.size() - 1) {
                                 // When j value  not equal
@@ -111,23 +139,33 @@ public class RegisterBusinessFragment2 extends Fragment {
                 builder.show();
             }
         });
-
-
         Button register= view.findViewById(R.id.register_regbusinessBT);
         register.setOnClickListener(v -> {
-            toFeedActivity();
+            Listeners.instance.getAccountByEmail(email, "business", data -> {
+                HashMap user=data.getAccount();
+                Business busi = new Business(email,(String) user.get("passWord"),(String) user.get("name"),
+                        (String) user.get("phoneNumber"), (String) user.get("description"),(String) user.get("category"));
+
+                busi.setServices(stringBuilder.toString().split(", "));
+                Listeners.instance.updateAccountDetails(email, "business", busi, data1 -> {
+                    services.setError(data1.getMessage());
+                });
+            });
+            toFeedActivity(email);
         });
 
         return view;
     }
 
-    //send email
-    private void toFeedActivity() {
-        Intent intent = new Intent(getContext(), BaseActivity.class);
-        //Bundle b = new Bundle();
 
-        //b.putString("useremail_id", email); //Your id
-        //intent.putExtras(b); //Put your id to your next Intent
+
+    //send email
+    private void toFeedActivity(String email) {
+        Intent intent = new Intent(getContext(), BaseActivity.class);
+        Bundle b = new Bundle();
+
+        b.putString("useremail_id", email); //Your id
+        intent.putExtras(b); //Put your id to your next Intent
         startActivity(intent);
         getActivity().finish();
     }

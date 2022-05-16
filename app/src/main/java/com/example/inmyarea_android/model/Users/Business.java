@@ -8,6 +8,7 @@ public class Business extends User {
     String description;
     String location;
     String category;
+    String [] services;
 
     public Business() {
         super();
@@ -22,6 +23,14 @@ public class Business extends User {
         this.phoneNumber = phoneNumber;
         this.description = description;
         this.category = category;
+    }
+
+    public String[] getServices() {
+        return services;
+    }
+
+    public void setServices(String[] services) {
+        this.services = services;
     }
 
     public String getDescription() {
@@ -59,6 +68,7 @@ public class Business extends User {
         json.put("description", this.description);
         json.put("location", this.location);
         json.put("category", this.category);
+        json.put("services", this.services);
 
         return json;
     }
@@ -70,6 +80,7 @@ public class Business extends User {
                 (String) json.get("category"));
 
         business.setLocation((String) json.get("location"));
+        business.setServices((String[])json.get("services"));
 
         return business;
     }

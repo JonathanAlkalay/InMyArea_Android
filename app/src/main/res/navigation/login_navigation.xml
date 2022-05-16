@@ -33,7 +33,7 @@
     </fragment>
     <fragment
         android:id="@+id/registeBusinessFragment2"
-        android:name="com.example.inmyarea_android.login.RegisteBusinessFragment2"
+        android:name="com.example.inmyarea_android.login.RegisterBusinessFragment2"
         android:label="fragment_registe_business2"
         tools:layout="@layout/fragment_registe_business2" />
 </navigation>

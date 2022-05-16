@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".login.RegisteBusinessFragment2">
+    tools:context=".login.RegisterBusinessFragment2">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -73,28 +73,42 @@
             android:id="@+id/services_registerTV"
             android:layout_width="102dp"
             android:layout_height="36dp"
-            android:layout_marginTop="60dp"
+            android:layout_marginTop="64dp"
             android:text="Services:"
             android:textSize="20sp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.245"
+            app:layout_constraintHorizontal_bias="0.119"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/uploadImage_regTV" />
+
+        <TextView
+            android:id="@+id/services_dropdownTv"
+            android:layout_width="337dp"
+            android:layout_height="46dp"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="36dp"
+            android:background="@android:drawable/editbox_background"
+            android:drawableRight="@android:drawable/arrow_down_float"
+            android:drawablePadding="16dp"
+            android:hint="Select Services"
+            android:padding="12dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/services_registerTV" />
 
         <Button
             android:id="@+id/register_regbusinessBT"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="183dp"
             android:background="@drawable/button_shape"
             android:text="Register"
             android:textColor="@color/red"
             app:backgroundTint="@color/black"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintHorizontal_bias="0.481"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/services_registerTV"
-            app:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintTop_toBottomOf="@+id/services_dropdownTv"
+            app:layout_constraintVertical_bias="0.645" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>

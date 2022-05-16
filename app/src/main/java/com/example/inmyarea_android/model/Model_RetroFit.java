@@ -1,5 +1,6 @@
 package com.example.inmyarea_android.model;
 
+import com.example.inmyarea_android.model.ResponseMessages.BsnssByCategoryRespMsg;
 import com.example.inmyarea_android.model.ResponseMessages.GetAccountResponseMessage;
 import com.example.inmyarea_android.model.ResponseMessages.MainResponseMessage;
 import com.example.inmyarea_android.model.Users.Business;
@@ -7,7 +8,6 @@ import com.example.inmyarea_android.model.Users.Client;
 import com.example.inmyarea_android.model.Users.User;
 
 import java.util.HashMap;
-import java.util.Map;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -21,7 +21,7 @@ public class Model_RetroFit {
     //example "http://10.100.102.7:8080/"
 
     private Retrofit retrofit = new Retrofit.Builder()
-            .baseUrl("http:/10.0.0.28:8080/")
+            .baseUrl("http:/10.100.102.12:8080/")
             .addConverterFactory(GsonConverterFactory.create())
             .build();
 
@@ -107,6 +107,24 @@ public class Model_RetroFit {
 
             @Override
             public void onFailure(Call<MainResponseMessage> call, Throwable t) {
+                try { throw t; }
+                catch (Throwable throwable) { throwable.printStackTrace(); }
+            }
+        });
+    }
+
+    public void getBusinessesByCategory(String category, Listeners.getBusinessesByCategoryListener listener) {
+
+        Call<BsnssByCategoryRespMsg> call = nodeApiServer.getBusinessesByCategory(category);
+        call.enqueue(new Callback<BsnssByCategoryRespMsg>() {
+            @Override
+            public void onResponse(Call<BsnssByCategoryRespMsg> call, Response<BsnssByCategoryRespMsg> response) {
+
+                listener.onComplete(response.body());
+            }
+
+            @Override
+            public void onFailure(Call<BsnssByCategoryRespMsg> call, Throwable t) {
                 try { throw t; }
                 catch (Throwable throwable) { throwable.printStackTrace(); }
             }

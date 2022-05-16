@@ -1,5 +1,6 @@
 package com.example.inmyarea_android.model;
 
+import com.example.inmyarea_android.model.ResponseMessages.BsnssByCategoryRespMsg;
 import com.example.inmyarea_android.model.ResponseMessages.GetAccountResponseMessage;
 import com.example.inmyarea_android.model.ResponseMessages.MainResponseMessage;
 import com.example.inmyarea_android.model.Users.User;
@@ -29,6 +30,13 @@ public class Listeners {
     }
     public void getAccountByEmail(String email, String type, getAccountByEmailListener listener){
         retroFit.getAccountByEmail(email, type, listener);
+    }
+
+    public interface getBusinessesByCategoryListener{
+        void onComplete(BsnssByCategoryRespMsg data);
+    }
+    public void getBusinessesByCategory(String category, getBusinessesByCategoryListener listener){
+        retroFit.getBusinessesByCategory(category, listener);
     }
 
     public interface updateAccountDetailsListener{

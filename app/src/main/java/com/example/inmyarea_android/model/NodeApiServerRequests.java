@@ -1,4 +1,5 @@
 package com.example.inmyarea_android.model;
+import com.example.inmyarea_android.model.ResponseMessages.BsnssByCategoryRespMsg;
 import com.example.inmyarea_android.model.ResponseMessages.GetAccountResponseMessage;
 import com.example.inmyarea_android.model.ResponseMessages.MainResponseMessage;
 import com.example.inmyarea_android.model.Users.User;
@@ -28,4 +29,7 @@ public interface NodeApiServerRequests {
 
     @POST("updateAccount={email}&{type}")
     Call<MainResponseMessage> updateAccountDetails(@Path("email")String email, @Path("type")String type, @Body HashMap<String, Object> json);
+
+    @GET("getAccountsByCategory={category}")
+    Call<BsnssByCategoryRespMsg> getBusinessesByCategory(@Path("category")String category);
 }

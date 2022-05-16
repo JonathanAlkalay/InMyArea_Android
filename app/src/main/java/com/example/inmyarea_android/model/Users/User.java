@@ -1,5 +1,7 @@
 package com.example.inmyarea_android.model.Users;
 
+import java.util.HashMap;
+
 public class User {
 
     String email;

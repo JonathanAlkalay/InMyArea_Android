@@ -88,7 +88,7 @@
             android:layout_height="120dp"
             android:layout_marginTop="76dp"
             android:background="@drawable/roundedbutton"
-            android:text="recommend"
+            android:text="Recommend"
             app:icon="@drawable/reward"
             app:iconGravity="textTop"
             app:layout_constraintBottom_toBottomOf="parent"

@@ -2,7 +2,12 @@ package com.example.inmyarea_android.model;
 
 import com.example.inmyarea_android.model.ResponseMessages.GetAccountResponseMessage;
 import com.example.inmyarea_android.model.ResponseMessages.MainResponseMessage;
+import com.example.inmyarea_android.model.Users.Business;
+import com.example.inmyarea_android.model.Users.Client;
 import com.example.inmyarea_android.model.Users.User;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -16,7 +21,7 @@ public class Model_RetroFit {
     //example "http://10.100.102.7:8080/"
 
     private Retrofit retrofit = new Retrofit.Builder()
-            .baseUrl("http://10.0.0.26:8080/")
+            .baseUrl("http://192.168.202.1:8080/")
             .addConverterFactory(GsonConverterFactory.create())
             .build();
 
@@ -43,7 +48,15 @@ public class Model_RetroFit {
 
     public void createAccount(String email, String type, User user, Listeners.createAccountListener listener) {
 
-        Call<MainResponseMessage> call = nodeApiServer.createAccount(email, type, user);
+        HashMap<String, Object> json;
+
+        if (type.equals("user")) {
+            json = ((Client) user).toJson();
+        }else {
+            json = ((Business) user).toJson();
+        }
+
+        Call<MainResponseMessage> call = nodeApiServer.createAccount(email, type, json);
         call.enqueue(new Callback<MainResponseMessage>() {
             @Override
             public void onResponse(Call<MainResponseMessage> call, Response<MainResponseMessage> response) {
@@ -76,7 +89,16 @@ public class Model_RetroFit {
     }
 
     public void updateBasicAccountDetails(String email, String type, User updatedUser, Listeners.updateAccountDetailsListener listener) {
-        Call<MainResponseMessage> call = nodeApiServer.updateAccountDetails(email, type, updatedUser);
+
+        HashMap<String, Object> json;
+
+        if (type.equals("user")) {
+            json = ((Client) updatedUser).toJson();
+        }else {
+            json = ((Business) updatedUser).toJson();
+        }
+
+        Call<MainResponseMessage> call = nodeApiServer.updateAccountDetails(email, type, json);
         call.enqueue(new Callback<MainResponseMessage>() {
             @Override
             public void onResponse(Call<MainResponseMessage> call, Response<MainResponseMessage> response) {

@@ -6,10 +6,14 @@ import com.example.inmyarea_android.model.Users.User;
 
 import java.util.HashMap;
 
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
+import retrofit2.http.Multipart;
 import retrofit2.http.POST;
+import retrofit2.http.Part;
 import retrofit2.http.Path;
 
 
@@ -32,4 +36,9 @@ public interface NodeApiServerRequests {
 
     @GET("getAccountsByCategory={category}")
     Call<BsnssByCategoryRespMsg> getBusinessesByCategory(@Path("category")String category);
+
+    @Multipart
+    @POST("uploadVideo/email={email}")
+    Call<MainResponseMessage> uploadVideo(@Part MultipartBody.Part part, @Part("video") RequestBody requestBody, @Path("email")String email);
+
 }

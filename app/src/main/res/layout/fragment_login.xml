@@ -15,6 +15,7 @@
             android:id="@+id/login_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="52dp"
             android:background="@drawable/button_shape"
             android:fontFamily="sans-serif-thin"
             android:text="Login"
@@ -24,13 +25,13 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/switch_login" />
+            app:layout_constraintTop_toBottomOf="@+id/password_input_login" />
 
         <EditText
             android:id="@+id/email_input_login"
             android:layout_width="279dp"
             android:layout_height="57dp"
-            android:layout_marginTop="36dp"
+            android:layout_marginTop="60dp"
             android:drawableLeft="@drawable/email"
             android:ems="10"
             android:fontFamily="sans-serif-thin"
@@ -38,7 +39,7 @@
             android:inputType="textPersonName"
             android:minHeight="48dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.502"
+            app:layout_constraintHorizontal_bias="0.507"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/Login_TV" />
 
@@ -62,7 +63,7 @@
             android:id="@+id/Login_TV"
             android:layout_width="278dp"
             android:layout_height="65dp"
-            android:layout_marginTop="232dp"
+            android:layout_marginTop="208dp"
             android:fontFamily="casual"
             android:text="IMA Login"
             android:textAlignment="center"
@@ -119,24 +120,29 @@
 
         <ImageView
             android:id="@+id/photoLogin_IV"
-            android:layout_width="245dp"
-            android:layout_height="224dp"
+            android:layout_width="239dp"
+            android:layout_height="207dp"
             app:layout_constraintBottom_toTopOf="@+id/Login_TV"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0"
             app:srcCompat="@drawable/ima_login_photo" />
 
         <Switch
             android:id="@+id/switch_login"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="134dp"
+            android:layout_height="43dp"
             android:layout_marginTop="12dp"
-            android:text="Business Login?"
+            android:showText="true"
+            android:textOff="Client"
+            android:textOn="Business"
+            android:thumb="@drawable/thumb1"
+            android:track="@drawable/track"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.741"
+            app:layout_constraintHorizontal_bias="0.886"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/password_input_login" />
+            app:layout_constraintTop_toBottomOf="@+id/Login_TV" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

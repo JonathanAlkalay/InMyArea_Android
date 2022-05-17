@@ -38,7 +38,7 @@
             android:id="@+id/locationregisterbusinessET"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="48dp"
+            android:layout_marginTop="28dp"
             android:ems="10"
             android:fontFamily="sans-serif-thin"
             android:hint="Location"
@@ -48,61 +48,39 @@
             android:textColor="@color/red"
             android:textColorHint="#0E0E0E"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.378"
+            app:layout_constraintHorizontal_bias="0.427"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
-        <ImageButton
-            android:id="@+id/upload_registerIB"
-            android:layout_width="58dp"
-            android:layout_height="55dp"
-            android:layout_marginStart="52dp"
-            android:layout_marginTop="28dp"
-            android:contentDescription="@string/image_button"
-            android:src="@android:drawable/ic_menu_upload"
-            app:layout_constraintStart_toEndOf="@+id/uploadImage_regTV"
-            app:layout_constraintTop_toBottomOf="@+id/locationregisterbusinessET" />
 
         <TextView
             android:id="@+id/uploadImage_regTV"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="76dp"
-            android:layout_marginTop="40dp"
+            android:layout_marginTop="12dp"
             android:fontFamily="sans-serif-thin"
             android:text="Upload Video:"
             android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.054"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/locationregisterbusinessET" />
-
-        <TextView
-            android:id="@+id/services_registerTV"
-            android:layout_width="102dp"
-            android:layout_height="36dp"
-            android:layout_marginTop="60dp"
-            android:fontFamily="sans-serif-thin"
-            android:text="Services:"
-            android:textSize="20sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.245"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/uploadImage_regTV" />
 
         <TextView
             android:id="@+id/services_dropdownTv"
             android:layout_width="337dp"
             android:layout_height="46dp"
             android:layout_centerInParent="true"
-            android:layout_marginTop="36dp"
+            android:layout_marginTop="20dp"
             android:background="@android:drawable/editbox_background"
             android:drawableRight="@android:drawable/arrow_down_float"
             android:drawablePadding="16dp"
             android:hint="Select Services"
             android:padding="12dp"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.432"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/services_registerTV" />
-
+            app:layout_constraintTop_toBottomOf="@+id/videoView_register" />
 
         <Button
             android:id="@+id/register_regbusinessBT"
@@ -116,22 +94,42 @@
             app:backgroundTint="@color/black"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintHorizontal_bias="0.491"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/services_dropdownTv"
-            app:layout_constraintVertical_bias="0.572" />
+            app:layout_constraintVertical_bias="0.366" />
+
+        <VideoView
+            android:id="@+id/videoView_register"
+            android:layout_width="259dp"
+            android:layout_height="222dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/uploadImage_regTV" />
+
+        <Button
+            android:id="@+id/pickvideo_registerBT"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="64dp"
+            android:text="Pick Video"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.411"
+            app:layout_constraintStart_toEndOf="@+id/videoView_register"
+            app:layout_constraintTop_toBottomOf="@+id/uploadImage_regTV" />
 
         <ProgressBar
             android:id="@+id/progressBarregnus2_PB"
             style="?android:attr/progressBarStyle"
-            android:layout_width="66dp"
-            android:layout_height="62dp"
+            android:layout_width="74dp"
+            android:layout_height="66dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/imageView2"
-            app:layout_constraintVertical_bias="0.443" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.437" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

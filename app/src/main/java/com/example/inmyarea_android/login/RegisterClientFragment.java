@@ -76,6 +76,7 @@ public class RegisterClientFragment extends Fragment {
         Bundle b = new Bundle();
 
         b.putString("useremail_id", email); //Your id
+        b.putString("type","user");
         intent.putExtras(b); //Put your id to your next Intent
         startActivity(intent);
         getActivity().finish();

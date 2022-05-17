@@ -12,11 +12,14 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.Switch;
 import android.widget.TextView;
 
 import com.example.inmyarea_android.R;
 import com.example.inmyarea_android.feed.BaseActivity;
 import com.example.inmyarea_android.model.Listeners;
+
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class LoginFragment extends Fragment {
 
@@ -33,6 +36,18 @@ public class LoginFragment extends Fragment {
         progressBar.setVisibility(View.GONE);
         TextView registerClient = view.findViewById(R.id.register_LoginclientTV);
         TextView registerBusiness = view.findViewById(R.id.register_LoginbusinessTV);
+        Switch aSwitch = view.findViewById(R.id.switch_login);
+        AtomicInteger type= new AtomicInteger(1);
+
+        aSwitch.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            if(isChecked){
+                type.set(2);
+            }else {
+                type.set(1);
+            }
+
+        });
+
         registerClient.setOnClickListener(v -> {
             Navigation.findNavController(view).navigate(LoginFragmentDirections.actionLoginFragmentToRegisterClientFragment());
         });
@@ -60,16 +75,44 @@ public class LoginFragment extends Fragment {
                 return;
             }
 
-            //we dont know the type in log in
-            Listeners.instance.logIn(email, password, "user", data -> {
+            if(type.get()==1) {
+                Listeners.instance.logIn(email, password, "user", data -> {
 
-                String s = data.getStatus();
-                String m = data.getMessage();
-                ///check if status is good and than pass to feed if not display massage
-                progressBar.setVisibility(View.GONE);
-                login_But.setEnabled(true);
-                toFeedActivity(email);
-            });
+                    String s = data.getStatus();
+                    String m = data.getMessage();
+                    ///check if status is good and than pass to feed if not display massage
+                    if(s.equals("false"))
+                    {
+                        progressBar.setVisibility(View.GONE);
+                        email_Login.setError(m);
+                        email_Login.requestFocus();
+                        login_But.setEnabled(true);
+                    }else {
+                        progressBar.setVisibility(View.GONE);
+                        login_But.setEnabled(true);
+                        toFeedActivity(email, "user");
+                    }
+                });
+            }else {
+                Listeners.instance.logIn(email, password, "business", data -> {
+
+                    String s = data.getStatus();
+                    String m = data.getMessage();
+                    ///check if status is good and than pass to feed if not display massage
+                    if(s.equals("false"))
+                    {
+                        progressBar.setVisibility(View.GONE);
+                        email_Login.setError(m);
+                        email_Login.requestFocus();
+                        login_But.setEnabled(true);
+                    }else {
+                        progressBar.setVisibility(View.GONE);
+                        login_But.setEnabled(true);
+                        toFeedActivity(email, "business");
+                    }
+                });
+            }
+
         });
 
 
@@ -77,11 +120,12 @@ public class LoginFragment extends Fragment {
     }
 
 
-    private void toFeedActivity(String email) {
+    private void toFeedActivity(String email,String type) {
         Intent intent = new Intent(getContext(), BaseActivity.class);
         Bundle b = new Bundle();
 
         b.putString("useremail_id", email); //Your id
+        b.putString("type",type);
         intent.putExtras(b); //Put your id to your next Intent
         startActivity(intent);
         getActivity().finish();

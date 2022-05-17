@@ -1,5 +1,6 @@
 package com.example.inmyarea_android.model.Users;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -8,7 +9,7 @@ public class Business extends User {
     String description;
     String location;
     String category;
-    String [] services;
+    ArrayList<String> services;
 
     public Business() {
         super();
@@ -25,11 +26,11 @@ public class Business extends User {
         this.category = category;
     }
 
-    public String[] getServices() {
+    public ArrayList<String> getServices() {
         return services;
     }
 
-    public void setServices(String[] services) {
+    public void setServices(ArrayList<String> services) {
         this.services = services;
     }
 
@@ -80,7 +81,7 @@ public class Business extends User {
                 (String) json.get("category"));
 
         business.setLocation((String) json.get("location"));
-        business.setServices((String[])json.get("services"));
+        business.setServices((ArrayList<String>)json.get("services"));
 
         return business;
     }

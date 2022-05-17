@@ -23,7 +23,7 @@ import com.example.inmyarea_android.login.LoginFragmentDirections;
 public class HomeFragment extends Fragment {
 
     private HomeViewModel mViewModel;
-    String email;
+    String email,type;
 
 
 
@@ -32,6 +32,11 @@ public class HomeFragment extends Fragment {
                              @Nullable Bundle savedInstanceState) {
         View view= inflater.inflate(R.layout.home_fragment, container, false);
         email = getArguments().getString("useremail_id");
+        type = getArguments().getString("type");
+        if(type.equals("business")){
+            Navigation.findNavController(view).navigate(HomeFragmentDirections.actionHomeFragmentToProfileFragment(email,email,type));
+        }
+
 
         TextView homeTV=view.findViewById(R.id.home_TV);
         homeTV.setText(email);
@@ -39,7 +44,7 @@ public class HomeFragment extends Fragment {
         Button bt = view.findViewById(R.id.catagory1_BT);
         Button profile = view.findViewById(R.id.toProflie_BT);
         profile.setOnClickListener(v -> {
-            Navigation.findNavController(view).navigate(HomeFragmentDirections.actionHomeFragmentToProfileFragment("none","none"));
+            Navigation.findNavController(view).navigate(HomeFragmentDirections.actionHomeFragmentToProfileFragment(email,email,type));
         });
 
         bt.setOnClickListener(v -> {

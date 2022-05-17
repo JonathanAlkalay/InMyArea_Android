@@ -5,6 +5,8 @@ import com.example.inmyarea_android.model.ResponseMessages.GetAccountResponseMes
 import com.example.inmyarea_android.model.ResponseMessages.MainResponseMessage;
 import com.example.inmyarea_android.model.Users.User;
 
+import java.io.File;
+
 public class Listeners {
 
     public static final Listeners instance = new Listeners();
@@ -45,4 +47,12 @@ public class Listeners {
     public void updateAccountDetails(String email, String type, User updatedUser, updateAccountDetailsListener listener){
         retroFit.updateBasicAccountDetails(email, type, updatedUser, listener);
     }
+
+    public interface uploadVideoListener{
+        void onComplete(MainResponseMessage data);
+    }
+    public void uploadVideo(File file, String email, uploadVideoListener listener){
+        retroFit.uploadVideo(file, email, listener);
+    }
+
 }

@@ -6,6 +6,7 @@ import com.example.inmyarea_android.model.ResponseMessages.MainResponseMessage;
 import com.example.inmyarea_android.model.Users.User;
 
 import java.io.File;
+import java.net.URISyntaxException;
 
 public class Listeners {
 
@@ -42,7 +43,7 @@ public class Listeners {
     }
 
     public interface updateAccountDetailsListener{
-        void onComplete(MainResponseMessage data);
+        void onComplete(MainResponseMessage data) throws URISyntaxException;
     }
     public void updateAccountDetails(String email, String type, User updatedUser, updateAccountDetailsListener listener){
         retroFit.updateBasicAccountDetails(email, type, updatedUser, listener);

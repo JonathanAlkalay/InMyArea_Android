@@ -9,9 +9,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.example.inmyarea_android.R;
+import com.example.inmyarea_android.model.Listeners;
+import com.example.inmyarea_android.model.ResponseMessages.GetAccountResponseMessage;
 
 import java.io.File;
 
@@ -32,8 +35,10 @@ public class ProfileFragment extends Fragment {
         TextView desc= view.findViewById(R.id.profile_descTV);
         TextView calendar= view.findViewById(R.id.calendar_clickTV);
         TextView serOrHis= view.findViewById(R.id.profile_serorhisTV);
+        TextView phone=view.findViewById(R.id.profilePhone_TV);
         Button editBt= view.findViewById(R.id.profile_editBT);
         Button apoBt= view.findViewById(R.id.profile_apointmentBT);
+        ImageButton back = view.findViewById(R.id.backProflie_IB);
 
         if(type.equals("business")) {
             if (emailUseridId.equals(profileEmailId)) {
@@ -41,15 +46,30 @@ public class ProfileFragment extends Fragment {
             } else {
                 editBt.setVisibility(View.GONE);
             }
-
+            serOrHis.setText("Services");
+            Listeners.instance.getAccountByEmail(profileEmailId, type, data -> {
+                userName.setText((String)data.getAccount().get("name"));
+                desc.setText((String)data.getAccount().get("description"));
+                phone.setText((String)data.getAccount().get("phoneNumber"));
+            });
         }else{
             apoBt.setVisibility(View.GONE);
+            serOrHis.setText("History");
+            Listeners.instance.getAccountByEmail(profileEmailId, type, data -> {
+                userName.setText((String)data.getAccount().get("name"));
+                desc.setText((String)data.getAccount().get("email"));
+                phone.setText((String)data.getAccount().get("phoneNumber"));
+            });
         }
 
 
         editBt.setOnClickListener(v -> {
             if(type.equals("user"))
             Navigation.findNavController(view).navigate(ProfileFragmentDirections.actionProfileFragmentToEditClientFragment(emailUseridId));
+        });
+
+        back.setOnClickListener(v -> {
+            Navigation.findNavController(view).navigate(R.id.action_global_homeFragment);
         });
 
 

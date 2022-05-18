@@ -38,7 +38,8 @@ public interface NodeApiServerRequests {
     Call<BsnssByCategoryRespMsg> getBusinessesByCategory(@Path("category")String category);
 
     @Multipart
-    @POST("uploadVideo/email={email}")
+    @POST("uploadVideo={email}")
     Call<MainResponseMessage> uploadVideo(@Part MultipartBody.Part part, @Part("video") RequestBody requestBody, @Path("email")String email);
+
 
 }

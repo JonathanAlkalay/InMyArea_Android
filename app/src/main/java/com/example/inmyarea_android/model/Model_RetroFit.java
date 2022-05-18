@@ -8,8 +8,10 @@ import com.example.inmyarea_android.model.Users.Client;
 import com.example.inmyarea_android.model.Users.User;
 
 import java.io.File;
+import java.net.URISyntaxException;
 import java.util.HashMap;
 
+import okhttp3.HttpUrl;
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
@@ -25,7 +27,7 @@ public class Model_RetroFit {
     //example "http://10.100.102.7:8080/"
 
     private Retrofit retrofit = new Retrofit.Builder()
-            .baseUrl("http:/10.0.0.28:8080/")
+            .baseUrl("http:/10.160.8.123:8080/")
             .addConverterFactory(GsonConverterFactory.create())
             .build();
 
@@ -106,7 +108,11 @@ public class Model_RetroFit {
         call.enqueue(new Callback<MainResponseMessage>() {
             @Override
             public void onResponse(Call<MainResponseMessage> call, Response<MainResponseMessage> response) {
-                listener.onComplete(response.body());
+                try {
+                    listener.onComplete(response.body());
+                } catch (URISyntaxException e) {
+                    e.printStackTrace();
+                }
             }
 
             @Override
@@ -137,8 +143,9 @@ public class Model_RetroFit {
 
     public void uploadVideo(File file, String email, Listeners.uploadVideoListener listener){
 
+
         RequestBody requestBody = RequestBody.create(MediaType.parse("*/*"), file);
-        MultipartBody.Part parts = MultipartBody.Part.createFormData("newVideo", file.getName(), requestBody);
+        MultipartBody.Part parts = MultipartBody.Part.createFormData("video", file.getName(), requestBody);
 
         Call<MainResponseMessage> call = nodeApiServer.uploadVideo(parts, requestBody, email);
         call.enqueue(new Callback<MainResponseMessage>() {

@@ -26,9 +26,12 @@ import android.widget.VideoView;
 import com.example.inmyarea_android.R;
 import com.example.inmyarea_android.feed.BaseActivity;
 import com.example.inmyarea_android.model.Listeners;
+import com.example.inmyarea_android.model.ResponseMessages.MainResponseMessage;
 import com.example.inmyarea_android.model.Service;
 import com.example.inmyarea_android.model.Users.Business;
 
+import java.io.File;
+import java.net.URI;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -61,14 +64,14 @@ public class RegisterBusinessFragment2 extends Fragment {
         progressBar.setVisibility(View.GONE);
         TextView services=view.findViewById(R.id.services_dropdownTv);
         Button register= view.findViewById(R.id.register_regbusinessBT);
-        Button video=view.findViewById(R.id.pickvideo_registerBT);
+        Button videobt=view.findViewById(R.id.pickvideo_registerBT);
         mVideoView = view.findViewById(R.id.videoView_register);
         StringBuilder stringBuilder = new StringBuilder();
         ArrayList<Integer> servList = new ArrayList<>();
         String[] servArray={};
 
         //video
-        video.setOnClickListener(v -> {
+        videobt.setOnClickListener(v -> {
             Intent pickVideoIntent = new Intent(Intent.ACTION_GET_CONTENT);
             pickVideoIntent.setType("video/*");
             startActivityForResult(pickVideoIntent, REQUEST_PICK_VIDEO);
@@ -184,17 +187,35 @@ public class RegisterBusinessFragment2 extends Fragment {
         });
 
         register.setOnClickListener(v -> {
-            Listeners.instance.getAccountByEmail(email, "business", data -> {
-                HashMap user=data.getAccount();
-                Business busi = new Business(email,(String) user.get("passWord"),(String) user.get("name"),
-                        (String) user.get("phoneNumber"), (String) user.get("description"),(String) user.get("category"));
+            progressBar.setVisibility(View.VISIBLE);
+            register.setEnabled(false);
+            if (video == null|| video.equals("")){
+                Toast.makeText(getActivity(), "please select a video ", Toast.LENGTH_LONG).show();
+                progressBar.setVisibility(View.GONE);
+                register.setEnabled(true);
 
-                ArrayList<String> serv= new ArrayList<String>(Arrays.asList(stringBuilder.toString().split(", ")));
-                busi.setServices(serv);
-                Listeners.instance.updateAccountDetails(email, "business", busi, data1 -> {
-                    toFeedActivity(email);
+            }
+            else if(stringBuilder.length()==0){
+                Toast.makeText(getActivity(), "please select a video ", Toast.LENGTH_LONG).show();
+                progressBar.setVisibility(View.GONE);
+                register.setEnabled(true);
+            }else {
+                Listeners.instance.getAccountByEmail(email, "business", data -> {
+                    HashMap user = data.getAccount();
+                    Business busi = new Business(email, (String) user.get("passWord"), (String) user.get("name"),
+                            (String) user.get("phoneNumber"), (String) user.get("description"), (String) user.get("category"));
+
+                    ArrayList<String> serv = new ArrayList<String>(Arrays.asList(stringBuilder.toString().split(", ")));
+                    busi.setServices(serv);
+                    Listeners.instance.updateAccountDetails(email, "business", busi, data1 -> {
+
+                        //toFeedActivity(email);
+
+                    });
+                    File file=new File(video.getPath());
+                    Listeners.instance.uploadVideo(file, email, data2 -> toFeedActivity(email));
                 });
-            });
+            }
 
         });
 
@@ -290,7 +311,7 @@ public class RegisterBusinessFragment2 extends Fragment {
                     Toast.makeText(getActivity(), "Video content URI: " + data.getData(),
                             Toast.LENGTH_LONG).show();
                     video = data.getData();
-                    videoPath = getPath(video);
+                    videoPath =getPath(video);
                     initializePlayer(video);
                     // uploadFile(video.getPath());
 
@@ -303,17 +324,13 @@ public class RegisterBusinessFragment2 extends Fragment {
     }
 
     public String getPath(Uri uri) {
-        String[] projection = { MediaStore.Video.Media.DATA };
-        Cursor cursor = getActivity().getContentResolver().query(uri, projection, null, null, null);
-        if (cursor != null) {
-            // HERE YOU WILL GET A NULLPOINTER IF CURSOR IS NULL
-            // THIS CAN BE, IF YOU USED OI FILE MANAGER FOR PICKING THE MEDIA
-            int column_index = cursor
-                    .getColumnIndexOrThrow(MediaStore.Video.Media.DATA);
-            cursor.moveToFirst();
-            return cursor.getString(column_index);
-        } else
-            return null;
+        String[] filePathColumn = { MediaStore.Images.Media.DATA };
+        Cursor cursor = getActivity().getContentResolver().query(uri, filePathColumn, null, null, null);
+        cursor.moveToFirst();
+        int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
+        String filePath = cursor.getString(columnIndex);
+        cursor.close();
+        return filePath;
     }
 
 

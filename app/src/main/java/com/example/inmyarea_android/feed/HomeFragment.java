@@ -33,9 +33,9 @@ public class HomeFragment extends Fragment {
         View view= inflater.inflate(R.layout.home_fragment, container, false);
         email = getArguments().getString("useremail_id");
         type = getArguments().getString("type");
-        if(type.equals("business")){
-            Navigation.findNavController(view).navigate(HomeFragmentDirections.actionHomeFragmentToProfileFragment(email,email,type));
-        }
+//        if(type.equals("business")){
+//            Navigation.findNavController(view).navigate(HomeFragmentDirections.actionHomeFragmentToProfileFragment(email,email,type));
+//        }
 
 
         TextView homeTV=view.findViewById(R.id.home_TV);

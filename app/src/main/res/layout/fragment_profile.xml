@@ -63,7 +63,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.195"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView3" />
+        app:layout_constraintTop_toBottomOf="@+id/profilePhone_TV" />
 
     <TextView
         android:id="@+id/calendar_clickTV"
@@ -97,7 +97,7 @@
         app:layout_constraintTop_toBottomOf="@+id/profile_descTV" />
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/profilePhone_TV"
         android:layout_width="136dp"
         android:layout_height="25dp"
         android:text="TextView"
@@ -107,4 +107,12 @@
         app:layout_constraintHorizontal_bias="0.058"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/profile_nameTV" />
+
+    <ImageButton
+        android:id="@+id/backProflie_IB"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/back"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

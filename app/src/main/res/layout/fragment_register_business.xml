@@ -16,61 +16,69 @@
 
             <EditText
                 android:id="@+id/phone_registebusinessET"
-                android:layout_width="wrap_content"
+                android:layout_width="289dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
+                android:layout_marginTop="24dp"
                 android:drawableLeft="@drawable/smartphone"
                 android:ems="10"
+                android:fontFamily="@font/abel"
                 android:hint=" Phone Number"
                 android:inputType="phone"
                 android:minHeight="48dp"
+                android:textSize="20sp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.502"
+                app:layout_constraintHorizontal_bias="0.388"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/pw2_registetbusinessET" />
 
             <EditText
                 android:id="@+id/email_registetbusinessET"
-                android:layout_width="wrap_content"
+                android:layout_width="289dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
+                android:layout_marginTop="16dp"
                 android:drawableLeft="@drawable/email"
                 android:ems="10"
+                android:fontFamily="@font/abel"
                 android:hint=" Email"
                 android:inputType="textEmailAddress"
                 android:minHeight="48dp"
+                android:textSize="20sp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.502"
+                app:layout_constraintHorizontal_bias="0.393"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/description_registerbusinessET" />
 
             <EditText
                 android:id="@+id/pw1_registebusinesstET"
-                android:layout_width="wrap_content"
+                android:layout_width="289dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
+                android:layout_marginTop="16dp"
                 android:drawableLeft="@drawable/lock"
                 android:ems="10"
+                android:fontFamily="@font/abel"
                 android:hint=" Password"
                 android:inputType="textPassword"
                 android:minHeight="48dp"
+                android:textSize="20sp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.502"
+                app:layout_constraintHorizontal_bias="0.388"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/email_registetbusinessET" />
 
             <EditText
                 android:id="@+id/pw2_registetbusinessET"
-                android:layout_width="wrap_content"
+                android:layout_width="289dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="12dp"
                 android:drawableLeft="@drawable/lock"
                 android:ems="10"
+                android:fontFamily="@font/abel"
                 android:hint=" Password"
                 android:inputType="textPassword"
                 android:minHeight="48dp"
+                android:textSize="20sp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.502"
+                app:layout_constraintHorizontal_bias="0.388"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/pw1_registebusinesstET" />
 
@@ -80,26 +88,31 @@
                 android:layout_height="78dp"
                 android:layout_marginTop="8dp"
                 android:ems="10"
+                android:fontFamily="@font/abel"
+                android:gravity="top"
                 android:hint="Business Description"
                 android:minHeight="48dp"
-                android:textSize="14sp"
+                android:textSize="20sp"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.393"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/name_registetbusinessET3" />
 
             <EditText
                 android:id="@+id/name_registetbusinessET3"
-                android:layout_width="wrap_content"
+                android:layout_width="289dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:ems="10"
+                android:fontFamily="@font/abel"
                 android:hint=" Business Name"
                 android:inputType="textPersonName"
                 android:minHeight="48dp"
+                android:textSize="20sp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.502"
+                app:layout_constraintHorizontal_bias="0.393"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView" />
+                app:layout_constraintTop_toBottomOf="@+id/titleRegisterBus1_TV" />
 
             <Button
                 android:id="@+id/continue_RegisButbusiness"
@@ -118,9 +131,10 @@
                 app:layout_constraintVertical_bias="0.0" />
 
             <TextView
-                android:id="@+id/textView"
+                android:id="@+id/titleRegisterBus1_TV"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/encode_sans"
                 android:text="Register"
                 android:textColor="#E91E1E"
                 android:textSize="34sp"
@@ -140,12 +154,12 @@
 
             <Spinner
                 android:id="@+id/spinner_category"
-                android:layout_width="226dp"
+                android:layout_width="289dp"
                 android:layout_height="50dp"
                 android:layout_marginTop="12dp"
                 android:contentDescription="@string/Category"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.497"
+                app:layout_constraintHorizontal_bias="0.393"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/phone_registebusinessET" />
 

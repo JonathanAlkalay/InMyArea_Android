@@ -1,5 +1,7 @@
 package com.example.inmyarea_android.model.Users;
 
+import com.example.inmyarea_android.model.Appointment;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -10,6 +12,7 @@ public class Business extends User {
     String location;
     String category;
     ArrayList<String> services;
+    ArrayList<Appointment> appointments;
 
     public Business() {
         super();
@@ -70,6 +73,7 @@ public class Business extends User {
         json.put("location", this.location);
         json.put("category", this.category);
         json.put("services", this.services);
+        json.put("appointments", this.appointments);
 
         return json;
     }

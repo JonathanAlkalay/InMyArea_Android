@@ -6,6 +6,8 @@ import com.example.inmyarea_android.model.ResponseMessages.MainResponseMessage;
 import com.example.inmyarea_android.model.Users.User;
 
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.net.URISyntaxException;
 
 public class Listeners {
@@ -29,7 +31,7 @@ public class Listeners {
     }
 
     public interface getAccountByEmailListener{
-        void onComplete(GetAccountResponseMessage data);
+        void onComplete(GetAccountResponseMessage data) throws IOException;
     }
     public void getAccountByEmail(String email, String type, getAccountByEmailListener listener){
         retroFit.getAccountByEmail(email, type, listener);
@@ -55,5 +57,13 @@ public class Listeners {
     public void uploadVideo(File file, String email, uploadVideoListener listener){
         retroFit.uploadVideo(file, email, listener);
     }
+
+    public interface addAppointmentListener {
+        void onComplete(MainResponseMessage data);
+    }
+    public void addAppointment(String email,Appointment appointment, addAppointmentListener listener) {
+        retroFit.addAppointment(email,appointment, listener);
+    }
+
 
 }

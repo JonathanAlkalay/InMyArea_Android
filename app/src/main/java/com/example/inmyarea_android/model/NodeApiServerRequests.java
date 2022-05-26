@@ -41,5 +41,7 @@ public interface NodeApiServerRequests {
     @POST("uploadVideo={email}")
     Call<MainResponseMessage> uploadVideo(@Part MultipartBody.Part part, @Part("video") RequestBody requestBody, @Path("email")String email);
 
+    @POST("addAppointment={email}")
+    Call<MainResponseMessage> addAppointment(@Path("email")String email, @Body Appointment appointment);
 
 }

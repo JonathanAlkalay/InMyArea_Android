@@ -31,6 +31,9 @@ import com.example.inmyarea_android.model.Service;
 import com.example.inmyarea_android.model.Users.Business;
 
 import java.io.File;
+import java.io.FileOutputStream;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.net.URI;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -189,13 +192,13 @@ public class RegisterBusinessFragment2 extends Fragment {
         register.setOnClickListener(v -> {
             progressBar.setVisibility(View.VISIBLE);
             register.setEnabled(false);
-            if (video == null|| video.equals("")){
-                Toast.makeText(getActivity(), "please select a video ", Toast.LENGTH_LONG).show();
-                progressBar.setVisibility(View.GONE);
-                register.setEnabled(true);
-
-            }
-            else if(stringBuilder.length()==0){
+//            if (video == null|| video.equals("")){
+//                Toast.makeText(getActivity(), "please select a video ", Toast.LENGTH_LONG).show();
+//                progressBar.setVisibility(View.GONE);
+//                register.setEnabled(true);
+//
+//            }
+             if(stringBuilder.length()==0){
                 Toast.makeText(getActivity(), "please select a video ", Toast.LENGTH_LONG).show();
                 progressBar.setVisibility(View.GONE);
                 register.setEnabled(true);
@@ -209,11 +212,20 @@ public class RegisterBusinessFragment2 extends Fragment {
                     busi.setServices(serv);
                     Listeners.instance.updateAccountDetails(email, "business", busi, data1 -> {
 
-                        //toFeedActivity(email);
+                        toFeedActivity(email);
 
                     });
-                    File file=new File(video.getPath());
-                    Listeners.instance.uploadVideo(file, email, data2 -> toFeedActivity(email));
+                    //File file=new File(video.getPath());
+//                    InputStream in =  getActivity().getContentResolver().openInputStream(video);
+//                    OutputStream out = new FileOutputStream(new File("your_file_here"));
+//                    byte[] buf = new byte[1024];
+//                    int len;
+//                    while((len=in.read(buf))>0){
+//                        out.write(buf,0,len);
+//                    }
+//                    out.close();
+//                    in.close();
+                    //Listeners.instance.uploadVideo(file, email, data2 -> toFeedActivity(email));
                 });
             }
 
@@ -252,49 +264,49 @@ public class RegisterBusinessFragment2 extends Fragment {
     }
 
 
-    private void initializePlayer(Uri uri) {
-        // Show the "Buffering..." message while the video loads.
-        progressBar.setVisibility(VideoView.VISIBLE);
-        if (uri != null){
-            mVideoView.setVideoURI(uri);
-        }
-        // Listener for onPrepared() event (runs after the media is prepared).
-        mVideoView.setOnPreparedListener(
-                new MediaPlayer.OnPreparedListener() {
-                    @Override
-                    public void onPrepared(MediaPlayer mediaPlayer) {
-
-                        // Hide buffering message.
-                        progressBar.setVisibility(VideoView.INVISIBLE);
-
-                        // Restore saved position, if available.
-                        if (mCurrentPosition > 0) {
-                            mVideoView.seekTo(mCurrentPosition);
-                        } else {
-                            // Skipping to 1 shows the first frame of the video.
-                            mVideoView.seekTo(1);
-                        }
-
-                        // Start playing!
-                        mVideoView.start();
-                    }
-                });
-
-        // Listener for onCompletion() event (runs after media has finished
-        // playing).
-        mVideoView.setOnCompletionListener(
-                new MediaPlayer.OnCompletionListener() {
-                    @Override
-                    public void onCompletion(MediaPlayer mediaPlayer) {
-                        Toast.makeText(getActivity(),
-                                "Playback completed",
-                                Toast.LENGTH_SHORT).show();
-
-                        // Return the video position to the start.
-                        mVideoView.seekTo(0);
-                    }
-                });
-    }
+//    private void initializePlayer(Uri uri) {
+//        // Show the "Buffering..." message while the video loads.
+//        progressBar.setVisibility(VideoView.VISIBLE);
+//        if (uri != null){
+//            mVideoView.setVideoURI(uri);
+//        }
+//        // Listener for onPrepared() event (runs after the media is prepared).
+//        mVideoView.setOnPreparedListener(
+//                new MediaPlayer.OnPreparedListener() {
+//                    @Override
+//                    public void onPrepared(MediaPlayer mediaPlayer) {
+//
+//                        // Hide buffering message.
+//                        progressBar.setVisibility(VideoView.INVISIBLE);
+//
+//                        // Restore saved position, if available.
+//                        if (mCurrentPosition > 0) {
+//                            mVideoView.seekTo(mCurrentPosition);
+//                        } else {
+//                            // Skipping to 1 shows the first frame of the video.
+//                            mVideoView.seekTo(1);
+//                        }
+//
+//                        // Start playing!
+//                        mVideoView.start();
+//                    }
+//                });
+//
+//        // Listener for onCompletion() event (runs after media has finished
+//        // playing).
+//        mVideoView.setOnCompletionListener(
+//                new MediaPlayer.OnCompletionListener() {
+//                    @Override
+//                    public void onCompletion(MediaPlayer mediaPlayer) {
+//                        Toast.makeText(getActivity(),
+//                                "Playback completed",
+//                                Toast.LENGTH_SHORT).show();
+//
+//                        // Return the video position to the start.
+//                        mVideoView.seekTo(0);
+//                    }
+//                });
+//    }
 
     private void releasePlayer() {
         mVideoView.stopPlayback();
@@ -312,7 +324,10 @@ public class RegisterBusinessFragment2 extends Fragment {
                             Toast.LENGTH_LONG).show();
                     video = data.getData();
                     videoPath =getPath(video);
-                    initializePlayer(video);
+                    if (video != null){
+                        mVideoView.setVideoURI(video);
+                    }
+                    //initializePlayer(video);
                     // uploadFile(video.getPath());
 
                 }

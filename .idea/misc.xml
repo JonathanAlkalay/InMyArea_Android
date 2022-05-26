@@ -3,30 +3,30 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Users/libono/Desktop/__MACOSX/InMyArea_Android/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.115" />
-        <entry key="..\:/Users/libono/Desktop/__MACOSX/InMyArea_Android/app/src/main/res/drawable/button_shape.xml" value="0.2535" />
-        <entry key="..\:/Users/libono/Desktop/__MACOSX/InMyArea_Android/app/src/main/res/drawable/ic_launcher_background.xml" value="0.115" />
-        <entry key="..\:/Users/libono/Desktop/__MACOSX/InMyArea_Android/app/src/main/res/layout/activity_main.xml" value="0.2211690363349131" />
-        <entry key="..\:/Users/libono/Desktop/__MACOSX/InMyArea_Android/app/src/main/res/layout/fragment_login.xml" value="0.25" />
-        <entry key="..\:/Users/libono/Desktop/__MACOSX/InMyArea_Android/app/src/main/res/layout/fragment_register_client.xml" value="0.33" />
-        <entry key="..\:/Users/libono/StudioProjects/InMyArea_Android/app/src/main/res/drawable/button_backgroud.xml" value="0.183" />
-        <entry key="..\:/Users/libono/StudioProjects/InMyArea_Android/app/src/main/res/drawable/button_bk.xml" value="0.1245" />
-        <entry key="..\:/Users/libono/StudioProjects/InMyArea_Android/app/src/main/res/drawable/button_shape.xml" value="0.1245" />
-        <entry key="..\:/Users/libono/StudioProjects/InMyArea_Android/app/src/main/res/drawable/profile_background.xml" value="0.183" />
-        <entry key="..\:/Users/libono/StudioProjects/InMyArea_Android/app/src/main/res/drawable/roundedbutton.xml" value="0.183" />
-        <entry key="..\:/Users/libono/StudioProjects/InMyArea_Android/app/src/main/res/layout-v31/home_fragment.xml" value="0.1796875" />
-        <entry key="..\:/Users/libono/StudioProjects/InMyArea_Android/app/src/main/res/layout/activity_base.xml" value="0.13903985507246377" />
-        <entry key="..\:/Users/libono/StudioProjects/InMyArea_Android/app/src/main/res/layout/activity_main.xml" value="0.16666666666666666" />
-        <entry key="..\:/Users/libono/StudioProjects/InMyArea_Android/app/src/main/res/layout/content_base.xml" value="0.16666666666666666" />
-        <entry key="..\:/Users/libono/StudioProjects/InMyArea_Android/app/src/main/res/layout/fragment_edit_client.xml" value="0.1796875" />
-        <entry key="..\:/Users/libono/StudioProjects/InMyArea_Android/app/src/main/res/layout/fragment_login.xml" value="0.22" />
-        <entry key="..\:/Users/libono/StudioProjects/InMyArea_Android/app/src/main/res/layout/fragment_profile.xml" value="0.1796875" />
-        <entry key="..\:/Users/libono/StudioProjects/InMyArea_Android/app/src/main/res/layout/fragment_registe_business2.xml" value="0.22" />
-        <entry key="..\:/Users/libono/StudioProjects/InMyArea_Android/app/src/main/res/layout/fragment_register_business.xml" value="0.16666666666666666" />
-        <entry key="..\:/Users/libono/StudioProjects/InMyArea_Android/app/src/main/res/layout/fragment_register_client.xml" value="0.22" />
-        <entry key="..\:/Users/libono/StudioProjects/InMyArea_Android/app/src/main/res/layout/fragment_video_clip_r_v_.xml" value="0.1796875" />
-        <entry key="..\:/Users/libono/StudioProjects/InMyArea_Android/app/src/main/res/layout/home_fragment.xml" value="0.1" />
-        <entry key="..\:/Users/libono/StudioProjects/InMyArea_Android/app/src/main/res/layout/singelvideo.xml" value="0.1796875" />
+        <entry key="..\:/Users/luay/AndroidStudioProjects/InMyArea_Android/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.2595" />
+        <entry key="..\:/Users/luay/AndroidStudioProjects/InMyArea_Android/app/src/main/res/drawable/ic_launcher_background.xml" value="0.2595" />
+        <entry key="..\:/Users/luay/AndroidStudioProjects/InMyArea_Android/app/src/main/res/drawable/prfile_background.xml" value="0.2595" />
+        <entry key="..\:/Users/luay/AndroidStudioProjects/InMyArea_Android/app/src/main/res/drawable/profile_background.xml" value="0.2595" />
+        <entry key="..\:/Users/luay/AndroidStudioProjects/InMyArea_Android/app/src/main/res/drawable/roundedbutton.xml" value="0.2595" />
+        <entry key="..\:/Users/luay/AndroidStudioProjects/InMyArea_Android/app/src/main/res/drawable/thumb1.xml" value="0.1" />
+        <entry key="..\:/Users/luay/AndroidStudioProjects/InMyArea_Android/app/src/main/res/drawable/track.xml" value="0.1" />
+        <entry key="..\:/Users/luay/AndroidStudioProjects/InMyArea_Android/app/src/main/res/drawable/white_border.xml" value="0.2595" />
+        <entry key="..\:/Users/luay/AndroidStudioProjects/InMyArea_Android/app/src/main/res/layout/activity_base.xml" value="0.23007246376811594" />
+        <entry key="..\:/Users/luay/AndroidStudioProjects/InMyArea_Android/app/src/main/res/layout/activity_main.xml" value="0.2045602605863192" />
+        <entry key="..\:/Users/luay/AndroidStudioProjects/InMyArea_Android/app/src/main/res/layout/apointmet_row.xml" value="0.4" />
+        <entry key="..\:/Users/luay/AndroidStudioProjects/InMyArea_Android/app/src/main/res/layout/content_base.xml" value="0.16354166666666667" />
+        <entry key="..\:/Users/luay/AndroidStudioProjects/InMyArea_Android/app/src/main/res/layout/fragment_calendar.xml" value="0.24230072463768115" />
+        <entry key="..\:/Users/luay/AndroidStudioProjects/InMyArea_Android/app/src/main/res/layout/fragment_edit_client.xml" value="0.25271739130434784" />
+        <entry key="..\:/Users/luay/AndroidStudioProjects/InMyArea_Android/app/src/main/res/layout/fragment_login.xml" value="0.264" />
+        <entry key="..\:/Users/luay/AndroidStudioProjects/InMyArea_Android/app/src/main/res/layout/fragment_make_appointment.xml" value="0.3051506316812439" />
+        <entry key="..\:/Users/luay/AndroidStudioProjects/InMyArea_Android/app/src/main/res/layout/fragment_profile.xml" value="0.23007246376811594" />
+        <entry key="..\:/Users/luay/AndroidStudioProjects/InMyArea_Android/app/src/main/res/layout/fragment_registe_business2.xml" value="0.25271739130434784" />
+        <entry key="..\:/Users/luay/AndroidStudioProjects/InMyArea_Android/app/src/main/res/layout/fragment_register_business.xml" value="0.25271739130434784" />
+        <entry key="..\:/Users/luay/AndroidStudioProjects/InMyArea_Android/app/src/main/res/layout/fragment_register_client.xml" value="0.22826086956521738" />
+        <entry key="..\:/Users/luay/AndroidStudioProjects/InMyArea_Android/app/src/main/res/layout/fragment_video_clip_r_v_.xml" value="0.16354166666666667" />
+        <entry key="..\:/Users/luay/AndroidStudioProjects/InMyArea_Android/app/src/main/res/layout/home_fragment.xml" value="0.23007246376811594" />
+        <entry key="..\:/Users/luay/AndroidStudioProjects/InMyArea_Android/app/src/main/res/layout/singelvideo.xml" value="0.11834319526627218" />
+        <entry key="..\:/Users/luay/AppData/Local/Android/Sdk/platforms/android-31/data/res/layout/simple_spinner_dropdown_item.xml" value="0.25271739130434784" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.28229166666666666" />
       </map>
     </option>

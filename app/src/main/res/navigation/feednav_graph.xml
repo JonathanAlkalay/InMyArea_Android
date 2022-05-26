@@ -52,6 +52,13 @@
         <argument
             android:name="type"
             app:argType="string" />
+        <action
+            android:id="@+id/action_profileFragment_to_calendarFragment"
+            app:destination="@id/calendarFragment" />
+        <action
+            android:id="@+id/action_profileFragment_to_makeAppointmentFragment"
+            app:destination="@id/makeAppointmentFragment"
+            app:popUpTo="@id/profileFragment" />
     </fragment>
     <fragment
         android:id="@+id/editClientFragment"
@@ -62,4 +69,25 @@
             android:name="email"
             app:argType="string" />
     </fragment><action android:id="@+id/action_global_homeFragment" app:destination="@id/homeFragment"/>
+    <fragment
+        android:id="@+id/calendarFragment"
+        android:name="com.example.inmyarea_android.feed.CalendarFragment"
+        android:label="fragment_calendar"
+        tools:layout="@layout/fragment_calendar" >
+        <argument
+            android:name="Businessid"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/makeAppointmentFragment"
+        android:name="com.example.inmyarea_android.feed.MakeAppointmentFragment"
+        android:label="fragment_make_appointment"
+        tools:layout="@layout/fragment_make_appointment" >
+        <argument
+            android:name="businessid"
+            app:argType="string" />
+        <argument
+            android:name="userid"
+            app:argType="string" />
+    </fragment>
 </navigation>

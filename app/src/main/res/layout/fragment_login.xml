@@ -113,8 +113,8 @@
         <TextView
             android:id="@+id/register_LoginclientTV"
             style="@style/CardView.Light"
-            android:layout_width="260dp"
-            android:layout_height="39dp"
+            android:layout_width="339dp"
+            android:layout_height="32dp"
             android:layout_marginTop="4dp"
             android:clickable="true"
             android:fontFamily="@font/encode_sans"

@@ -1,10 +1,13 @@
 package com.example.inmyarea_android.feed;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.navigation.NavDirections;
 import androidx.navigation.Navigation;
 
+import android.provider.CalendarContract;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -52,6 +55,15 @@ public class ProfileFragment extends Fragment {
                 desc.setText((String)data.getAccount().get("description"));
                 phone.setText((String)data.getAccount().get("phoneNumber"));
             });
+
+            apoBt.setOnClickListener(v -> {
+
+                Navigation.findNavController(view).navigate(ProfileFragmentDirections.actionProfileFragmentToMakeAppointmentFragment(profileEmailId,emailUseridId));
+                //google calendar
+//                Intent intent = new Intent(Intent.ACTION_INSERT);
+//                intent.setData(CalendarContract.Events.CONTENT_URI);
+//                startActivity(intent);
+            });
         }else{
             apoBt.setVisibility(View.GONE);
             serOrHis.setText("History");
@@ -65,7 +77,7 @@ public class ProfileFragment extends Fragment {
 
         editBt.setOnClickListener(v -> {
             if(type.equals("user"))
-            Navigation.findNavController(view).navigate(ProfileFragmentDirections.actionProfileFragmentToEditClientFragment(emailUseridId));
+            Navigation.findNavController(view).navigate((NavDirections) ProfileFragmentDirections.actionProfileFragmentToEditClientFragment(emailUseridId));
         });
 
         back.setOnClickListener(v -> {

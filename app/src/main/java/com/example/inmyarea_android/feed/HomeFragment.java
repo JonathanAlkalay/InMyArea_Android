@@ -9,6 +9,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.NavDirections;
 import androidx.navigation.Navigation;
 
 import android.view.LayoutInflater;
@@ -44,11 +45,11 @@ public class HomeFragment extends Fragment {
         Button bt = view.findViewById(R.id.catagory1_BT);
         Button profile = view.findViewById(R.id.toProflie_BT);
         profile.setOnClickListener(v -> {
-            Navigation.findNavController(view).navigate(HomeFragmentDirections.actionHomeFragmentToProfileFragment(email,email,type));
+            Navigation.findNavController(view).navigate((NavDirections) HomeFragmentDirections.actionHomeFragmentToProfileFragment(email,email,type));
         });
 
         bt.setOnClickListener(v -> {
-            Navigation.findNavController(view).navigate(HomeFragmentDirections.actionHomeFragmentToVideoClipRVFragment(email));
+            Navigation.findNavController(view).navigate((NavDirections) HomeFragmentDirections.actionHomeFragmentToVideoClipRVFragment(email));
         });
 
         return view;

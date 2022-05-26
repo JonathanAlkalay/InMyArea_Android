@@ -8,6 +8,7 @@ import com.example.inmyarea_android.model.Users.Client;
 import com.example.inmyarea_android.model.Users.User;
 
 import java.io.File;
+import java.io.IOException;
 import java.net.URISyntaxException;
 import java.util.HashMap;
 
@@ -27,7 +28,7 @@ public class Model_RetroFit {
     //example "http://10.100.102.7:8080/"
 
     private Retrofit retrofit = new Retrofit.Builder()
-            .baseUrl("http:/10.160.8.123:8080/")
+            .baseUrl("http:/10.0.0.28:8080/")
             .addConverterFactory(GsonConverterFactory.create())
             .build();
 
@@ -83,7 +84,11 @@ public class Model_RetroFit {
             @Override
             public void onResponse(Call<GetAccountResponseMessage> call, Response<GetAccountResponseMessage> response) {
 
-                listener.onComplete(response.body());
+                try {
+                    listener.onComplete(response.body());
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
 
             @Override
@@ -162,4 +167,23 @@ public class Model_RetroFit {
         });
     }
 
+
+    public void addAppointment(String email, Appointment appointment, Listeners.addAppointmentListener listener) {
+
+
+        Call<MainResponseMessage> call = nodeApiServer.addAppointment(email,appointment);
+        call.enqueue(new Callback<MainResponseMessage>() {
+            @Override
+            public void onResponse(Call<MainResponseMessage> call, Response<MainResponseMessage> response) {
+
+                listener.onComplete(response.body());
+            }
+            @Override
+            public void onFailure(Call<MainResponseMessage> call, Throwable t) {
+                try { throw t; }
+                catch (Throwable throwable) { throwable.printStackTrace(); }
+            }
+        });
+
+    }
 }

@@ -199,9 +199,10 @@ public class RegisterBusinessFragment2 extends Fragment {
 //
 //            }
              if(stringBuilder.length()==0){
-                Toast.makeText(getActivity(), "please select a video ", Toast.LENGTH_LONG).show();
+                Toast.makeText(getActivity(), "please select a service ", Toast.LENGTH_LONG).show();
                 progressBar.setVisibility(View.GONE);
                 register.setEnabled(true);
+                return;
             }else {
                 Listeners.instance.getAccountByEmail(email, "business", data -> {
                     HashMap user = data.getAccount();

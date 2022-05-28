@@ -66,6 +66,7 @@ public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.VideoViewHol
             title=itemView.findViewById(R.id.videoTitle_TV);
             des=itemView.findViewById(R.id.videoDesc_TV);
             videoPB=itemView.findViewById(R.id.singalVideo_PB);
+            videoPB.setVisibility(View.VISIBLE);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -81,7 +82,7 @@ public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.VideoViewHol
             des.setText(videoItem.videoDesc);
             videoView.setVideoPath(videoItem.videoURL);
             videoView.setOnPreparedListener(mediaPlayer -> {
-                videoPB.setVisibility(View.GONE);
+                //videoPB.setVisibility(View.VISIBLE);
                 mediaPlayer.start();
 
                 float videoRatio =mediaPlayer.getVideoWidth() / (float) mediaPlayer.getVideoHeight();
@@ -93,6 +94,7 @@ public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.VideoViewHol
                 }else { videoView.setScaleY(1f/scale);}
             });
             videoView.setOnCompletionListener(mediaPlayer -> {
+                videoPB.setVisibility(View.GONE);
                 mediaPlayer.start();
             });
 

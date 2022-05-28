@@ -24,7 +24,6 @@
             android:layout_width="278dp"
             android:layout_height="65dp"
             android:layout_marginStart="64dp"
-            android:layout_marginTop="152dp"
             android:fontFamily="@font/encode_sans"
             android:foregroundGravity="center"
             android:gravity="center"
@@ -34,7 +33,7 @@
             android:textSize="48sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/editImage_IV" />
 
         <EditText
             android:id="@+id/editClient_phoneET"

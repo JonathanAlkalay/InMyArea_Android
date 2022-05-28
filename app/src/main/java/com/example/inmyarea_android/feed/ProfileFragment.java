@@ -42,12 +42,16 @@ public class ProfileFragment extends Fragment {
         Button editBt= view.findViewById(R.id.profile_editBT);
         Button apoBt= view.findViewById(R.id.profile_apointmentBT);
         ImageButton back = view.findViewById(R.id.backProflie_IB);
+        calendar.setVisibility(View.GONE);
 
         if(type.equals("business")) {
-            if (emailUseridId.equals(profileEmailId)) {
-                apoBt.setVisibility(View.GONE);
-            } else {
-                editBt.setVisibility(View.GONE);
+            apoBt.setVisibility(View.GONE);
+            if (emailUseridId.equals(profileEmailId)){
+                editBt.setVisibility(View.VISIBLE);
+                calendar.setVisibility(View.VISIBLE);
+                calendar.setOnClickListener(v -> {
+                    Navigation.findNavController(view).navigate(ProfileFragmentDirections.actionProfileFragmentToCalendarFragment(profileEmailId));
+                });
             }
             serOrHis.setText("Services");
             Listeners.instance.getAccountByEmail(profileEmailId, type, data -> {
@@ -56,30 +60,39 @@ public class ProfileFragment extends Fragment {
                 phone.setText((String)data.getAccount().get("phoneNumber"));
             });
 
-            apoBt.setOnClickListener(v -> {
 
-                Navigation.findNavController(view).navigate(ProfileFragmentDirections.actionProfileFragmentToMakeAppointmentFragment(profileEmailId,emailUseridId));
-                //google calendar
-//                Intent intent = new Intent(Intent.ACTION_INSERT);
-//                intent.setData(CalendarContract.Events.CONTENT_URI);
-//                startActivity(intent);
-            });
         }else{
-            apoBt.setVisibility(View.GONE);
+            if (emailUseridId.equals(profileEmailId)) {
+                apoBt.setVisibility(View.GONE);
+                editBt.setVisibility(View.VISIBLE);
+                Listeners.instance.getAccountByEmail(profileEmailId, type, data -> {
+                    userName.setText((String)data.getAccount().get("name"));
+                    desc.setText((String)data.getAccount().get("email"));
+                    phone.setText((String)data.getAccount().get("phoneNumber"));
+                });
+
+            }else{
+                apoBt.setOnClickListener(v -> {
+                    Navigation.findNavController(view).navigate(ProfileFragmentDirections.actionProfileFragmentToMakeAppointmentFragment(profileEmailId,emailUseridId));
+                });
+                Listeners.instance.getAccountByEmail(profileEmailId, "business", data -> {
+                    userName.setText((String)data.getAccount().get("name"));
+                    desc.setText((String)data.getAccount().get("email"));
+                    phone.setText((String)data.getAccount().get("phoneNumber"));
+                });
+            }
             serOrHis.setText("History");
-            Listeners.instance.getAccountByEmail(profileEmailId, type, data -> {
-                userName.setText((String)data.getAccount().get("name"));
-                desc.setText((String)data.getAccount().get("email"));
-                phone.setText((String)data.getAccount().get("phoneNumber"));
-            });
+
         }
 
 
         editBt.setOnClickListener(v -> {
             if(type.equals("user"))
-            Navigation.findNavController(view).navigate((NavDirections) ProfileFragmentDirections.actionProfileFragmentToEditClientFragment(emailUseridId));
+            Navigation.findNavController(view).navigate((NavDirections) ProfileFragmentDirections.actionProfileFragmentToEditClientFragment(profileEmailId));
+            else Navigation.findNavController(view).navigate(ProfileFragmentDirections.actionProfileFragmentToEditBusineesFragment(profileEmailId));
         });
 
+        //need to fix
         back.setOnClickListener(v -> {
             Navigation.findNavController(view).navigate(R.id.action_global_homeFragment);
         });

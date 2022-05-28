@@ -2,6 +2,7 @@ package com.example.inmyarea_android.model;
 
 import com.example.inmyarea_android.model.ResponseMessages.BsnssByCategoryRespMsg;
 import com.example.inmyarea_android.model.ResponseMessages.GetAccountResponseMessage;
+import com.example.inmyarea_android.model.ResponseMessages.GetAppointmentsRespMsg;
 import com.example.inmyarea_android.model.ResponseMessages.MainResponseMessage;
 import com.example.inmyarea_android.model.Users.Business;
 import com.example.inmyarea_android.model.Users.Client;
@@ -168,10 +169,10 @@ public class Model_RetroFit {
     }
 
 
-    public void addAppointment(String email, Appointment appointment, Listeners.addAppointmentListener listener) {
+    public void addAppointment( Appointment appointment, Listeners.addAppointmentListener listener) {
 
 
-        Call<MainResponseMessage> call = nodeApiServer.addAppointment(email,appointment);
+        Call<MainResponseMessage> call = nodeApiServer.addAppointment(appointment);
         call.enqueue(new Callback<MainResponseMessage>() {
             @Override
             public void onResponse(Call<MainResponseMessage> call, Response<MainResponseMessage> response) {
@@ -185,5 +186,39 @@ public class Model_RetroFit {
             }
         });
 
+    }
+
+    public void getAppointmentsByDate(String email, String date, Listeners.getAppointmentsByDateListener listener) {
+        Call<GetAppointmentsRespMsg> call = nodeApiServer.getAppointmentsByDate(email,date);
+        call.enqueue(new Callback<GetAppointmentsRespMsg>() {
+            @Override
+            public void onResponse(Call<GetAppointmentsRespMsg> call, Response<GetAppointmentsRespMsg> response) {
+
+                listener.onComplete(response.body());
+            }
+
+            @Override
+            public void onFailure(Call<GetAppointmentsRespMsg> call, Throwable t) {
+                try { throw t; }
+                catch (Throwable throwable) { throwable.printStackTrace(); }
+            }
+        });
+    }
+
+    public void getAppointmentsByUser(String email, Listeners.getAppointmentsByDateListener listener) {
+        Call<GetAppointmentsRespMsg> call = nodeApiServer.getAppointmentByUser(email);
+        call.enqueue(new Callback<GetAppointmentsRespMsg>() {
+            @Override
+            public void onResponse(Call<GetAppointmentsRespMsg> call, Response<GetAppointmentsRespMsg> response) {
+
+                listener.onComplete(response.body());
+            }
+
+            @Override
+            public void onFailure(Call<GetAppointmentsRespMsg> call, Throwable t) {
+                try { throw t; }
+                catch (Throwable throwable) { throwable.printStackTrace(); }
+            }
+        });
     }
 }

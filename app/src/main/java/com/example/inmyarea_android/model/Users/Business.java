@@ -12,7 +12,6 @@ public class Business extends User {
     String location;
     String category;
     ArrayList<String> services;
-    ArrayList<Appointment> appointments;
 
     public Business() {
         super();
@@ -28,6 +27,7 @@ public class Business extends User {
         this.description = description;
         this.category = category;
     }
+
 
     public ArrayList<String> getServices() {
         return services;
@@ -73,7 +73,6 @@ public class Business extends User {
         json.put("location", this.location);
         json.put("category", this.category);
         json.put("services", this.services);
-        json.put("appointments", this.appointments);
 
         return json;
     }

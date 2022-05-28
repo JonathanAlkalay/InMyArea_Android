@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".feed.EditBusinessFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/imageView_editbus"
+            android:layout_width="204dp"
+            android:layout_height="161dp"
+            android:src="@drawable/ima_login_photo"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/title_editbusTV"
+            android:layout_width="355dp"
+            android:layout_height="64dp"
+            android:text="Edit Business"
+            android:textAlignment="center"
+            android:textColor="#E91E1E"
+            android:textSize="48sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageView_editbus" />
+
+        <EditText
+            android:id="@+id/description_editbusET"
+            android:layout_width="273dp"
+            android:layout_height="66dp"
+            android:ems="10"
+            android:gravity="top"
+            android:inputType="textPersonName"
+            android:minHeight="48dp"
+            android:text="Description"
+            android:textAlignment="inherit"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.517"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/name_editbusET" />
+
+        <EditText
+            android:id="@+id/name_editbusET"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:minHeight="48dp"
+            android:text="Name"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.517"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/title_editbusTV" />
+
+        <EditText
+            android:id="@+id/phone_editbusET"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:ems="10"
+            android:inputType="phone"
+            android:minHeight="48dp"
+            android:text="phone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.517"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/description_editbusET" />
+
+        <EditText
+            android:id="@+id/pass1_editbusET"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:ems="10"
+            android:hint="New Password"
+            android:inputType="textPassword"
+            android:minHeight="48dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.517"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/phone_editbusET" />
+
+        <EditText
+            android:id="@+id/pass2_editbusET"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:ems="10"
+            android:hint="New Password Confirm"
+            android:inputType="textPassword"
+            android:minHeight="48dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.517"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/pass1_editbusET" />
+
+        <Button
+            android:id="@+id/save_editbusBt"
+            android:layout_width="109dp"
+            android:layout_height="56dp"
+            android:layout_marginBottom="60dp"
+            android:background="@drawable/button_shape"
+            android:fontFamily="@font/encode_sans"
+            android:text="Save"
+            android:textColor="@color/red"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            app:backgroundTint="@color/black"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/services_dropdown_editbusTv" />
+
+        <TextView
+            android:id="@+id/services_dropdown_editbusTv"
+            android:layout_width="230dp"
+            android:layout_height="38dp"
+            android:layout_marginTop="20dp"
+            android:background="@android:drawable/editbox_background"
+            android:drawableRight="@android:drawable/arrow_down_float"
+            android:drawablePadding="16dp"
+            android:fontFamily="@font/abel"
+            android:hint="Select Services"
+            android:padding="12dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.504"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/pass2_editbusET" />
+
+        <ProgressBar
+            android:id="@+id/progressBar_editbus"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="68dp"
+            android:layout_height="59dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</FrameLayout>

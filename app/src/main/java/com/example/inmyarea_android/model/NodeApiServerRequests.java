@@ -1,6 +1,7 @@
 package com.example.inmyarea_android.model;
 import com.example.inmyarea_android.model.ResponseMessages.BsnssByCategoryRespMsg;
 import com.example.inmyarea_android.model.ResponseMessages.GetAccountResponseMessage;
+import com.example.inmyarea_android.model.ResponseMessages.GetAppointmentsRespMsg;
 import com.example.inmyarea_android.model.ResponseMessages.MainResponseMessage;
 import com.example.inmyarea_android.model.Users.User;
 
@@ -41,7 +42,13 @@ public interface NodeApiServerRequests {
     @POST("uploadVideo={email}")
     Call<MainResponseMessage> uploadVideo(@Part MultipartBody.Part part, @Part("video") RequestBody requestBody, @Path("email")String email);
 
-    @POST("addAppointment={email}")
-    Call<MainResponseMessage> addAppointment(@Path("email")String email, @Body Appointment appointment);
+    @POST("addAppointment")
+    Call<MainResponseMessage> addAppointment( @Body Appointment appointment);
 
+
+    @GET("getAppointmentsByDate={email}&{date}")
+    Call<GetAppointmentsRespMsg> getAppointmentsByDate(@Path("email")String email, @Path("date")String date);
+
+    @GET("getAppointmentByUser={email}")
+    Call<GetAppointmentsRespMsg> getAppointmentByUser(@Path("email")String email);
 }

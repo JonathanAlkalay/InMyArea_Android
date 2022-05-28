@@ -4,6 +4,7 @@ package com.example.inmyarea_android.feed;
 
 import androidx.lifecycle.ViewModelProvider;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -18,8 +19,10 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.inmyarea_android.MainActivity;
 import com.example.inmyarea_android.R;
 import com.example.inmyarea_android.login.LoginFragmentDirections;
+import com.example.inmyarea_android.model.Listeners;
 
 public class HomeFragment extends Fragment {
 
@@ -34,9 +37,16 @@ public class HomeFragment extends Fragment {
         View view= inflater.inflate(R.layout.home_fragment, container, false);
         email = getArguments().getString("useremail_id");
         type = getArguments().getString("type");
-//        if(type.equals("business")){
-//            Navigation.findNavController(view).navigate(HomeFragmentDirections.actionHomeFragmentToProfileFragment(email,email,type));
-//        }
+
+        TextView logout=view.findViewById(R.id.homefeed_logoutTV);
+        logout.setOnClickListener(v -> {
+            //logout
+
+            Intent intent = new Intent(getActivity(), MainActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            getActivity().finish();
+            startActivity(intent);
+        });
 
 
         TextView homeTV=view.findViewById(R.id.home_TV);

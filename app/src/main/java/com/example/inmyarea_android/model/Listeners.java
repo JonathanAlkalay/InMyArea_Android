@@ -2,6 +2,7 @@ package com.example.inmyarea_android.model;
 
 import com.example.inmyarea_android.model.ResponseMessages.BsnssByCategoryRespMsg;
 import com.example.inmyarea_android.model.ResponseMessages.GetAccountResponseMessage;
+import com.example.inmyarea_android.model.ResponseMessages.GetAppointmentsRespMsg;
 import com.example.inmyarea_android.model.ResponseMessages.MainResponseMessage;
 import com.example.inmyarea_android.model.Users.User;
 
@@ -44,6 +45,21 @@ public class Listeners {
         retroFit.getBusinessesByCategory(category, listener);
     }
 
+    public interface getAppointmentsByDateListener{
+        void onComplete(GetAppointmentsRespMsg data);
+    }
+    public void AppointmentsByDate(String email,String date, getAppointmentsByDateListener listener){
+        retroFit.getAppointmentsByDate(email,date, listener);
+    }
+
+    public interface getAppointmentsByUserListener{
+        void onComplete(GetAppointmentsRespMsg data);
+    }
+    public void AppointmentsByUser(String email, getAppointmentsByDateListener listener){
+        retroFit.getAppointmentsByUser(email, listener);
+    }
+
+
     public interface updateAccountDetailsListener{
         void onComplete(MainResponseMessage data) throws URISyntaxException;
     }
@@ -61,8 +77,8 @@ public class Listeners {
     public interface addAppointmentListener {
         void onComplete(MainResponseMessage data);
     }
-    public void addAppointment(String email,Appointment appointment, addAppointmentListener listener) {
-        retroFit.addAppointment(email,appointment, listener);
+    public void addAppointment(Appointment appointment, addAppointmentListener listener) {
+        retroFit.addAppointment(appointment, listener);
     }
 
 

@@ -51,7 +51,7 @@ public class VideoClipRV_Fragment extends Fragment {
             @Override
             public void onItemClick(int position) {
                 String id = videoItemList.get(position).owmerId;
-                Navigation.findNavController(view).navigate((NavDirections) VideoClipRV_FragmentDirections.actionVideoClipRVFragmentToProfileFragment(emailuseridId,id,"business"));
+                Navigation.findNavController(view).navigate((NavDirections) VideoClipRV_FragmentDirections.actionVideoClipRVFragmentToProfileFragment(emailuseridId,id,"user"));
 
             }
         });

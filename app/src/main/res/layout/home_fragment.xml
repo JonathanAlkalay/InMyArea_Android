@@ -108,6 +108,21 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+        <TextView
+            android:id="@+id/homefeed_logoutTV"
+            android:layout_width="58dp"
+            android:layout_height="20dp"
+            android:layout_marginTop="36dp"
+            android:layout_marginEnd="4dp"
+            android:text="Logout"
+            android:textAlignment="center"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toStartOf="@+id/toProflie_BT"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toEndOf="@+id/home_TV"
+            app:layout_constraintTop_toTopOf="parent" />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

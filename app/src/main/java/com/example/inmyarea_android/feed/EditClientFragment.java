@@ -76,18 +76,22 @@ public class EditClientFragment extends Fragment {
                     name.setError("Please fill out name and phone");
                     save.setEnabled(true);
                     progressBar.setVisibility(View.GONE);
+                    return;
                 }else if(!ccurpass.equals(client.getPassWord())){
                     curpass.setError("Wrong password");
                     save.setEnabled(true);
                     progressBar.setVisibility(View.GONE);
+                    return;
                 }else{
                     if(!cpass1.equals(cpass2)){
                         pass2.setError("passwords are not equal!");
                         save.setEnabled(true);
                         progressBar.setVisibility(View.GONE);
+                        return;
                     }else{
                         client.setName(cname);
                         client.setPhoneNumber(cphone);
+                        if(!cpass1.isEmpty())
                         client.setPassWord(cpass1);
                         Listeners.instance.updateAccountDetails(emailId, "user", client, data -> {
                             save.setEnabled(true);

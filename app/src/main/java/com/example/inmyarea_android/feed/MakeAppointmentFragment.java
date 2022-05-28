@@ -88,8 +88,8 @@ public class MakeAppointmentFragment extends Fragment {
             Listeners.instance.getAccountByEmail(userId, "user", data -> {
                 String name =(String)data.getAccount().get("name");
                 String phone=(String)data.getAccount().get("phoneNumber");;
-                Appointment appointment=new Appointment(userId,service,date,name,time,phone);
-                Listeners.instance.addAppointment(businessId, appointment, data1 -> Navigation.findNavController(view).popBackStack());
+                Appointment appointment=new Appointment(businessId,userId,service,date,name,time,phone);
+                Listeners.instance.addAppointment( appointment, data1 -> Navigation.findNavController(view).popBackStack());
             });
 
         });

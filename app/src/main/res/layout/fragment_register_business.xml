@@ -35,7 +35,7 @@
                 android:id="@+id/email_registetbusinessET"
                 android:layout_width="289dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="8dp"
                 android:drawableLeft="@drawable/email"
                 android:ems="10"
                 android:fontFamily="@font/abel"
@@ -46,7 +46,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.393"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/description_registerbusinessET" />
+                app:layout_constraintTop_toBottomOf="@+id/location_registetbusinessET" />
 
             <EditText
                 android:id="@+id/pw1_registebusinesstET"
@@ -114,6 +114,22 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/titleRegisterBus1_TV" />
 
+            <EditText
+                android:id="@+id/location_registetbusinessET"
+                android:layout_width="289dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:ems="10"
+                android:fontFamily="@font/abel"
+                android:hint="Location"
+                android:inputType="textPersonName"
+                android:minHeight="48dp"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.393"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/description_registerbusinessET" />
+
             <Button
                 android:id="@+id/continue_RegisButbusiness"
                 android:layout_width="wrap_content"
@@ -145,8 +161,8 @@
 
             <ImageView
                 android:id="@+id/imageView"
-                android:layout_width="181dp"
-                android:layout_height="125dp"
+                android:layout_width="144dp"
+                android:layout_height="90dp"
                 android:src="@drawable/ima_login_photo"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -170,8 +186,10 @@
                 android:layout_height="65dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.473"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.572" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>

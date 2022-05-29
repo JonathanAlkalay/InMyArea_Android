@@ -1,7 +1,11 @@
 package com.example.inmyarea_android.login;
 
+import android.app.Activity;
+import android.content.Intent;
+import android.icu.util.ULocale;
 import android.os.Bundle;
 
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 
@@ -18,9 +22,22 @@ import com.example.inmyarea_android.R;
 import com.example.inmyarea_android.model.Listeners;
 import com.example.inmyarea_android.model.ResponseMessages.MainResponseMessage;
 import com.example.inmyarea_android.model.Users.Business;
+import com.google.android.libraries.places.api.Places;
+import com.google.android.libraries.places.api.model.Place;
+import com.google.android.libraries.places.api.net.PlacesClient;
+import com.google.android.libraries.places.widget.Autocomplete;
+import com.google.android.libraries.places.widget.model.AutocompleteActivityMode;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 
 public class RegisterBusinessFragment extends Fragment {
+
+    EditText location;
+    Place place;
+
 
 
     @Override
@@ -37,6 +54,17 @@ public class RegisterBusinessFragment extends Fragment {
         Button cont= view.findViewById(R.id.continue_RegisButbusiness);
         ProgressBar progressBar= view.findViewById(R.id.progressBar_regbus);
         progressBar.setVisibility(View.GONE);
+        Places.initialize(getContext(), "AIzaSyCQ3Q8914NpWb5OpAteUHE0htG8rerUSoQ");
+        //PlacesClient placesClient = Places.createClient(getContext());
+        location=view.findViewById(R.id.location_registetbusinessET);
+
+        location.setFocusable(false);
+        location.setOnClickListener(v -> {
+            List<Place.Field> fieldList= Arrays.asList(Place.Field.ADDRESS,Place.Field.LAT_LNG,Place.Field.NAME);
+            Intent intent= new Autocomplete.IntentBuilder(AutocompleteActivityMode.OVERLAY,fieldList).build(getContext());
+            startActivityForResult(intent,100);
+        });
+
 
 
 
@@ -109,9 +137,15 @@ public class RegisterBusinessFragment extends Fragment {
 
         });
 
-
-
-
         return view;
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode==100&&resultCode== Activity.RESULT_OK){
+            place=Autocomplete.getPlaceFromIntent(data);
+            location.setText(place.getAddress());
+        }
     }
 }

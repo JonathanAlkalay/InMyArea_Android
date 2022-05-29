@@ -2,163 +2,65 @@ package com.example.inmyarea_android.feed;
 
 import android.os.Bundle;
 
-import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.CalendarView;
-import android.widget.ProgressBar;
-import android.widget.TextView;
 
 import com.example.inmyarea_android.R;
-import com.example.inmyarea_android.databinding.ApointmetRowBinding;
-import com.example.inmyarea_android.model.Appointment;
-import com.example.inmyarea_android.model.Listeners;
-import com.example.inmyarea_android.model.ResponseMessages.GetAppointmentsRespMsg;
 
-import org.w3c.dom.Text;
-
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-
-
+/**
+ * A simple {@link Fragment} subclass.
+ * Use the {@link CalendarFragment#newInstance} factory method to
+ * create an instance of this fragment.
+ */
 public class CalendarFragment extends Fragment {
 
-    List<Appointment> apoArr=new ArrayList<>();
-    MyAdapter adapter;
+    // TODO: Rename parameter arguments, choose names that match
+    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
+    private static final String ARG_PARAM1 = "param1";
+    private static final String ARG_PARAM2 = "param2";
+
+    // TODO: Rename and change types of parameters
+    private String mParam1;
+    private String mParam2;
+
+    public CalendarFragment() {
+        // Required empty public constructor
+    }
+
+    /**
+     * Use this factory method to create a new instance of
+     * this fragment using the provided parameters.
+     *
+     * @param param1 Parameter 1.
+     * @param param2 Parameter 2.
+     * @return A new instance of fragment CalendarFragment.
+     */
+    // TODO: Rename and change types and number of parameters
+    public static CalendarFragment newInstance(String param1, String param2) {
+        CalendarFragment fragment = new CalendarFragment();
+        Bundle args = new Bundle();
+        args.putString(ARG_PARAM1, param1);
+        args.putString(ARG_PARAM2, param2);
+        fragment.setArguments(args);
+        return fragment;
+    }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        if (getArguments() != null) {
+            mParam1 = getArguments().getString(ARG_PARAM1);
+            mParam2 = getArguments().getString(ARG_PARAM2);
+        }
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view= inflater.inflate(R.layout.fragment_calendar, container, false);
-        String busId=CalendarFragmentArgs.fromBundle(getArguments()).getBusinessid();
-        ProgressBar calPB=view.findViewById(R.id.progressBar_calendar);
-        CalendarView calendarView=view.findViewById(R.id.calendarView_calendar);
-        calendarView.setClickable(false);
-
-
-        calPB.setVisibility(View.VISIBLE);
-        //get apo
-        Date date=new Date();
-        String sDate=(date.getMonth()+1)+"/"+date.getDate()+"/"+(date.getYear()+1900);
-        Listeners.instance.AppointmentsByDate(busId, sDate, data -> {
-            for (HashMap<String,Object> map:data.getAppointments()){
-                Appointment appointment=new Appointment();
-                apoArr.add(appointment.fromJson(map));
-            }
-            refresh();
-            calPB.setVisibility(View.GONE);
-            calendarView.setClickable(true);
-        });
-
-        RecyclerView list=view.findViewById(R.id.apo_listRV);
-        list.setHasFixedSize(true);
-        list.setLayoutManager(new LinearLayoutManager(getContext()));
-        adapter= new MyAdapter();
-        list.setAdapter(adapter);
-
-        //use this while click
-        //calendarView.setClickable(false);
-
-        calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
-            @Override
-            public void onSelectedDayChange(@NonNull CalendarView view, int year, int month, int dayOfMonth) {
-                calPB.setVisibility(View.VISIBLE);
-                String sDate=(month+1)+"/"+dayOfMonth+"/"+year;
-                apoArr.clear();
-                Listeners.instance.AppointmentsByDate(busId, sDate, data -> {
-                    for (HashMap<String,Object> map:data.getAppointments()){
-                        Appointment appointment=new Appointment();
-                        apoArr.add(appointment.fromJson(map));
-                    }
-                    refresh();
-                    calPB.setVisibility(View.GONE);
-                    calendarView.setClickable(true);
-                });
-
-            }
-        });
-
-
-
-        return view;
-    }
-
-    class MyViewHolder extends RecyclerView.ViewHolder{
-
-        TextView name,service,phone,time,date;
-
-
-        public MyViewHolder(@NonNull View itemView, OnItemClickListener listener) {
-            super(itemView);
-            name =itemView.findViewById(R.id.aporow_name);
-            service =itemView.findViewById(R.id.aporow_service);
-            phone =itemView.findViewById(R.id.aporow_phone);
-            time =itemView.findViewById(R.id.aporow_time);
-            date =itemView.findViewById(R.id.aporow_date);
-
-
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    int pos = getAdapterPosition();
-                    listener.onItemClick(pos);
-                }
-            });
-        }
-
-
-
-    }
-
-    private void refresh(){
-        adapter.notifyDataSetChanged();
-
-    }
-
-    interface OnItemClickListener{
-        void onItemClick(int position);
-    }
-
-    class MyAdapter extends RecyclerView.Adapter<MyViewHolder>{
-
-        OnItemClickListener listener;
-        public void setOnItemClickListener(OnItemClickListener listener){
-            this.listener = listener;
-        }
-
-        @NonNull
-        @Override
-        public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-            View view = getLayoutInflater().inflate(R.layout.apointmet_row,parent,false);
-            MyViewHolder holder = new MyViewHolder(view,listener);
-            return holder;
-        }
-
-        @Override
-        public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-            //set  data
-            Appointment apo=apoArr.get(position);
-            holder.name.setText(apo.getUserName());
-            holder.date.setText(apo.getDate());
-            holder.time.setText(apo.getTime());
-            holder.service.setText(apo.getService());
-            holder.phone.setText(apo.getPhone());
-        }
-
-        //return size
-        @Override
-        public int getItemCount() {
-            if(apoArr!=null)
-            return apoArr.size();
-            return 0;
-        }
+        return inflater.inflate(R.layout.fragment_calendar, container, false);
     }
 }

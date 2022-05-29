@@ -7,6 +7,7 @@ import android.os.Bundle;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.NavDirections;
 import androidx.navigation.Navigation;
 
 import android.view.LayoutInflater;
@@ -54,7 +55,7 @@ public class RegisterBusinessFragment extends Fragment {
         Button cont= view.findViewById(R.id.continue_RegisButbusiness);
         ProgressBar progressBar= view.findViewById(R.id.progressBar_regbus);
         progressBar.setVisibility(View.GONE);
-        Places.initialize(getContext(), "AIzaSyCQ3Q8914NpWb5OpAteUHE0htG8rerUSoQ");
+        Places.initialize(getContext(), "AIzaSyDxG4UK6DneEjQZpPWjiwOfy5AVFRxEaPE");
         //PlacesClient placesClient = Places.createClient(getContext());
         location=view.findViewById(R.id.location_registetbusinessET);
 
@@ -124,7 +125,7 @@ public class RegisterBusinessFragment extends Fragment {
                 Listeners.instance.createAccount(cemail, "business", buss, data -> {
                     if(data.getStatus().equals("true")){
                         progressBar.setVisibility(View.GONE);
-                        Navigation.findNavController(view).navigate(RegisterBusinessFragmentDirections.actionRegisterBusinessFragmentToRegisteBusinessFragment2(ccategory,cemail));
+                        Navigation.findNavController(view).navigate((NavDirections) RegisterBusinessFragmentDirections.actionRegisterBusinessFragmentToRegisteBusinessFragment2(ccategory,cemail));
 
                     }else{
                         progressBar.setVisibility(View.GONE);

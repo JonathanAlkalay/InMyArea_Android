@@ -11,6 +11,7 @@ import android.view.View;
 
 import androidx.navigation.NavArgument;
 import androidx.navigation.NavController;
+import androidx.navigation.NavGraph;
 import androidx.navigation.NavHost;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -31,13 +32,23 @@ public class BaseActivity extends AppCompatActivity {
         if(b != null) {
             value = b.getString("useremail_id");
             type = b.getString("type");
+            b.putString("profile_email_id","null");
         }
         String finalValue = value;
 
         setContentView(R.layout.activity_base);
         NavHost navHost = (NavHost)getSupportFragmentManager().findFragmentById(R.id.feed_navhost);
         navCtl = navHost.getNavController();
-        navCtl.setGraph(R.navigation.feednav_graph, b);
+
+
+        NavGraph navGraph = navCtl.getNavInflater().inflate(R.navigation.feednav_graph);
+        if(type.equals("business")){
+            navGraph.setStartDestination(R.id.profileFragment);
+        }else navGraph.setStartDestination(R.id.homeFragment);
+
+        navCtl.setGraph(navGraph, b);
+
+
 
 
     }

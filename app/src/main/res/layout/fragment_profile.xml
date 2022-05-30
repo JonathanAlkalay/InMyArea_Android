@@ -11,7 +11,7 @@
         android:id="@+id/profile_nameTV"
         android:layout_width="156dp"
         android:layout_height="47dp"
-        android:layout_marginTop="48dp"
+        android:layout_marginTop="8dp"
         android:fontFamily="@font/encode_sans"
         android:text="Username"
         android:textAlignment="textStart"
@@ -115,11 +115,12 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/profile_nameTV" />
 
-    <ImageButton
-        android:id="@+id/backProflie_IB"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/back"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/serorapo_RV"
+        android:layout_width="409dp"
+        android:layout_height="366dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/profile_serorhisTV" />
 </androidx.constraintlayout.widget.ConstraintLayout>

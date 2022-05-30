@@ -38,6 +38,7 @@ public class HomeFragment extends Fragment {
         email = getArguments().getString("useremail_id");
         type = getArguments().getString("type");
 
+
         TextView logout=view.findViewById(R.id.homefeed_logoutTV);
         logout.setOnClickListener(v -> {
             //logout

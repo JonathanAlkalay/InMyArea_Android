@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName;
 import java.util.HashMap;
 import java.util.List;
 
-public class BsnssByCategoryRespMsg {
+public class GetBusinessesRespMsg {
 
    @SerializedName("status")
    private String status;

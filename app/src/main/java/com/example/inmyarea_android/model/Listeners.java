@@ -1,13 +1,12 @@
 package com.example.inmyarea_android.model;
 
-import com.example.inmyarea_android.model.ResponseMessages.BsnssByCategoryRespMsg;
+import com.example.inmyarea_android.model.ResponseMessages.GetBusinessesRespMsg;
 import com.example.inmyarea_android.model.ResponseMessages.GetAccountResponseMessage;
 import com.example.inmyarea_android.model.ResponseMessages.GetAppointmentsRespMsg;
 import com.example.inmyarea_android.model.ResponseMessages.MainResponseMessage;
 import com.example.inmyarea_android.model.Users.User;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URISyntaxException;
 
@@ -39,7 +38,7 @@ public class Listeners {
     }
 
     public interface getBusinessesByCategoryListener{
-        void onComplete(BsnssByCategoryRespMsg data);
+        void onComplete(GetBusinessesRespMsg data);
     }
     public void getBusinessesByCategory(String category, getBusinessesByCategoryListener listener){
         retroFit.getBusinessesByCategory(category, listener);
@@ -79,6 +78,13 @@ public class Listeners {
     }
     public void addAppointment(Appointment appointment, addAppointmentListener listener) {
         retroFit.addAppointment(appointment, listener);
+    }
+
+    public interface getAccountsByLocationListener{
+        void onComplete(GetBusinessesRespMsg data) throws IOException;
+    }
+    public void getAccountsByLocation(Double longitude, Double latitude, getAccountsByLocationListener listener){
+        retroFit.getAccountsByLocation(longitude, latitude, listener);
     }
 
 

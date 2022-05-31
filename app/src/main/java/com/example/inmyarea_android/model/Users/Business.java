@@ -13,6 +13,10 @@ public class Business extends User {
     String category;
     ArrayList<String> services;
 
+
+
+    Double longitude,latitude;
+
     public Business() {
         super();
     }
@@ -61,6 +65,14 @@ public class Business extends User {
         this.category = category;
     }
 
+    public void setLongitude(Double longitude) {
+        this.longitude = longitude;
+    }
+
+    public void setLatitude(Double latitude) {
+        this.latitude = latitude;
+    }
+
     public HashMap<String, Object> toJson() {
 
         HashMap<String, Object> json = new HashMap<>();
@@ -73,6 +85,8 @@ public class Business extends User {
         json.put("location", this.location);
         json.put("category", this.category);
         json.put("services", this.services);
+        json.put("longitude",this.longitude);
+        json.put("latitude",this.latitude);
 
         return json;
     }
@@ -85,6 +99,8 @@ public class Business extends User {
 
         business.setLocation((String) json.get("location"));
         business.setServices((ArrayList<String>)json.get("services"));
+        business.setLongitude((Double)json.get("longitude") );
+        business.setLatitude((Double)json.get("latitude") );
 
         return business;
     }

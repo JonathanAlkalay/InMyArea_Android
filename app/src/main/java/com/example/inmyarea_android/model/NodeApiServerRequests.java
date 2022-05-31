@@ -1,9 +1,8 @@
 package com.example.inmyarea_android.model;
-import com.example.inmyarea_android.model.ResponseMessages.BsnssByCategoryRespMsg;
+import com.example.inmyarea_android.model.ResponseMessages.GetBusinessesRespMsg;
 import com.example.inmyarea_android.model.ResponseMessages.GetAccountResponseMessage;
 import com.example.inmyarea_android.model.ResponseMessages.GetAppointmentsRespMsg;
 import com.example.inmyarea_android.model.ResponseMessages.MainResponseMessage;
-import com.example.inmyarea_android.model.Users.User;
 
 import java.util.HashMap;
 
@@ -36,7 +35,7 @@ public interface NodeApiServerRequests {
     Call<MainResponseMessage> updateAccountDetails(@Path("email")String email, @Path("type")String type, @Body HashMap<String, Object> json);
 
     @GET("getAccountsByCategory={category}")
-    Call<BsnssByCategoryRespMsg> getBusinessesByCategory(@Path("category")String category);
+    Call<GetBusinessesRespMsg> getBusinessesByCategory(@Path("category")String category);
 
     @Multipart
     @POST("uploadVideo={email}")
@@ -51,4 +50,7 @@ public interface NodeApiServerRequests {
 
     @GET("getAppointmentByUser={email}")
     Call<GetAppointmentsRespMsg> getAppointmentByUser(@Path("email")String email);
+
+    @GET("getAccountsByLocation={long}&{lat}")
+    Call<GetBusinessesRespMsg> getAccountsByLocation(@Path("long")Double longitude,@Path("lat")Double latitude);
 }

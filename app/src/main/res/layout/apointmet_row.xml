@@ -2,14 +2,17 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content">
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/layout_border">
 
     <TextView
         android:id="@+id/aporow_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="2dp"
+        android:fontFamily="@font/encode_sans"
         android:text="TextView"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
@@ -17,15 +20,17 @@
 
     <TextView
         android:id="@+id/aporow_service"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="168dp"
+        android:layout_height="22dp"
         android:layout_marginTop="16dp"
-        android:layout_marginBottom="2dp"
+        android:layout_marginBottom="5dp"
+        android:fontFamily="@font/abel"
         android:text="TextView"
+        android:textSize="16sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/aporow_time"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.063"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/aporow_name"
         app:layout_constraintVertical_bias="0.0" />
@@ -34,7 +39,7 @@
         android:id="@+id/aporow_phone"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="12dp"
+        android:layout_marginStart="52dp"
         android:layout_marginTop="2dp"
         android:text="TextView"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -47,6 +52,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="24dp"
+        android:fontFamily="@font/abel"
         android:text="TextView"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"

@@ -5,7 +5,7 @@ public class Service {
             "Evening hairstyle","Requested Hair Style","hair straightening","Babyliss","Hair wash"};
 
     public String [] PediMeni= {"manicure","Regular pedicure","medical pedicure","Nail construction","Nail filling",
-    "Gel Nail Polish Hands","Gel Nail Polish Legs","Fixing Broken","Nail construction","Nail filling","Nail removal removal",
+    "Gel Nail Polish Hands","Gel Nail Polish Legs","Fixing Broken nail","Nail construction","Nail filling","Nail removal removal",
     "Permanent French addition for nail construction","Broken nail repair","Decoration for one finger","Decoration for more one finger",
     "Manicure Express","Regular nail polish on hands / feet","Spa pedicure","Express pedicure","Foot massage"};
 

@@ -39,15 +39,7 @@ public class HomeFragment extends Fragment {
         type = getArguments().getString("type");
 
 
-        TextView logout=view.findViewById(R.id.homefeed_logoutTV);
-        logout.setOnClickListener(v -> {
-            //logout
 
-            Intent intent = new Intent(getActivity(), MainActivity.class);
-            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-            getActivity().finish();
-            startActivity(intent);
-        });
 
 
         TextView homeTV=view.findViewById(R.id.home_TV);

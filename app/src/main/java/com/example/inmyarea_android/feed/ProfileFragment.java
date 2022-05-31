@@ -18,6 +18,7 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import com.example.inmyarea_android.MainActivity;
 import com.example.inmyarea_android.R;
 import com.example.inmyarea_android.model.Appointment;
 import com.example.inmyarea_android.model.Listeners;
@@ -62,6 +63,16 @@ public class ProfileFragment extends Fragment {
         adapter= new ProfileFragment.MyAdapter();
         list.setAdapter(adapter);
 
+        Button logout=view.findViewById(R.id.logout_BT);
+        logout.setOnClickListener(v -> {
+            //logout
+
+            Intent intent = new Intent(getActivity(), MainActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            getActivity().finish();
+            startActivity(intent);
+        });
+
         calendar.setVisibility(View.GONE);
 
         if(type.equals("business")) {
@@ -96,6 +107,7 @@ public class ProfileFragment extends Fragment {
                     phone.setText((String)data.getAccount().get("phoneNumber"));
                 });
                 Listeners.instance.AppointmentsByUser(profileEmailId, data -> {
+                    if(data!=null)
                     for (HashMap<String,Object> map:data.getAppointments()){
                         Appointment appointment=new Appointment();
                         apoArr.add(appointment.fromJson(map));

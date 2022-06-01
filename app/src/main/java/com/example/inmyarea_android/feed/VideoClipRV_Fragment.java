@@ -3,6 +3,7 @@ package com.example.inmyarea_android.feed;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProviders;
 import androidx.navigation.NavDirections;
 import androidx.navigation.Navigation;
 import androidx.viewpager2.widget.ViewPager2;
@@ -12,13 +13,16 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.inmyarea_android.R;
+import com.example.inmyarea_android.model.Users.Business;
 import com.example.inmyarea_android.model.VideoItem;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ForkJoinPool;
 
 
 public class VideoClipRV_Fragment extends Fragment {
+    private HomeViewModel mViewModel;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -27,30 +31,23 @@ public class VideoClipRV_Fragment extends Fragment {
         View view= inflater.inflate(R.layout.fragment_video_clip_r_v_, container, false);
 
         String emailuseridId = VideoClipRV_FragmentArgs.fromBundle(getArguments()).getUseremailId();
+        String categoryId = VideoClipRV_FragmentArgs.fromBundle(getArguments()).getCategoryid();
+        mViewModel = ViewModelProviders.of(this.getActivity()).get(HomeViewModel.class);
+        List<Business>catList= mViewModel.getBusinessByCategory(categoryId);
+
 
         final ViewPager2 videosViewPager= view.findViewById(R.id.videoViewPagger);
         List<VideoItem> videoItemList=new ArrayList<>();
-        VideoItem videoItem =new VideoItem();
-        videoItem.videoURL="https://media.geeksforgeeks.org/wp-content/uploads/20201217192146/Screenrecorder-2020-12-17-19-17-36-828.mp4?_=1";
-        videoItem.videoTitle="Business Title 1";
-        videoItem.videoDesc="Business description....";
-        videoItem.owmerId="luay@email.com";
-        videoItemList.add(videoItem);
-
-        VideoItem videoItem2 =new VideoItem();
-        videoItem2.videoURL="https://media.geeksforgeeks.org/wp-content/uploads/20201217192146/Screenrecorder-2020-12-17-19-17-36-828.mp4?_=1";
-        videoItem2.videoTitle="Business Title 2";
-        videoItem2.videoDesc="Business description....";
-        videoItem2.owmerId="liraz@email.com";
-        videoItemList.add(videoItem2);
+        videoItemList=mViewModel.createVideoList(catList);
 
         VideoAdapter videoAdapter = new VideoAdapter(videoItemList);
         videosViewPager.setAdapter(videoAdapter);
 
+        List<VideoItem> finalVideoItemList = videoItemList;
         videoAdapter.setOnItemClickListener(new OnItemClickListener() {
             @Override
             public void onItemClick(int position) {
-                String id = videoItemList.get(position).owmerId;
+                String id = finalVideoItemList.get(position).owmerId;
                 Navigation.findNavController(view).navigate((NavDirections) VideoClipRV_FragmentDirections.actionVideoClipRVFragmentToProfileFragment(emailuseridId,id,"user"));
 
             }
@@ -59,6 +56,8 @@ public class VideoClipRV_Fragment extends Fragment {
 
         return view;
     }
+
+
 
     interface OnItemClickListener{
         void onItemClick(int position);

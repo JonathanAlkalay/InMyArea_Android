@@ -17,6 +17,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProviders;
 import androidx.navigation.NavDirections;
 import androidx.navigation.Navigation;
 
@@ -45,7 +46,9 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 public class HomeFragment extends Fragment {
 
@@ -63,6 +66,7 @@ public class HomeFragment extends Fragment {
         View view= inflater.inflate(R.layout.home_fragment, container, false);
         email = getArguments().getString("useremail_id");
         type = getArguments().getString("type");
+        mViewModel = ViewModelProviders.of(this.getActivity()).get(HomeViewModel.class);
 
         latitudeTextView = view.findViewById(R.id.home_TV);
         latitudeTextView.setText(email);
@@ -79,7 +83,7 @@ public class HomeFragment extends Fragment {
         });
 
         bt.setOnClickListener(v -> {
-            Navigation.findNavController(view).navigate((NavDirections) HomeFragmentDirections.actionHomeFragmentToVideoClipRVFragment(email));
+            Navigation.findNavController(view).navigate((NavDirections) HomeFragmentDirections.actionHomeFragmentToVideoClipRVFragment(email,"Pedi&Medi"));
         });
 
         return view;
@@ -89,10 +93,12 @@ public class HomeFragment extends Fragment {
 
     private void getBusByLocation(){
         Listeners.instance.getAccountsByLocation(longitude, latitude, data -> {
+            List<Business> busList=new ArrayList<>();
             for (HashMap<String,Object> map:data.getAccounts()){
                 Business business=new Business();
-                mViewModel.businesses.add(business.fromJson(map));
+                busList.add(business.fromJson(map));
             }
+            mViewModel.setBusinesses(busList);
         });
     }
 

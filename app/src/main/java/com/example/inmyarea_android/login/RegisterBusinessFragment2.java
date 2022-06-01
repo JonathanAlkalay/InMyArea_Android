@@ -1,7 +1,9 @@
 package com.example.inmyarea_android.login;
 
+import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
@@ -12,6 +14,7 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.provider.DocumentsContract;
 import android.provider.MediaStore;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -84,9 +87,9 @@ public class RegisterBusinessFragment2 extends Fragment {
             mCurrentPosition = savedInstanceState.getInt(PLAYBACK_TIME);
         }
 
-        MediaController controller = new MediaController(getContext());
-        controller.setMediaPlayer(mVideoView);
-        mVideoView.setMediaController(controller);
+//        MediaController controller = new MediaController(getContext());
+//        controller.setMediaPlayer(mVideoView);
+//        mVideoView.setMediaController(controller);
 
         //services
         Service service=new Service();
@@ -216,7 +219,7 @@ public class RegisterBusinessFragment2 extends Fragment {
                         toFeedActivity(email);
 
                     });
-                    //File file=new File(video.getPath());
+                    File file=new File(video.getPath());
 //                    InputStream in =  getActivity().getContentResolver().openInputStream(video);
 //                    OutputStream out = new FileOutputStream(new File("your_file_here"));
 //                    byte[] buf = new byte[1024];
@@ -226,7 +229,7 @@ public class RegisterBusinessFragment2 extends Fragment {
 //                    }
 //                    out.close();
 //                    in.close();
-                    //Listeners.instance.uploadVideo(file, email, data2 -> toFeedActivity(email));
+                    Listeners.instance.uploadVideo(file, email, data2 -> toFeedActivity(email));
                 });
             }
 
@@ -265,49 +268,49 @@ public class RegisterBusinessFragment2 extends Fragment {
     }
 
 
-//    private void initializePlayer(Uri uri) {
-//        // Show the "Buffering..." message while the video loads.
-//        progressBar.setVisibility(VideoView.VISIBLE);
-//        if (uri != null){
-//            mVideoView.setVideoURI(uri);
-//        }
-//        // Listener for onPrepared() event (runs after the media is prepared).
-//        mVideoView.setOnPreparedListener(
-//                new MediaPlayer.OnPreparedListener() {
-//                    @Override
-//                    public void onPrepared(MediaPlayer mediaPlayer) {
-//
-//                        // Hide buffering message.
-//                        progressBar.setVisibility(VideoView.INVISIBLE);
-//
-//                        // Restore saved position, if available.
-//                        if (mCurrentPosition > 0) {
-//                            mVideoView.seekTo(mCurrentPosition);
-//                        } else {
-//                            // Skipping to 1 shows the first frame of the video.
-//                            mVideoView.seekTo(1);
-//                        }
-//
-//                        // Start playing!
-//                        mVideoView.start();
-//                    }
-//                });
-//
-//        // Listener for onCompletion() event (runs after media has finished
-//        // playing).
-//        mVideoView.setOnCompletionListener(
-//                new MediaPlayer.OnCompletionListener() {
-//                    @Override
-//                    public void onCompletion(MediaPlayer mediaPlayer) {
-//                        Toast.makeText(getActivity(),
-//                                "Playback completed",
-//                                Toast.LENGTH_SHORT).show();
-//
-//                        // Return the video position to the start.
-//                        mVideoView.seekTo(0);
-//                    }
-//                });
-//    }
+    private void initializePlayer(Uri uri) {
+        // Show the "Buffering..." message while the video loads.
+        progressBar.setVisibility(VideoView.VISIBLE);
+        if (uri != null){
+            mVideoView.setVideoURI(uri);
+        }
+        // Listener for onPrepared() event (runs after the media is prepared).
+        mVideoView.setOnPreparedListener(
+                new MediaPlayer.OnPreparedListener() {
+                    @Override
+                    public void onPrepared(MediaPlayer mediaPlayer) {
+
+                        // Hide buffering message.
+                        progressBar.setVisibility(VideoView.INVISIBLE);
+
+                        // Restore saved position, if available.
+                        if (mCurrentPosition > 0) {
+                            mVideoView.seekTo(mCurrentPosition);
+                        } else {
+                            // Skipping to 1 shows the first frame of the video.
+                            mVideoView.seekTo(1);
+                        }
+
+                        // Start playing!
+                        mVideoView.start();
+                    }
+                });
+
+        // Listener for onCompletion() event (runs after media has finished
+        // playing).
+        mVideoView.setOnCompletionListener(
+                new MediaPlayer.OnCompletionListener() {
+                    @Override
+                    public void onCompletion(MediaPlayer mediaPlayer) {
+                        Toast.makeText(getActivity(),
+                                "Playback completed",
+                                Toast.LENGTH_SHORT).show();
+
+                        // Return the video position to the start.
+                        mVideoView.seekTo(0);
+                    }
+                });
+    }
 
     private void releasePlayer() {
         mVideoView.stopPlayback();
@@ -324,11 +327,12 @@ public class RegisterBusinessFragment2 extends Fragment {
                     Toast.makeText(getActivity(), "Video content URI: " + data.getData(),
                             Toast.LENGTH_LONG).show();
                     video = data.getData();
-                    videoPath =getPath(video);
+                    videoPath =generatePath(video,getActivity());
                     if (video != null){
                         mVideoView.setVideoURI(video);
+                        //mVideoView.setVideoPath(videoPath);
                     }
-                    //initializePlayer(video);
+                    initializePlayer(video);
                     // uploadFile(video.getPath());
 
                 }
@@ -339,14 +343,69 @@ public class RegisterBusinessFragment2 extends Fragment {
         }
     }
 
-    public String getPath(Uri uri) {
-        String[] filePathColumn = { MediaStore.Images.Media.DATA };
-        Cursor cursor = getActivity().getContentResolver().query(uri, filePathColumn, null, null, null);
-        cursor.moveToFirst();
-        int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
-        String filePath = cursor.getString(columnIndex);
-        cursor.close();
+    public String generatePath(Uri uri, Context context) {
+        String filePath = null;
+        final boolean isKitKat = Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT;
+        if(isKitKat){
+            filePath = generateFromKitkat(uri,context);
+        }
+
+        if(filePath != null){
+            return filePath;
+        }
+
+        Cursor cursor = context.getContentResolver().query(uri, new String[] { MediaStore.MediaColumns.DATA }, null, null, null);
+
+        if (cursor != null) {
+            if (cursor.moveToFirst()) {
+                int columnIndex = cursor.getColumnIndexOrThrow(MediaStore.MediaColumns.DATA);
+                filePath = cursor.getString(columnIndex);
+            }
+            cursor.close();
+        }
+        return filePath == null ? uri.getPath() : filePath;
+    }
+
+    @TargetApi(19)
+    private String generateFromKitkat(Uri uri,Context context){
+        String filePath = null;
+        if(DocumentsContract.isDocumentUri(context, uri)){
+            String wholeID = DocumentsContract.getDocumentId(uri);
+
+            String id = wholeID.split(":")[1];
+
+            String[] column = { MediaStore.Audio.Media.DATA };
+            String sel = MediaStore.Audio.Media._ID + "=?";
+
+            Cursor cursor = context.getContentResolver().
+                    query(MediaStore.Audio.Media.EXTERNAL_CONTENT_URI,
+                            column, sel, new String[]{ id }, null);
+
+
+
+            int columnIndex = cursor.getColumnIndex(column[0]);
+
+            if (cursor.moveToFirst()) {
+                filePath = cursor.getString(columnIndex);
+            }
+
+            cursor.close();
+        }
         return filePath;
+    }
+
+    public String getPath(Uri uri) {
+        String[] projection = { MediaStore.Video.Media.DATA };
+        Cursor cursor = getActivity().getContentResolver().query(uri, projection, null, null, null);
+        if (cursor != null) {
+            // HERE YOU WILL GET A NULLPOINTER IF CURSOR IS NULL
+            // THIS CAN BE, IF YOU USED OI FILE MANAGER FOR PICKING THE MEDIA
+            int column_index = cursor
+                    .getColumnIndexOrThrow(MediaStore.Video.Media.DATA);
+            cursor.moveToFirst();
+            return cursor.getString(column_index);
+        } else
+            return null;
     }
 
 

@@ -44,7 +44,6 @@ public interface NodeApiServerRequests {
     @POST("addAppointment")
     Call<MainResponseMessage> addAppointment( @Body Appointment appointment);
 
-
     @GET("getAppointmentsByDate={email}&{date}")
     Call<GetAppointmentsRespMsg> getAppointmentsByDate(@Path("email")String email, @Path("date")String date);
 
@@ -53,4 +52,8 @@ public interface NodeApiServerRequests {
 
     @GET("getAccountsByLocation={long}&{lat}")
     Call<GetBusinessesRespMsg> getAccountsByLocation(@Path("long")Double longitude,@Path("lat")Double latitude);
+
+    @POST("editAppointment={userEmail}&{businessEmail}&{date}&{time}")
+    Call<MainResponseMessage> editAppointment(@Path("userEmail")String userEmail, @Path("businessEmail")String businessEmail,
+                                              @Path("date")String date, @Path("time")String time, @Body Appointment updatedAppointment);
 }

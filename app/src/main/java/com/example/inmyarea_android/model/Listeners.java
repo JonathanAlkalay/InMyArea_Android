@@ -87,5 +87,11 @@ public class Listeners {
         retroFit.getAccountsByLocation(longitude, latitude, listener);
     }
 
+    public interface updateAppointmentListener{
+        void onComplete(MainResponseMessage data);
+    }
+    public void updateAppointment(String userEmail, String businessEmail, String date, String time, Appointment updatedAppointment, updateAppointmentListener listener){
+        retroFit.updateAppointment(userEmail, businessEmail, date, time, updatedAppointment, listener);
+    }
 
 }

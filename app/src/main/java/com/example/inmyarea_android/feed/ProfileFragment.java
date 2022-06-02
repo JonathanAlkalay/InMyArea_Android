@@ -62,8 +62,10 @@ public class ProfileFragment extends Fragment {
         list.setLayoutManager(new LinearLayoutManager(getContext()));
         adapter= new ProfileFragment.MyAdapter();
         list.setAdapter(adapter);
+        editBt.setVisibility(View.GONE);
 
         Button logout=view.findViewById(R.id.logout_BT);
+        logout.setVisibility(View.GONE);
         logout.setOnClickListener(v -> {
             //logout
 
@@ -78,6 +80,7 @@ public class ProfileFragment extends Fragment {
         if(type.equals("business")) {
             apoBt.setVisibility(View.GONE);
             if (emailUseridId.equals(profileEmailId)){
+                logout.setVisibility(View.VISIBLE);
                 serOrApo=false;
                 editBt.setVisibility(View.VISIBLE);
                 calendar.setVisibility(View.VISIBLE);
@@ -97,6 +100,7 @@ public class ProfileFragment extends Fragment {
 
         }else{
             if (emailUseridId.equals(profileEmailId)) {
+                logout.setVisibility(View.VISIBLE);
                 serOrApo=true;
                 apoBt.setVisibility(View.GONE);
                 editBt.setVisibility(View.VISIBLE);

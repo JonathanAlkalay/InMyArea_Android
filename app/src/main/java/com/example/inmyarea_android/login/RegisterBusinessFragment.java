@@ -146,7 +146,11 @@ public class RegisterBusinessFragment extends Fragment {
             cont.setEnabled(true);
             progressBar.setVisibility(View.GONE);
                 locationET.setError("Please put in the business city location");
-            } else{
+            } else if(!android.util.Patterns.EMAIL_ADDRESS.matcher(cemail).matches()){
+                cont.setEnabled(true);
+                progressBar.setVisibility(View.GONE);
+                email.setError("Please write a correct email address");
+            }else{
                 Business buss=new Business( cemail, cpass1, cname, cphone,  cdes,  ccategory);
                 buss.setLocation(clocation);
                 buss.setLatitude(lati);
@@ -201,9 +205,11 @@ public class RegisterBusinessFragment extends Fragment {
                             } catch (IOException e) {
                                 e.printStackTrace();
                             }
+
                             locationET.setText(addresses.get(0).getAddressLine(0));
                             cont.setEnabled(true);
                             progressBar.setVisibility(View.GONE);
+
                         }
                     }
                 });

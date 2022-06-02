@@ -202,7 +202,7 @@ public class RegisterBusinessFragment2 extends Fragment {
 //
 //            }
              if(stringBuilder.length()==0){
-                Toast.makeText(getActivity(), "please select a service ", Toast.LENGTH_LONG).show();
+                Toast.makeText(getActivity(), "please select services ", Toast.LENGTH_LONG).show();
                 progressBar.setVisibility(View.GONE);
                 register.setEnabled(true);
                 return;
@@ -216,20 +216,14 @@ public class RegisterBusinessFragment2 extends Fragment {
                     busi.setServices(serv);
                     Listeners.instance.updateAccountDetails(email, "business", busi, data1 -> {
 
+                       // File file=new File(video.getPath());
+                        //Listeners.instance.uploadVideo(file, email, data2 -> toFeedActivity(email));
                         toFeedActivity(email);
 
                     });
-                    File file=new File(video.getPath());
-//                    InputStream in =  getActivity().getContentResolver().openInputStream(video);
-//                    OutputStream out = new FileOutputStream(new File("your_file_here"));
-//                    byte[] buf = new byte[1024];
-//                    int len;
-//                    while((len=in.read(buf))>0){
-//                        out.write(buf,0,len);
-//                    }
-//                    out.close();
-//                    in.close();
-                    Listeners.instance.uploadVideo(file, email, data2 -> toFeedActivity(email));
+
+
+
                 });
             }
 
@@ -240,23 +234,7 @@ public class RegisterBusinessFragment2 extends Fragment {
 
 
     //video settings
-    @Override
-    public void onPause() {
-        super.onPause();
 
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.N) {
-            mVideoView.pause();
-        }
-    }
-
-    @Override
-    public void onStop() {
-        super.onStop();
-
-        // Media playback takes a lot of resources, so everything should be
-        // stopped and released at this time.
-        releasePlayer();
-    }
 
     @Override
     public void onSaveInstanceState(Bundle outState) {
@@ -312,9 +290,6 @@ public class RegisterBusinessFragment2 extends Fragment {
                 });
     }
 
-    private void releasePlayer() {
-        mVideoView.stopPlayback();
-    }
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -392,20 +367,6 @@ public class RegisterBusinessFragment2 extends Fragment {
             cursor.close();
         }
         return filePath;
-    }
-
-    public String getPath(Uri uri) {
-        String[] projection = { MediaStore.Video.Media.DATA };
-        Cursor cursor = getActivity().getContentResolver().query(uri, projection, null, null, null);
-        if (cursor != null) {
-            // HERE YOU WILL GET A NULLPOINTER IF CURSOR IS NULL
-            // THIS CAN BE, IF YOU USED OI FILE MANAGER FOR PICKING THE MEDIA
-            int column_index = cursor
-                    .getColumnIndexOrThrow(MediaStore.Video.Media.DATA);
-            cursor.moveToFirst();
-            return cursor.getString(column_index);
-        } else
-            return null;
     }
 
 

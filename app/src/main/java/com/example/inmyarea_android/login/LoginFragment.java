@@ -65,6 +65,12 @@ public class LoginFragment extends Fragment {
                 email_Login.requestFocus();
                 login_But.setEnabled(true);
                 return;
+            }else if(!android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()){
+                progressBar.setVisibility(View.GONE);
+                email_Login.setError("Please enter a correct email");
+                email_Login.requestFocus();
+                login_But.setEnabled(true);
+                return;
             }
 
             if(password.isEmpty()){

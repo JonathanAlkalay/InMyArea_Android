@@ -35,6 +35,7 @@ import com.example.inmyarea_android.R;
 import com.example.inmyarea_android.login.LoginFragmentDirections;
 import com.example.inmyarea_android.model.Appointment;
 import com.example.inmyarea_android.model.Listeners;
+import com.example.inmyarea_android.model.ResponseMessages.GetAccountResponseMessage;
 import com.example.inmyarea_android.model.ResponseMessages.GetBusinessesRespMsg;
 import com.example.inmyarea_android.model.Users.Business;
 import com.google.android.gms.location.FusedLocationProviderClient;
@@ -54,7 +55,6 @@ public class HomeFragment extends Fragment {
 
     private HomeViewModel mViewModel;
     String email,type;
-    TextView latitudeTextView;
     Double longitude,latitude;
     FusedLocationProviderClient mFusedLocationClient;
     int PERMISSION_ID = 44;
@@ -68,23 +68,58 @@ public class HomeFragment extends Fragment {
         type = getArguments().getString("type");
         mViewModel = ViewModelProviders.of(this.getActivity()).get(HomeViewModel.class);
 
-        latitudeTextView = view.findViewById(R.id.home_TV);
-        latitudeTextView.setText(email);
+        TextView greet = view.findViewById(R.id.home_TV);
+        Listeners.instance.getAccountByEmail(email, "user", new Listeners.getAccountByEmailListener() {
+            @Override
+            public void onComplete(GetAccountResponseMessage data) throws IOException {
+                greet.setText("Hello "+(String)data.getAccount().get("name"));
+            }
+        });
         mFusedLocationClient = LocationServices.getFusedLocationProviderClient(getActivity());
 
         // method to get the location
         getLastLocation();
 
 
-        Button bt = view.findViewById(R.id.catagory1_BT);
+        Button medi = view.findViewById(R.id.catagory1_BT);
+        Button cos = view.findViewById(R.id.catagory3_BT);
+        Button hair = view.findViewById(R.id.catagory4_BT);
+        Button leisure = view.findViewById(R.id.catagory2_BT);
+        Button rec = view.findViewById(R.id.catagory5_BT);
         Button profile = view.findViewById(R.id.toProflie_BT);
         profile.setOnClickListener(v -> {
             Navigation.findNavController(view).navigate((NavDirections) HomeFragmentDirections.actionHomeFragmentToProfileFragment(email,email,type));
         });
 
-        bt.setOnClickListener(v -> {
-            Navigation.findNavController(view).navigate((NavDirections) HomeFragmentDirections.actionHomeFragmentToVideoClipRVFragment(email,"Pedi&Medi"));
+        medi.setOnClickListener(v -> {
+            if(mViewModel.getBusinessByCategory("Pedi&Medi").size()==0){
+                Toast.makeText(getActivity(), "There is no businesses with this category in your area", Toast.LENGTH_LONG).show();
+            }else {
+                Navigation.findNavController(view).navigate((NavDirections) HomeFragmentDirections.actionHomeFragmentToVideoClipRVFragment(email, "Pedi&Medi"));
+            }
         });
+        cos.setOnClickListener(v -> {
+            if(mViewModel.getBusinessByCategory("Cosmetics").size()==0){
+                Toast.makeText(getActivity(), "There is no businesses with this category in your area", Toast.LENGTH_LONG).show();
+            }else {
+                Navigation.findNavController(view).navigate((NavDirections) HomeFragmentDirections.actionHomeFragmentToVideoClipRVFragment(email, "Cosmetics"));
+            }
+        });
+        hair.setOnClickListener(v -> {
+            if (mViewModel.getBusinessByCategory("Hair Styling").size() == 0) {
+                Toast.makeText(getActivity(), "There is no businesses with this category in your area", Toast.LENGTH_LONG).show();
+            } else {
+                Navigation.findNavController(view).navigate((NavDirections) HomeFragmentDirections.actionHomeFragmentToVideoClipRVFragment(email, "Hair Styling"));
+            }
+        });
+        leisure.setOnClickListener(v -> {
+            if(mViewModel.getBusinessByCategory("Leisure").size()==0){
+                Toast.makeText(getActivity(), "There is no businesses with this category in your area", Toast.LENGTH_LONG).show();
+            }else {
+                Navigation.findNavController(view).navigate((NavDirections) HomeFragmentDirections.actionHomeFragmentToVideoClipRVFragment(email, "Leisure"));
+            }
+        });
+
 
         return view;
 
@@ -123,9 +158,7 @@ public class HomeFragment extends Fragment {
                         if (location == null) {
                             requestNewLocationData();
                         } else {
-                            latitudeTextView.setText(location.getLatitude() + "");
                             latitude=location.getLatitude();
-                            //longitTextView.setText(location.getLongitude() + "");
                             longitude=location.getLongitude();
                             getBusByLocation();
                         }
@@ -165,9 +198,7 @@ public class HomeFragment extends Fragment {
         @Override
         public void onLocationResult(LocationResult locationResult) {
             Location mLastLocation = locationResult.getLastLocation();
-            latitudeTextView.setText("Latitude: " + mLastLocation.getLatitude() + "");
             latitude=mLastLocation.getLatitude();
-            //longitTextView.setText("Longitude: " + mLastLocation.getLongitude() + "");
             longitude=mLastLocation.getLongitude();
             getBusByLocation();
         }
@@ -177,10 +208,6 @@ public class HomeFragment extends Fragment {
     private boolean checkPermissions() {
         return ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED;
 
-        // If we want background location
-        // on Android 10.0 and higher,
-        // use:
-        // ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_BACKGROUND_LOCATION) == PackageManager.PERMISSION_GRANTED
     }
 
     // method to request for permissions

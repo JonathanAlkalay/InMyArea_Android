@@ -193,7 +193,7 @@ public class EditBusinessFragment extends Fragment {
                 return;
             }
             if(stringBuilder.length()==0) {
-                Toast.makeText(getActivity(), "please select a service ", Toast.LENGTH_LONG).show();
+                Toast.makeText(getActivity(), "please select services ", Toast.LENGTH_LONG).show();
                 save.setEnabled(true);
                 progressBar.setVisibility(View.GONE);
                 return;

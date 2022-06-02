@@ -40,16 +40,48 @@ public class RegisterClientFragment extends Fragment {
             progressBar.setVisibility(View.VISIBLE);
             String pas1=pass1.getText().toString().trim();
             String pas2=pass2.getText().toString().trim();
-            if(!pas1.equals(pas2)){
-                pass2.setError("passwords are not equal!");
+            String email = email_register.getText().toString().trim();
+            String name = name_register.getText().toString().trim();
+            String phone = phone_register.getText().toString().trim();
+            if(pas1.isEmpty()){
+                pass1.setError("Please write a password");
                 progressBar.setVisibility(View.GONE);
                 regis_But.setEnabled(true);
+                return;
+            }else if(pas2.isEmpty()){
+                pass2.setError("Please confirm the password");
+                progressBar.setVisibility(View.GONE);
+                regis_But.setEnabled(true);
+                return;
+            }else if(name.isEmpty()){
+                name_register.setError("Please write your name");
+                progressBar.setVisibility(View.GONE);
+                regis_But.setEnabled(true);
+                return;
+            }else if(phone.isEmpty()){
+                phone_register.setError("Please write your phone number");
+                progressBar.setVisibility(View.GONE);
+                regis_But.setEnabled(true);
+                return;
+            }else if(email.isEmpty()){
+                email_register.setError("Please write your email address");
+                progressBar.setVisibility(View.GONE);
+                regis_But.setEnabled(true);
+                return;
+            } else if(!android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()){
+                email_register.setError("Please write a correct email address");
+                progressBar.setVisibility(View.GONE);
+                regis_But.setEnabled(true);
+                return;
+            }else if(!pas1.equals(pas2)){
+                pass2.setError("Passwords are not equal!");
+                progressBar.setVisibility(View.GONE);
+                regis_But.setEnabled(true);
+                return;
             }
             else {
 
-                String email = email_register.getText().toString().trim();
-                String name = name_register.getText().toString().trim();
-                String phone = phone_register.getText().toString().trim();
+
 
                 Client client = new Client(email, pas1, name, phone);
                 //server call

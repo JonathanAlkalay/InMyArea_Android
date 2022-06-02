@@ -44,7 +44,6 @@ public interface NodeApiServerRequests {
     @POST("addAppointment")
     Call<MainResponseMessage> addAppointment( @Body Appointment appointment);
 
-
     @GET("getAppointmentsByDate={email}&{date}")
     Call<GetAppointmentsRespMsg> getAppointmentsByDate(@Path("email")String email, @Path("date")String date);
 

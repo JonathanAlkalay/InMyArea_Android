@@ -94,5 +94,4 @@ public class Listeners {
         retroFit.updateAppointment(userEmail, businessEmail, date, time, updatedAppointment, listener);
     }
 
-
 }

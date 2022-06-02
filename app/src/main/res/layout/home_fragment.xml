@@ -12,10 +12,9 @@
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/catagory3_BT"
-            android:layout_width="131dp"
-            android:layout_height="120dp"
-            android:layout_marginTop="36dp"
-            android:layout_marginEnd="72dp"
+            android:layout_width="166dp"
+            android:layout_height="166dp"
+            android:layout_marginStart="28dp"
             android:background="@drawable/button_bk"
             android:drawableBottom="@drawable/cosmetics1"
             android:fontFamily="@font/encode_sans"
@@ -25,17 +24,16 @@
             android:textSize="16sp"
             android:textStyle="bold"
             app:iconTintMode="add"
-            app:layout_constraintEnd_toStartOf="@+id/catagory4_BT"
-            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/catagory1_BT" />
+            app:layout_constraintTop_toBottomOf="@+id/catagory1_BT"
+            app:layout_constraintVertical_bias="0.061" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/catagory4_BT"
-            android:layout_width="131dp"
-            android:layout_height="120dp"
-            android:layout_marginTop="40dp"
-            android:layout_marginEnd="32dp"
+            android:layout_width="166dp"
+            android:layout_height="166dp"
+            android:layout_marginEnd="28dp"
             android:background="@drawable/button_bk"
             android:drawableBottom="@drawable/hairstyling"
             android:fontFamily="@font/encode_sans"
@@ -44,26 +42,30 @@
             android:textSize="16sp"
             android:textStyle="bold"
             app:iconGravity="textTop"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/catagory2_BT" />
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toEndOf="@+id/catagory3_BT"
+            app:layout_constraintTop_toBottomOf="@+id/catagory2_BT"
+            app:layout_constraintVertical_bias="0.061" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/catagory2_BT"
-            android:layout_width="131dp"
-            android:layout_height="120dp"
-            android:layout_marginTop="80dp"
-            android:layout_marginEnd="32dp"
+            android:layout_width="166dp"
+            android:layout_height="166dp"
+            android:layout_marginTop="68dp"
+            android:layout_marginEnd="28dp"
             android:background="@drawable/button_bk"
             android:drawableBottom="@drawable/cocktail"
             android:fontFamily="@font/encode_sans"
             android:text="Leisure"
-            android:textColor="#FAF5F5"
 
+            android:textColor="#FAF5F5"
             android:textSize="16sp"
             android:textStyle="bold"
             app:iconGravity="textTop"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/toProflie_BT" />
+            app:layout_constraintTop_toBottomOf="@+id/home_TV" />
 
         <Button
             android:id="@+id/toProflie_BT"
@@ -80,11 +82,31 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+        <!--        <androidx.appcompat.widget.AppCompatButton-->
+        <!--            android:id="@+id/catagory5_BT"-->
+        <!--            android:layout_width="131dp"-->
+        <!--            android:layout_height="120dp"-->
+        <!--            android:layout_marginTop="76dp"-->
+        <!--            android:background="@drawable/button_bk"-->
+        <!--            android:drawableBottom="@drawable/reward"-->
+        <!--            android:fontFamily="@font/encode_sans"-->
+        <!--            android:text="Recommend"-->
+        <!--            android:textColor="#FAF5F5"-->
+        <!--            android:textSize="16sp"-->
+        <!--            android:textStyle="bold"-->
+        <!--            app:iconGravity="textTop"-->
+        <!--            app:layout_constraintBottom_toBottomOf="parent"-->
+        <!--            app:layout_constraintEnd_toEndOf="parent"-->
+        <!--            app:layout_constraintStart_toStartOf="parent"-->
+        <!--            app:layout_constraintTop_toBottomOf="@+id/catagory3_BT"-->
+        <!--            app:layout_constraintVertical_bias="0.069" />-->
+
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/catagory1_BT"
-            android:layout_width="131dp"
-            android:layout_height="120dp"
-            android:layout_marginTop="84dp"
+            android:layout_width="166dp"
+            android:layout_height="166dp"
+            android:layout_marginStart="28dp"
+            android:layout_marginTop="68dp"
             android:layout_marginEnd="24dp"
             android:background="@drawable/button_bk"
             android:drawableBottom="@drawable/nail"
@@ -95,39 +117,20 @@
             android:textStyle="bold"
             app:iconGravity="textTop"
             app:layout_constraintEnd_toStartOf="@+id/catagory2_BT"
-            app:layout_constraintHorizontal_bias="0.483"
+            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/toProflie_BT" />
-
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/catagory5_BT"
-            android:layout_width="131dp"
-            android:layout_height="120dp"
-            android:layout_marginTop="76dp"
-            android:background="@drawable/button_bk"
-            android:drawableBottom="@drawable/reward"
-            android:fontFamily="@font/encode_sans"
-            android:text="Recommend"
-            android:textColor="#FAF5F5"
-            android:textSize="16sp"
-            android:textStyle="bold"
-            app:iconGravity="textTop"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/catagory3_BT"
-            app:layout_constraintVertical_bias="0.069" />
+            app:layout_constraintTop_toBottomOf="@+id/home_TV" />
 
         <TextView
             android:id="@+id/home_TV"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
+            android:layout_marginTop="80dp"
             android:fontFamily="@font/abel"
             android:text="TextView"
             android:textSize="18sp"
             app:layout_constraintEnd_toStartOf="@+id/toProflie_BT"
-            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintHorizontal_bias="0.747"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 

@@ -4,6 +4,7 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -11,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CalendarView;
+import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -32,12 +34,13 @@ public class CalendarFragment extends Fragment {
 
     List<Appointment> apoArr=new ArrayList<>();
     MyAdapter adapter;
+    View view;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view= inflater.inflate(R.layout.fragment_calendar, container, false);
+        view= inflater.inflate(R.layout.fragment_calendar, container, false);
 
         String busId=CalendarFragmentArgs.fromBundle(getArguments()).getBusinessid();
         ProgressBar calPB=view.findViewById(R.id.progressBar_calendar);
@@ -90,6 +93,7 @@ public class CalendarFragment extends Fragment {
     }
     class MyViewHolder extends RecyclerView.ViewHolder{
         TextView name,service,phone,time,date;
+        ImageButton edit,delete;
         public MyViewHolder(@NonNull View itemView, OnItemClickListener listener) {
             super(itemView);
             name =itemView.findViewById(R.id.aporow_name);
@@ -97,6 +101,9 @@ public class CalendarFragment extends Fragment {
             phone =itemView.findViewById(R.id.aporow_phone);
             time =itemView.findViewById(R.id.aporow_time);
             date =itemView.findViewById(R.id.aporow_date);
+            edit=itemView.findViewById(R.id.editApp_rowIB);
+            delete=itemView.findViewById(R.id.cancelAppRow_IB);
+
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -141,6 +148,17 @@ public class CalendarFragment extends Fragment {
             holder.time.setText(apo.getTime());
             holder.service.setText(apo.getService());
             holder.phone.setText(apo.getPhone());
+
+            holder.edit.setOnClickListener(v -> {
+                apoArr.clear();
+                Navigation.findNavController(view).navigate(CalendarFragmentDirections.actionCalendarFragmentToEditAppointmentFragment(apo.getUserId(),apo.getBusinessId(),apo.getTime(),apo.getDate(),apo.getService()));
+            });
+            holder.delete.setOnClickListener(v -> {
+                Listeners.instance.updateAppointment(apo.getUserId(), apo.getBusinessId(), apo.getDate(), apo.getTime(), null, data -> {
+                    apoArr.remove(position);
+                    notifyItemRemoved(position);
+                });
+            });
         }
 
         //return size

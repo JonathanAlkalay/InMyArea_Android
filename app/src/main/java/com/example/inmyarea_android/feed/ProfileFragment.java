@@ -24,8 +24,10 @@ import com.example.inmyarea_android.model.Appointment;
 import com.example.inmyarea_android.model.Listeners;
 import com.example.inmyarea_android.model.ResponseMessages.GetAccountResponseMessage;
 import com.example.inmyarea_android.model.ResponseMessages.GetAppointmentsRespMsg;
+import com.example.inmyarea_android.model.ResponseMessages.MainResponseMessage;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -38,12 +40,13 @@ public class ProfileFragment extends Fragment {
     List<Appointment> apoArr=new ArrayList<>();
     List<String> serviceArr=new ArrayList<>();
     String emailUseridId,type,profileEmailId;
+    View view;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view =  inflater.inflate(R.layout.fragment_profile, container, false);
+        view =  inflater.inflate(R.layout.fragment_profile, container, false);
         emailUseridId = getArguments().getString("useremail_id");
         type = getArguments().getString("type");
         if(!getArguments().get("profile_email_id").equals("null")) {
@@ -85,6 +88,7 @@ public class ProfileFragment extends Fragment {
                 editBt.setVisibility(View.VISIBLE);
                 calendar.setVisibility(View.VISIBLE);
                 calendar.setOnClickListener(v -> {
+                    apoArr.clear();
                     Navigation.findNavController(view).navigate(ProfileFragmentDirections.actionProfileFragmentToCalendarFragment(profileEmailId));
                 });
             }
@@ -123,6 +127,7 @@ public class ProfileFragment extends Fragment {
                 serOrApo=false;
                 serOrApoTV.setText("Services");
                 apoBt.setOnClickListener(v -> {
+                    apoArr.clear();
                     Navigation.findNavController(view).navigate(ProfileFragmentDirections.actionProfileFragmentToMakeAppointmentFragment(profileEmailId,emailUseridId));
                 });
                 Listeners.instance.getAccountByEmail(profileEmailId, "business", data -> {
@@ -139,9 +144,13 @@ public class ProfileFragment extends Fragment {
 
 
         editBt.setOnClickListener(v -> {
-            if(type.equals("user"))
-            Navigation.findNavController(view).navigate((NavDirections) ProfileFragmentDirections.actionProfileFragmentToEditClientFragment(profileEmailId));
-            else Navigation.findNavController(view).navigate(ProfileFragmentDirections.actionProfileFragmentToEditBusineesFragment(profileEmailId));
+            if(type.equals("user")) {
+                apoArr.clear();
+                Navigation.findNavController(view).navigate((NavDirections) ProfileFragmentDirections.actionProfileFragmentToEditClientFragment(profileEmailId));
+            } else {
+                apoArr.clear();
+                Navigation.findNavController(view).navigate(ProfileFragmentDirections.actionProfileFragmentToEditBusineesFragment(profileEmailId));
+            }
         });
 
 
@@ -154,6 +163,7 @@ public class ProfileFragment extends Fragment {
     class MyViewHolder extends RecyclerView.ViewHolder{
 
         TextView name,service,phone,time,date,service_Bus;
+        ImageButton edit,delete;
 
 
         public MyViewHolder(@NonNull View itemView, ProfileFragment.OnItemClickListener listener) {
@@ -164,6 +174,9 @@ public class ProfileFragment extends Fragment {
                 phone = itemView.findViewById(R.id.aporow_phone);
                 time = itemView.findViewById(R.id.aporow_time);
                 date = itemView.findViewById(R.id.aporow_date);
+                edit=itemView.findViewById(R.id.editApp_rowIB);
+                delete=itemView.findViewById(R.id.cancelAppRow_IB);
+
             }else {
                 service_Bus=itemView.findViewById(R.id.name_servicerowTV);
             }
@@ -216,11 +229,25 @@ public class ProfileFragment extends Fragment {
             //set  data
             if (serOrApo) {
                 Appointment apo = apoArr.get(position);
-                holder.name.setText(apo.getUserName());
+                Listeners.instance.getAccountByEmail(apo.getBusinessId(), "business", data ->{
+                    holder.name.setText((String)data.getAccount().get("name"));
+                    holder.phone.setText((String)data.getAccount().get("phoneNumber"));
+                } );
                 holder.date.setText(apo.getDate());
                 holder.time.setText(apo.getTime());
                 holder.service.setText(apo.getService());
-                holder.phone.setText(apo.getPhone());
+                holder.edit.setOnClickListener(v -> {
+                    apoArr.clear();
+                    Navigation.findNavController(view).navigate(ProfileFragmentDirections.actionProfileFragmentToEditAppointmentFragment(apo.getUserId(),apo.getBusinessId(),apo.getTime(),apo.getDate(),apo.getService()));
+                });
+                HashMap<String,Object> map =new HashMap<>();
+                holder.delete.setOnClickListener(v -> {
+                    Listeners.instance.updateAppointment(apo.getUserId(), apo.getBusinessId(), apo.getDate(), apo.getTime(), null, data -> {
+                        apoArr.remove(position);
+                        notifyItemRemoved(position);
+                    });
+                });
+
             } else {
                 holder.service_Bus.setText(serviceArr.get(position));
             }
@@ -239,4 +266,6 @@ public class ProfileFragment extends Fragment {
             return 0;
         }
     }
+
+
 }

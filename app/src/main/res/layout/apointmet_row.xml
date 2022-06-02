@@ -23,7 +23,7 @@
         android:layout_width="168dp"
         android:layout_height="22dp"
         android:layout_marginTop="16dp"
-        android:layout_marginBottom="5dp"
+        android:layout_marginBottom="25dp"
         android:fontFamily="@font/abel"
         android:text="TextView"
         android:textSize="16sp"
@@ -51,25 +51,48 @@
         android:id="@+id/aporow_time"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="24dp"
         android:fontFamily="@font/abel"
         android:text="TextView"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/aporow_date"
-        app:layout_constraintHorizontal_bias="0.965"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.18"
         app:layout_constraintStart_toEndOf="@+id/aporow_phone"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.318" />
 
     <TextView
         android:id="@+id/aporow_date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="224dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="16dp"
         android:text="TextView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.725"
+        app:layout_constraintStart_toEndOf="@+id/aporow_time"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageButton
+        android:id="@+id/cancelAppRow_IB"
+        android:layout_width="35dp"
+        android:layout_height="42dp"
+        android:layout_marginEnd="28dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/aporow_phone"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toBottomOf="@+id/aporow_date"
+        app:layout_constraintVertical_bias="1.0"
+        app:srcCompat="@android:drawable/ic_menu_close_clear_cancel" />
+
+    <ImageButton
+        android:id="@+id/editApp_rowIB"
+        android:layout_width="35dp"
+        android:layout_height="42dp"
+        android:layout_marginTop="18dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/cancelAppRow_IB"
+        app:layout_constraintHorizontal_bias="0.809"
+        app:layout_constraintStart_toEndOf="@+id/aporow_time"
+        app:layout_constraintTop_toBottomOf="@+id/aporow_date"
+        app:srcCompat="@android:drawable/ic_menu_edit" />
 </androidx.constraintlayout.widget.ConstraintLayout>

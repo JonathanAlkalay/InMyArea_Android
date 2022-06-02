@@ -85,7 +85,7 @@ public class HomeFragment extends Fragment {
         Button cos = view.findViewById(R.id.catagory3_BT);
         Button hair = view.findViewById(R.id.catagory4_BT);
         Button leisure = view.findViewById(R.id.catagory2_BT);
-        Button rec = view.findViewById(R.id.catagory5_BT);
+        //Button rec = view.findViewById(R.id.catagory5_BT);
         Button profile = view.findViewById(R.id.toProflie_BT);
         profile.setOnClickListener(v -> {
             Navigation.findNavController(view).navigate((NavDirections) HomeFragmentDirections.actionHomeFragmentToProfileFragment(email,email,type));

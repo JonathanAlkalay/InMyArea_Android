@@ -221,6 +221,7 @@ public class EditBusinessFragment extends Fragment {
             Listeners.instance.updateAccountDetails(busId, "business", business, data -> {
                 save.setEnabled(true);
                 progressBar.setVisibility(View.GONE);
+                Toast.makeText(getActivity(), "Changes were saved", Toast.LENGTH_LONG).show();
                 Navigation.findNavController(view).popBackStack();
             });
         });

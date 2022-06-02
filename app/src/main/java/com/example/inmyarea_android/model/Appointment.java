@@ -11,6 +11,7 @@ public class Appointment {
 
 
 
+
     String businessId,userId,service,date,userName,phone,time;
 
     public Appointment() {
@@ -63,6 +64,21 @@ public class Appointment {
 
     public void setTime(String time) {
         this.time = time;
+    }
+    public String getBusinessId() {
+        return businessId;
+    }
+
+    public void setBusinessId(String businessId) {
+        this.businessId = businessId;
+    }
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 
 

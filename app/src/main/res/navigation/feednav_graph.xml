@@ -2,7 +2,8 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/nav_graph">
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/editAppointmentFragment">
     <fragment
         android:id="@+id/homeFragment"
         android:name="com.example.inmyarea_android.feed.HomeFragment"
@@ -65,6 +66,10 @@
             android:id="@+id/action_profileFragment_to_editBusineesFragment"
             app:destination="@id/editBusineesFragment"
             app:popUpTo="@id/profileFragment" />
+        <action
+            android:id="@+id/action_profileFragment_to_editAppointmentFragment"
+            app:destination="@id/editAppointmentFragment"
+            app:popUpTo="@id/profileFragment" />
     </fragment>
     <fragment
         android:id="@+id/editClientFragment"
@@ -83,6 +88,10 @@
         <argument
             android:name="Businessid"
             app:argType="string" />
+        <action
+            android:id="@+id/action_calendarFragment_to_editAppointmentFragment"
+            app:destination="@id/editAppointmentFragment"
+            app:popUpTo="@id/calendarFragment" />
     </fragment>
     <fragment
         android:id="@+id/makeAppointmentFragment"
@@ -102,6 +111,27 @@
         android:label="fragment_edit_businees"
         tools:layout="@layout/fragment_edit_businees" >
         <argument android:name="businessid"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/editAppointmentFragment"
+        android:name="com.example.inmyarea_android.feed.EditAppointmentFragment"
+        android:label="fragment_edit_appointment"
+        tools:layout="@layout/fragment_edit_appointment" >
+        <argument
+            android:name="userid"
+            app:argType="string" />
+        <argument
+            android:name="businessid"
+            app:argType="string" />
+        <argument
+            android:name="time"
+            app:argType="string" />
+        <argument
+            android:name="date"
+            app:argType="string" />
+        <argument
+            android:name="service"
             app:argType="string" />
     </fragment>
 </navigation>

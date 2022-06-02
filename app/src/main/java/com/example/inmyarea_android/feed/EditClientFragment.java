@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import com.example.inmyarea_android.R;
 import com.example.inmyarea_android.model.Listeners;
@@ -96,6 +97,7 @@ public class EditClientFragment extends Fragment {
                         Listeners.instance.updateAccountDetails(emailId, "user", client, data -> {
                             save.setEnabled(true);
                             progressBar.setVisibility(View.GONE);
+                            Toast.makeText(getActivity(), "Changes were saved", Toast.LENGTH_LONG).show();
                             Navigation.findNavController(view).popBackStack();
                         });
                     }

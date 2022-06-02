@@ -37,6 +37,7 @@ import java.util.Date;
 public class MakeAppointmentFragment extends Fragment {
 
     int yearNow,monthNow,dayNow,timeNow;
+    String dateNow;
     private DatePickerDialog.OnDateSetListener mDateSetListener;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -59,6 +60,7 @@ public class MakeAppointmentFragment extends Fragment {
             monthNow=cal.get(Calendar.MONTH);
             dayNow=cal.get(Calendar.DAY_OF_MONTH);
             timeNow= cal.getTime().getHours();
+            dateNow=(monthNow+1)+"/"+dayNow+"/"+yearNow;
 
             DatePickerDialog dialog=new DatePickerDialog(getContext(), android.R.style.Theme_Holo_Dialog_MinWidth,
                     mDateSetListener,yearNow,monthNow,dayNow);
@@ -122,7 +124,12 @@ public class MakeAppointmentFragment extends Fragment {
                 progressBar.setVisibility(View.GONE);
                 save.setEnabled(true);
                 return;
-            }else if(timeNow>Character.getNumericValue(time.charAt(0))){
+            }else if(date.equals("Select Date")){
+                Toast.makeText(getActivity(), "please select a date ", Toast.LENGTH_LONG).show();
+                progressBar.setVisibility(View.GONE);
+                save.setEnabled(true);
+                return;
+            }else if(dateNow.equals(date)&&timeNow>=Character.getNumericValue(time.charAt(0))){
                 Toast.makeText(getActivity(), "please select a correct time ", Toast.LENGTH_LONG).show();
                 progressBar.setVisibility(View.GONE);
                 save.setEnabled(true);

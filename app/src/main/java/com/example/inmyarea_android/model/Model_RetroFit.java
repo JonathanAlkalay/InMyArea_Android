@@ -28,7 +28,7 @@ public class Model_RetroFit {
     //example "http://10.100.102.7:8080/"
 
     private Retrofit retrofit = new Retrofit.Builder()
-            .baseUrl("http:/10.160.14.250:8080/")
+            .baseUrl("http:/192.168.14.165:8080/")
             .addConverterFactory(GsonConverterFactory.create())
             .build();
 
@@ -243,7 +243,8 @@ public class Model_RetroFit {
     }
 
     public void updateAppointment(String userEmail, String businessEmail, String date, String time, Appointment appointment, Listeners.updateAppointmentListener listener) {
-        Call<MainResponseMessage> call = nodeApiServer.editAppointment(userEmail, businessEmail, date, time, appointment);
+        HashMap<String,Object> json= appointment==null ? new HashMap<>(): appointment.toJson();
+        Call<MainResponseMessage> call = nodeApiServer.editAppointment(userEmail, businessEmail, date, time, json);
         call.enqueue(new Callback<MainResponseMessage>() {
             @Override
             public void onResponse(Call<MainResponseMessage> call, Response<MainResponseMessage> response) {

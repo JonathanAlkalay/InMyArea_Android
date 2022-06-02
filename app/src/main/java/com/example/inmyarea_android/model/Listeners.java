@@ -5,6 +5,8 @@ import com.example.inmyarea_android.model.ResponseMessages.GetAccountResponseMes
 import com.example.inmyarea_android.model.ResponseMessages.GetAppointmentsRespMsg;
 import com.example.inmyarea_android.model.ResponseMessages.MainResponseMessage;
 import com.example.inmyarea_android.model.Users.User;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 import java.io.File;
 import java.io.IOException;
@@ -14,6 +16,9 @@ public class Listeners {
 
     public static final Listeners instance = new Listeners();
     Model_RetroFit retroFit = new Model_RetroFit();
+
+
+
 
 
     public interface logInListener{
@@ -28,6 +33,9 @@ public class Listeners {
     }
     public void createAccount(String email, String type, User user, createAccountListener listener) {
         retroFit.createAccount(email, type, user, listener);
+    }
+    public StorageReference GetStorageReference(String path){
+        return FirebaseStorage.getInstance().getReference("videos/"+path+"/");
     }
 
     public interface getAccountByEmailListener{

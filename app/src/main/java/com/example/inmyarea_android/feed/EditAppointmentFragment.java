@@ -31,8 +31,9 @@ import java.util.Calendar;
 public class EditAppointmentFragment extends Fragment {
 
 
-    String userId,businessId,time,date,service;
+    String userId,businessId,timep,datep,servicep;
     int yearNow,monthNow,dayNow,timeNow;
+    String dateNow;
     private DatePickerDialog.OnDateSetListener mDateSetListener;
 
     @Override
@@ -42,9 +43,9 @@ public class EditAppointmentFragment extends Fragment {
         View view= inflater.inflate(R.layout.fragment_edit_appointment, container, false);
         userId = EditAppointmentFragmentArgs.fromBundle(getArguments()).getUserid();
         businessId = EditAppointmentFragmentArgs.fromBundle(getArguments()).getBusinessid();
-        time=EditAppointmentFragmentArgs.fromBundle(getArguments()).getTime();
-        date=EditAppointmentFragmentArgs.fromBundle(getArguments()).getDate();
-        service=EditAppointmentFragmentArgs.fromBundle(getArguments()).getService();
+        timep=EditAppointmentFragmentArgs.fromBundle(getArguments()).getTime();
+        datep=EditAppointmentFragmentArgs.fromBundle(getArguments()).getDate();
+        servicep=EditAppointmentFragmentArgs.fromBundle(getArguments()).getService();
 
         Spinner spinnerService = view.findViewById(R.id.spinner_editaposelectservice);
         Spinner spinnerTime = view.findViewById(R.id.spinner_editaposelecttime);
@@ -52,7 +53,7 @@ public class EditAppointmentFragment extends Fragment {
         Button save=view.findViewById(R.id.apoedit_saveBT);
         ProgressBar progressBar=view.findViewById(R.id.progressBar_editapo);
         progressBar.setVisibility(View.GONE);
-        dateSelect.setText(date);
+        dateSelect.setText(datep);
 
 
         dateSelect.setOnClickListener(v -> {
@@ -61,6 +62,7 @@ public class EditAppointmentFragment extends Fragment {
             monthNow=cal.get(Calendar.MONTH);
             dayNow=cal.get(Calendar.DAY_OF_MONTH);
             timeNow= cal.getTime().getHours();
+            dateNow=(monthNow+1)+"/"+dayNow+"/"+yearNow;
 
             DatePickerDialog dialog=new DatePickerDialog(getContext(), android.R.style.Theme_Holo_Dialog_MinWidth,
                     mDateSetListener,yearNow,monthNow,dayNow);
@@ -100,13 +102,13 @@ public class EditAppointmentFragment extends Fragment {
             arr.add(0,"Select Service");
             ArrayAdapter<String> adapter1 = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_dropdown_item, arr);
             spinnerService.setAdapter(adapter1);
-            spinnerService.setSelection(adapter1.getPosition(service));
+            spinnerService.setSelection(adapter1.getPosition(servicep));
         });
 
         String[] items2 = new String[]{"Select Time","8:00", "9:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00", "18:00", "19:00", "20:00", "21:00", "22:00"};
         ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_dropdown_item, items2);
         spinnerTime.setAdapter(adapter2);
-        spinnerTime.setSelection(adapter2.getPosition(time));
+        spinnerTime.setSelection(adapter2.getPosition(timep));
 
         save.setOnClickListener(v -> {
             save.setEnabled(false);
@@ -119,16 +121,21 @@ public class EditAppointmentFragment extends Fragment {
                 progressBar.setVisibility(View.GONE);
                 save.setEnabled(true);
                 return;
-            }else if(time.equals("Select Time")){
+            }else if(time.equals("Select Time")) {
                 Toast.makeText(getActivity(), "please select a time ", Toast.LENGTH_LONG).show();
                 progressBar.setVisibility(View.GONE);
                 save.setEnabled(true);
                 return;
-            }else if(timeNow>Character.getNumericValue(time.charAt(0))){
-                Toast.makeText(getActivity(), "please select a correct time ", Toast.LENGTH_LONG).show();
-                progressBar.setVisibility(View.GONE);
-                save.setEnabled(true);
-                return;
+            }else if(date.equals("Select Date")){
+                    Toast.makeText(getActivity(), "please select a date ", Toast.LENGTH_LONG).show();
+                    progressBar.setVisibility(View.GONE);
+                    save.setEnabled(true);
+                    return;
+            }else if(dateNow.equals(date)&&timeNow>=Character.getNumericValue(time.charAt(0))){
+                    Toast.makeText(getActivity(), "please select a correct time ", Toast.LENGTH_LONG).show();
+                    progressBar.setVisibility(View.GONE);
+                    save.setEnabled(true);
+                    return;
             }else {
                 Listeners.instance.getAccountByEmail(userId, "user", data -> {
                     String name = (String) data.getAccount().get("name");
@@ -139,10 +146,7 @@ public class EditAppointmentFragment extends Fragment {
                         Toast.makeText(getActivity(), "Appointment was edited", Toast.LENGTH_LONG).show();
                         Navigation.findNavController(view).popBackStack();
                     });
-//                    Listeners.instance.addAppointment(appointment, data1 -> {
-//                        Toast.makeText(getActivity(), "Appointment was scheduled", Toast.LENGTH_LONG).show();
-//                        Navigation.findNavController(view).popBackStack();
-//                    });
+
                 });
             }
         });

@@ -32,6 +32,7 @@ import com.example.inmyarea_android.model.Listeners;
 import com.example.inmyarea_android.model.ResponseMessages.MainResponseMessage;
 import com.example.inmyarea_android.model.Service;
 import com.example.inmyarea_android.model.Users.Business;
+import com.google.android.gms.tasks.Task;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -215,11 +216,7 @@ public class RegisterBusinessFragment2 extends Fragment {
                     ArrayList<String> serv = new ArrayList<String>(Arrays.asList(stringBuilder.toString().split(", ")));
                     busi.setServices(serv);
                     Listeners.instance.updateAccountDetails(email, "business", busi, data1 -> {
-
-                       // File file=new File(video.getPath());
-                        //Listeners.instance.uploadVideo(file, email, data2 -> toFeedActivity(email));
-                        toFeedActivity(email);
-
+                        uploadVideo(email);
                     });
 
 
@@ -302,7 +299,7 @@ public class RegisterBusinessFragment2 extends Fragment {
                     Toast.makeText(getActivity(), "Video content URI: " + data.getData(),
                             Toast.LENGTH_LONG).show();
                     video = data.getData();
-                    videoPath =generatePath(video,getActivity());
+                    //videoPath =generatePath(video,getActivity());
                     if (video != null){
                         mVideoView.setVideoURI(video);
                         //mVideoView.setVideoPath(videoPath);
@@ -318,56 +315,27 @@ public class RegisterBusinessFragment2 extends Fragment {
         }
     }
 
-    public String generatePath(Uri uri, Context context) {
-        String filePath = null;
-        final boolean isKitKat = Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT;
-        if(isKitKat){
-            filePath = generateFromKitkat(uri,context);
-        }
 
-        if(filePath != null){
-            return filePath;
-        }
 
-        Cursor cursor = context.getContentResolver().query(uri, new String[] { MediaStore.MediaColumns.DATA }, null, null, null);
 
-        if (cursor != null) {
-            if (cursor.moveToFirst()) {
-                int columnIndex = cursor.getColumnIndexOrThrow(MediaStore.MediaColumns.DATA);
-                filePath = cursor.getString(columnIndex);
-            }
-            cursor.close();
+    private void uploadVideo(String email) {
+        if (video != null) {
+            Listeners.instance.GetStorageReference("Liraz").putFile(video)
+                    .addOnSuccessListener(taskSnapshot -> {
+                        Task<Uri> uriTask = taskSnapshot.getStorage().getDownloadUrl();
+                        while (!uriTask.isSuccessful()) ;
+                        String downloadUri =uriTask.getResult().toString();
+                        Toast.makeText(getActivity(), "Video Uploaded!!", Toast.LENGTH_SHORT).show();
+                        toFeedActivity(email);
+                    })
+                    .addOnFailureListener(e -> Toast.makeText(getActivity(), "Failed " + e.getMessage(), Toast.LENGTH_SHORT).show());
         }
-        return filePath == null ? uri.getPath() : filePath;
     }
 
-    @TargetApi(19)
-    private String generateFromKitkat(Uri uri,Context context){
-        String filePath = null;
-        if(DocumentsContract.isDocumentUri(context, uri)){
-            String wholeID = DocumentsContract.getDocumentId(uri);
-
-            String id = wholeID.split(":")[1];
-
-            String[] column = { MediaStore.Audio.Media.DATA };
-            String sel = MediaStore.Audio.Media._ID + "=?";
-
-            Cursor cursor = context.getContentResolver().
-                    query(MediaStore.Audio.Media.EXTERNAL_CONTENT_URI,
-                            column, sel, new String[]{ id }, null);
 
 
 
-            int columnIndex = cursor.getColumnIndex(column[0]);
 
-            if (cursor.moveToFirst()) {
-                filePath = cursor.getString(columnIndex);
-            }
-
-            cursor.close();
-        }
-        return filePath;
-    }
 
 
 

@@ -55,5 +55,5 @@ public interface NodeApiServerRequests {
 
     @POST("editAppointment={userEmail}&{businessEmail}&{date}&{time}")
     Call<MainResponseMessage> editAppointment(@Path("userEmail")String userEmail, @Path("businessEmail")String businessEmail,
-                                              @Path("date")String date, @Path("time")String time, @Body Appointment updatedAppointment);
+                                              @Path("date")String date, @Path("time")String time, @Body HashMap<String, Object> updatedAppointment);
 }

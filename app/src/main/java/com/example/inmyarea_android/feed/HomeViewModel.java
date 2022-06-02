@@ -3,6 +3,8 @@ package com.example.inmyarea_android.feed;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
+import com.example.inmyarea_android.model.Listeners;
+import com.example.inmyarea_android.model.ResponseMessages.GetVideoPathResponseMessage;
 import com.example.inmyarea_android.model.Users.Business;
 import com.example.inmyarea_android.model.VideoItem;
 
@@ -37,7 +39,6 @@ public class HomeViewModel extends ViewModel {
         List<VideoItem> videoItemList=new ArrayList<>();
         for(int i=0;i<businesses.size();i++){
             VideoItem videoItem =new VideoItem();
-            videoItem.videoURL="https://media.geeksforgeeks.org/wp-content/uploads/20201217192146/Screenrecorder-2020-12-17-19-17-36-828.mp4?_=1";
             videoItem.videoTitle=businesses.get(i).getName();
             videoItem.videoDesc=businesses.get(i).getDescription();
             videoItem.owmerId=businesses.get(i).getEmail();

@@ -1,5 +1,7 @@
 package com.example.inmyarea_android.feed;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -66,6 +68,8 @@ public class ProfileFragment extends Fragment {
         adapter= new ProfileFragment.MyAdapter();
         list.setAdapter(adapter);
         editBt.setVisibility(View.GONE);
+
+
 
         Button logout=view.findViewById(R.id.logout_BT);
         logout.setVisibility(View.GONE);

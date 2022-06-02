@@ -11,6 +11,8 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.inmyarea_android.R;
+import com.example.inmyarea_android.model.Listeners;
+import com.example.inmyarea_android.model.ResponseMessages.GetVideoPathResponseMessage;
 import com.example.inmyarea_android.model.VideoItem;
 
 import java.util.List;
@@ -80,23 +82,30 @@ public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.VideoViewHol
          void setVideoData(VideoItem videoItem) {
             title.setText(videoItem.videoTitle);
             des.setText(videoItem.videoDesc);
-            videoView.setVideoPath(videoItem.videoURL);
-            videoView.setOnPreparedListener(mediaPlayer -> {
-                //videoPB.setVisibility(View.VISIBLE);
-                mediaPlayer.start();
+             Listeners.instance.getVideoPath(videoItem.owmerId, new Listeners.getVideoPathListener() {
+                 @Override
+                 public void onComplete(GetVideoPathResponseMessage data) {
+                     videoView.setVideoPath(data.getPath());
 
-                float videoRatio =mediaPlayer.getVideoWidth() / (float) mediaPlayer.getVideoHeight();
-                float screenRatio= videoView.getWidth()/(float) videoView.getHeight();
+                     videoView.setOnPreparedListener(mediaPlayer -> {
+                         //videoPB.setVisibility(View.VISIBLE);
+                         mediaPlayer.start();
 
-                float scale=videoRatio/screenRatio;
-                if(scale>= 1f){
-                    videoView.setScaleX(scale);
-                }else { videoView.setScaleY(1f/scale);}
-            });
-            videoView.setOnCompletionListener(mediaPlayer -> {
-                videoPB.setVisibility(View.GONE);
-                mediaPlayer.start();
-            });
+                         float videoRatio =mediaPlayer.getVideoWidth() / (float) mediaPlayer.getVideoHeight();
+                         float screenRatio= videoView.getWidth()/(float) videoView.getHeight();
+
+                         float scale=videoRatio/screenRatio;
+                         if(scale>= 1f){
+                             videoView.setScaleX(scale);
+                         }else { videoView.setScaleY(1f/scale);}
+                     });
+                     videoView.setOnCompletionListener(mediaPlayer -> {
+                         videoPB.setVisibility(View.GONE);
+                         mediaPlayer.start();
+                     });
+                 }
+             });
+
 
 
         }

@@ -3,6 +3,7 @@ package com.example.inmyarea_android.model;
 import com.example.inmyarea_android.model.ResponseMessages.GetBusinessesRespMsg;
 import com.example.inmyarea_android.model.ResponseMessages.GetAccountResponseMessage;
 import com.example.inmyarea_android.model.ResponseMessages.GetAppointmentsRespMsg;
+import com.example.inmyarea_android.model.ResponseMessages.GetVideoPathResponseMessage;
 import com.example.inmyarea_android.model.ResponseMessages.MainResponseMessage;
 import com.example.inmyarea_android.model.Users.Business;
 import com.example.inmyarea_android.model.Users.Client;
@@ -28,7 +29,7 @@ public class Model_RetroFit {
     //example "http://10.100.102.7:8080/"
 
     private Retrofit retrofit = new Retrofit.Builder()
-            .baseUrl("http:/192.168.14.165:8080/")
+            .baseUrl("http:/10.0.0.34:8080/")
             .addConverterFactory(GsonConverterFactory.create())
             .build();
 
@@ -204,7 +205,7 @@ public class Model_RetroFit {
         });
     }
 
-    public void getAppointmentsByUser(String email, Listeners.getAppointmentsByDateListener listener) {
+    public void getAppointmentsByUser(String email, Listeners.getAppointmentsByUserListener listener) {
         Call<GetAppointmentsRespMsg> call = nodeApiServer.getAppointmentByUser(email);
         call.enqueue(new Callback<GetAppointmentsRespMsg>() {
             @Override
@@ -254,6 +255,40 @@ public class Model_RetroFit {
 
             @Override
             public void onFailure(Call<MainResponseMessage> call, Throwable t) {
+                try { throw t; }
+                catch (Throwable throwable) { throwable.printStackTrace(); }
+            }
+        });
+    }
+
+    public void addVideoPath(String email, String path, Listeners.addVideoPathListener listener) {
+        Call<MainResponseMessage> call = nodeApiServer.addVideoPath(email, path);
+        call.enqueue(new Callback<MainResponseMessage>() {
+            @Override
+            public void onResponse(Call<MainResponseMessage> call, Response<MainResponseMessage> response) {
+
+                listener.onComplete(response.body());
+            }
+
+            @Override
+            public void onFailure(Call<MainResponseMessage> call, Throwable t) {
+                try { throw t; }
+                catch (Throwable throwable) { throwable.printStackTrace(); }
+            }
+        });
+    }
+
+    public void getVideoPath(String email, Listeners.getVideoPathListener listener) {
+        Call<GetVideoPathResponseMessage> call = nodeApiServer.getVideoPath(email);
+        call.enqueue(new Callback<GetVideoPathResponseMessage>() {
+            @Override
+            public void onResponse(Call<GetVideoPathResponseMessage> call, Response<GetVideoPathResponseMessage> response) {
+
+                listener.onComplete(response.body());
+            }
+
+            @Override
+            public void onFailure(Call<GetVideoPathResponseMessage> call, Throwable t) {
                 try { throw t; }
                 catch (Throwable throwable) { throwable.printStackTrace(); }
             }

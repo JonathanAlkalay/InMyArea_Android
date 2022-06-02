@@ -143,8 +143,16 @@ public class EditAppointmentFragment extends Fragment {
                     ;
                     Appointment appointment = new Appointment(businessId, userId, service, date, name, time, phone);
                     Listeners.instance.updateAppointment(userId, businessId, date, time, appointment, data1 -> {save.setEnabled(true);
-                        Toast.makeText(getActivity(), "Appointment was edited", Toast.LENGTH_LONG).show();
-                        Navigation.findNavController(view).popBackStack();
+                        if(data1.getStatus().equals("false"))
+                        {
+                            Toast.makeText(getActivity(), data1.getMessage(), Toast.LENGTH_LONG).show();
+                            progressBar.setVisibility(View.GONE);
+                            save.setEnabled(true);
+                            return;
+                        }else {
+                            Toast.makeText(getActivity(), "Appointment was edited", Toast.LENGTH_LONG).show();
+                            Navigation.findNavController(view).popBackStack();
+                        }
                     });
 
                 });

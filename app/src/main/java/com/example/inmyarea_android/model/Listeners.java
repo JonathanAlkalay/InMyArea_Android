@@ -3,6 +3,7 @@ package com.example.inmyarea_android.model;
 import com.example.inmyarea_android.model.ResponseMessages.GetBusinessesRespMsg;
 import com.example.inmyarea_android.model.ResponseMessages.GetAccountResponseMessage;
 import com.example.inmyarea_android.model.ResponseMessages.GetAppointmentsRespMsg;
+import com.example.inmyarea_android.model.ResponseMessages.GetVideoPathResponseMessage;
 import com.example.inmyarea_android.model.ResponseMessages.MainResponseMessage;
 import com.example.inmyarea_android.model.Users.User;
 import com.google.firebase.storage.FirebaseStorage;
@@ -62,7 +63,7 @@ public class Listeners {
     public interface getAppointmentsByUserListener{
         void onComplete(GetAppointmentsRespMsg data);
     }
-    public void AppointmentsByUser(String email, getAppointmentsByDateListener listener){
+    public void AppointmentsByUser(String email, getAppointmentsByUserListener listener){
         retroFit.getAppointmentsByUser(email, listener);
     }
 
@@ -101,5 +102,20 @@ public class Listeners {
     public void updateAppointment(String userEmail, String businessEmail, String date, String time, Appointment updatedAppointment, updateAppointmentListener listener){
         retroFit.updateAppointment(userEmail, businessEmail, date, time, updatedAppointment, listener);
     }
+
+    public interface addVideoPathListener{
+        void onComplete(MainResponseMessage data);
+    }
+    public void addVideoPath(String email, String path, addVideoPathListener listener){
+        retroFit.addVideoPath(email, path, listener);
+    }
+
+    public interface getVideoPathListener{
+        void onComplete(GetVideoPathResponseMessage data);
+    }
+    public void getVideoPath(String email, getVideoPathListener listener){
+        retroFit.getVideoPath(email, listener);
+    }
+
 
 }

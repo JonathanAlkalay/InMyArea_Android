@@ -141,8 +141,14 @@ public class MakeAppointmentFragment extends Fragment {
                     ;
                     Appointment appointment = new Appointment(businessId, userId, service, date, name, time, phone);
                     Listeners.instance.addAppointment(appointment, data1 -> {
-                        Toast.makeText(getActivity(), "Appointment was scheduled", Toast.LENGTH_LONG).show();
-                        Navigation.findNavController(view).popBackStack();
+                        if(data1.getStatus().equals("false")){
+                            Toast.makeText(getActivity(), data1.getMessage(), Toast.LENGTH_LONG).show();
+                            progressBar.setVisibility(View.GONE);
+                            save.setEnabled(true);
+                        }else {
+                            Toast.makeText(getActivity(), "Appointment was scheduled", Toast.LENGTH_LONG).show();
+                            Navigation.findNavController(view).popBackStack();
+                        }
                     });
                 });
             }

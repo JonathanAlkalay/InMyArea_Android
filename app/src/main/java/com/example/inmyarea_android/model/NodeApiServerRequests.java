@@ -2,6 +2,7 @@ package com.example.inmyarea_android.model;
 import com.example.inmyarea_android.model.ResponseMessages.GetBusinessesRespMsg;
 import com.example.inmyarea_android.model.ResponseMessages.GetAccountResponseMessage;
 import com.example.inmyarea_android.model.ResponseMessages.GetAppointmentsRespMsg;
+import com.example.inmyarea_android.model.ResponseMessages.GetVideoPathResponseMessage;
 import com.example.inmyarea_android.model.ResponseMessages.MainResponseMessage;
 
 import java.util.HashMap;
@@ -56,4 +57,11 @@ public interface NodeApiServerRequests {
     @POST("editAppointment={userEmail}&{businessEmail}&{date}&{time}")
     Call<MainResponseMessage> editAppointment(@Path("userEmail")String userEmail, @Path("businessEmail")String businessEmail,
                                               @Path("date")String date, @Path("time")String time, @Body HashMap<String, Object> updatedAppointment);
+
+    @POST("saveVideoPath={email}&{path}")
+    Call<MainResponseMessage> addVideoPath(@Path("email")String email, @Path("path")String path);
+
+    @GET("getVideoPath={email}")
+    Call<GetVideoPathResponseMessage> getVideoPath(@Path("email")String email);
+
 }

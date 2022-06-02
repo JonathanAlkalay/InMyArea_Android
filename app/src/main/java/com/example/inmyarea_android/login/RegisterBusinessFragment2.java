@@ -3,6 +3,7 @@ package com.example.inmyarea_android.login;
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -13,6 +14,7 @@ import android.os.Build;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.swiperefreshlayout.widget.CircularProgressDrawable;
 
 import android.provider.DocumentsContract;
 import android.provider.MediaStore;
@@ -33,6 +35,8 @@ import com.example.inmyarea_android.model.ResponseMessages.MainResponseMessage;
 import com.example.inmyarea_android.model.Service;
 import com.example.inmyarea_android.model.Users.Business;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.storage.OnProgressListener;
+import com.google.firebase.storage.UploadTask;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -48,6 +52,7 @@ import java.util.HashMap;
 public class RegisterBusinessFragment2 extends Fragment {
 
     ProgressBar progressBar;
+    ProgressDialog progressDialog;
     public static final int REQUEST_PICK_VIDEO = 3;
     private VideoView mVideoView;
     private Uri video;
@@ -69,6 +74,7 @@ public class RegisterBusinessFragment2 extends Fragment {
         String email=RegisterBusinessFragment2Args.fromBundle(getArguments()).getEmail();
         progressBar=view.findViewById(R.id.progressBarregnus2_PB);
         progressBar.setVisibility(View.GONE);
+        progressDialog=new ProgressDialog(getActivity());
         TextView services=view.findViewById(R.id.services_dropdownTv);
         Button register= view.findViewById(R.id.register_regbusinessBT);
         Button videobt=view.findViewById(R.id.pickvideo_registerBT);
@@ -195,6 +201,7 @@ public class RegisterBusinessFragment2 extends Fragment {
 
         register.setOnClickListener(v -> {
             progressBar.setVisibility(View.VISIBLE);
+
             register.setEnabled(false);
 //            if (video == null|| video.equals("")){
 //                Toast.makeText(getActivity(), "please select a video ", Toast.LENGTH_LONG).show();
@@ -216,6 +223,9 @@ public class RegisterBusinessFragment2 extends Fragment {
                     ArrayList<String> serv = new ArrayList<String>(Arrays.asList(stringBuilder.toString().split(", ")));
                     busi.setServices(serv);
                     Listeners.instance.updateAccountDetails(email, "business", busi, data1 -> {
+                        progressBar.setVisibility(View.GONE);
+                        progressDialog.setTitle("Uploading video...");
+                        progressDialog.show();
                         uploadVideo(email);
                     });
 
@@ -320,15 +330,26 @@ public class RegisterBusinessFragment2 extends Fragment {
 
     private void uploadVideo(String email) {
         if (video != null) {
-            Listeners.instance.GetStorageReference("Liraz").putFile(video)
+            // Progress Listener for loading
+// percentage on the dialog box
+            Listeners.instance.GetStorageReference(email).putFile(video)
                     .addOnSuccessListener(taskSnapshot -> {
                         Task<Uri> uriTask = taskSnapshot.getStorage().getDownloadUrl();
                         while (!uriTask.isSuccessful()) ;
+                        progressDialog.dismiss();
                         String downloadUri =uriTask.getResult().toString();
                         Toast.makeText(getActivity(), "Video Uploaded!!", Toast.LENGTH_SHORT).show();
-                        toFeedActivity(email);
+                        Listeners.instance.addVideoPath(email, downloadUri, data -> {
+                            toFeedActivity(email);
+                        });
+
                     })
-                    .addOnFailureListener(e -> Toast.makeText(getActivity(), "Failed " + e.getMessage(), Toast.LENGTH_SHORT).show());
+                    .addOnFailureListener(e -> Toast.makeText(getActivity(), "Failed " + e.getMessage(), Toast.LENGTH_SHORT).show())
+                    .addOnProgressListener(taskSnapshot -> {
+                        // show the progress bar
+                        double progress = (100.0 * taskSnapshot.getBytesTransferred() / taskSnapshot.getTotalByteCount());
+                        progressDialog.setMessage("Uploaded " + (int) progress + "%");
+                    });
         }
     }
 

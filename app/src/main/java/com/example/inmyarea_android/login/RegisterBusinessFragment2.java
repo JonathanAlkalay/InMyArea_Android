@@ -203,12 +203,12 @@ public class RegisterBusinessFragment2 extends Fragment {
             progressBar.setVisibility(View.VISIBLE);
 
             register.setEnabled(false);
-//            if (video == null|| video.equals("")){
-//                Toast.makeText(getActivity(), "please select a video ", Toast.LENGTH_LONG).show();
-//                progressBar.setVisibility(View.GONE);
-//                register.setEnabled(true);
-//
-//            }
+            if (video == null|| video.equals("")){
+                Toast.makeText(getActivity(), "please select a video ", Toast.LENGTH_LONG).show();
+                progressBar.setVisibility(View.GONE);
+                register.setEnabled(true);
+
+            }
              if(stringBuilder.length()==0){
                 Toast.makeText(getActivity(), "please select services ", Toast.LENGTH_LONG).show();
                 progressBar.setVisibility(View.GONE);
@@ -306,7 +306,7 @@ public class RegisterBusinessFragment2 extends Fragment {
 
             if (requestCode == REQUEST_PICK_VIDEO) {
                 if (data != null) {
-                    Toast.makeText(getActivity(), "Video content URI: " + data.getData(),
+                    Toast.makeText(getActivity(), "Video file chosen: " + data.getData(),
                             Toast.LENGTH_LONG).show();
                     video = data.getData();
                     //videoPath =generatePath(video,getActivity());

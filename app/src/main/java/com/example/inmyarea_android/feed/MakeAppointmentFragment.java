@@ -84,6 +84,8 @@ public class MakeAppointmentFragment extends Fragment {
                     }else if(month<monthNow){
                         dateError();
                         return;
+                    }else{
+                        dateSelect.setText(date);
                     }
                 }else if(year<yearNow){
                     dateError();

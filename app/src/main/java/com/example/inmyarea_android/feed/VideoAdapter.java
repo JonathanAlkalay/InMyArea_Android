@@ -87,23 +87,31 @@ public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.VideoViewHol
                  public void onComplete(GetVideoPathResponseMessage data) {
                      videoView.setVideoPath(data.getPath());
 
-                     videoView.setOnPreparedListener(mediaPlayer -> {
-                         //videoPB.setVisibility(View.VISIBLE);
-                         mediaPlayer.start();
 
-                         float videoRatio =mediaPlayer.getVideoWidth() / (float) mediaPlayer.getVideoHeight();
-                         float screenRatio= videoView.getWidth()/(float) videoView.getHeight();
-
-                         float scale=videoRatio/screenRatio;
-                         if(scale>= 1f){
-                             videoView.setScaleX(scale);
-                         }else { videoView.setScaleY(1f/scale);}
-                     });
-                     videoView.setOnCompletionListener(mediaPlayer -> {
-                         videoPB.setVisibility(View.GONE);
-                         mediaPlayer.start();
-                     });
                  }
+             });
+             videoView.setOnPreparedListener(mediaPlayer -> {
+                 videoPB.setVisibility(View.GONE);
+                 mediaPlayer.start();
+
+                 float videoRatio =mediaPlayer.getVideoWidth() / (float) mediaPlayer.getVideoHeight();
+                 float screenRatio= videoView.getWidth()/(float) videoView.getHeight();
+
+                 float scale=videoRatio/screenRatio;
+                 if(scale>= 1f){
+                     videoView.setScaleX(scale);
+                 }else { videoView.setScaleY(1f/scale);}
+             });
+             videoView.setOnCompletionListener(mediaPlayer -> {
+                 videoPB.setVisibility(View.GONE);
+                 mediaPlayer.start();
+                 float videoRatio =mediaPlayer.getVideoWidth() / (float) mediaPlayer.getVideoHeight();
+                 float screenRatio= videoView.getWidth()/(float) videoView.getHeight();
+
+                 float scale=videoRatio/screenRatio;
+                 if(scale>= 1f){
+                     videoView.setScaleX(scale);
+                 }else { videoView.setScaleY(1f/scale);}
              });
 
 

@@ -92,28 +92,28 @@ public class HomeFragment extends Fragment {
         });
 
         medi.setOnClickListener(v -> {
-            if(mViewModel.getBusinessByCategory("Pedi&Medi").size()==0){
+            if(mViewModel.getBusinessByCategory("Pedi&Medi").isEmpty()){
                 Toast.makeText(getActivity(), "There is no businesses with this category in your area", Toast.LENGTH_LONG).show();
             }else {
                 Navigation.findNavController(view).navigate((NavDirections) HomeFragmentDirections.actionHomeFragmentToVideoClipRVFragment(email, "Pedi&Medi"));
             }
         });
         cos.setOnClickListener(v -> {
-            if(mViewModel.getBusinessByCategory("Cosmetics").size()==0){
+            if(mViewModel.getBusinessByCategory("Cosmetics").isEmpty()){
                 Toast.makeText(getActivity(), "There is no businesses with this category in your area", Toast.LENGTH_LONG).show();
             }else {
                 Navigation.findNavController(view).navigate((NavDirections) HomeFragmentDirections.actionHomeFragmentToVideoClipRVFragment(email, "Cosmetics"));
             }
         });
         hair.setOnClickListener(v -> {
-            if (mViewModel.getBusinessByCategory("Hair Styling").size() == 0) {
+            if (mViewModel.getBusinessByCategory("Hair Styling").isEmpty()) {
                 Toast.makeText(getActivity(), "There is no businesses with this category in your area", Toast.LENGTH_LONG).show();
             } else {
                 Navigation.findNavController(view).navigate((NavDirections) HomeFragmentDirections.actionHomeFragmentToVideoClipRVFragment(email, "Hair Styling"));
             }
         });
         leisure.setOnClickListener(v -> {
-            if(mViewModel.getBusinessByCategory("Leisure").size()==0){
+            if(mViewModel.getBusinessByCategory("Leisure").isEmpty()){
                 Toast.makeText(getActivity(), "There is no businesses with this category in your area", Toast.LENGTH_LONG).show();
             }else {
                 Navigation.findNavController(view).navigate((NavDirections) HomeFragmentDirections.actionHomeFragmentToVideoClipRVFragment(email, "Leisure"));

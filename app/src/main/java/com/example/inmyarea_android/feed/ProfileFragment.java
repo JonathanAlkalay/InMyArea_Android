@@ -136,7 +136,7 @@ public class ProfileFragment extends Fragment {
                 });
                 Listeners.instance.getAccountByEmail(profileEmailId, "business", data -> {
                     userName.setText((String)data.getAccount().get("name"));
-                    desc.setText((String)data.getAccount().get("email"));
+                    desc.setText((String)data.getAccount().get("description"));
                     phone.setText((String)data.getAccount().get("phoneNumber"));
                     serviceArr=(List<String>) data.getAccount().get("services");
                     refresh();

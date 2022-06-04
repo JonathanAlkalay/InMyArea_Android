@@ -82,14 +82,15 @@ public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.VideoViewHol
          void setVideoData(VideoItem videoItem) {
             title.setText(videoItem.videoTitle);
             des.setText(videoItem.videoDesc);
-             Listeners.instance.getVideoPath(videoItem.owmerId, new Listeners.getVideoPathListener() {
-                 @Override
-                 public void onComplete(GetVideoPathResponseMessage data) {
-                     videoView.setVideoPath(data.getPath());
-
-
-                 }
-             });
+//             Listeners.instance.getVideoPath(videoItem.owmerId, new Listeners.getVideoPathListener() {
+//                 @Override
+//                 public void onComplete(GetVideoPathResponseMessage data) {
+//                     videoView.setVideoPath(data.getPath());
+//
+//
+//                 }
+//             });
+             videoView.setVideoPath(videoItem.videoURL);
              videoView.setOnPreparedListener(mediaPlayer -> {
                  videoPB.setVisibility(View.GONE);
                  mediaPlayer.start();

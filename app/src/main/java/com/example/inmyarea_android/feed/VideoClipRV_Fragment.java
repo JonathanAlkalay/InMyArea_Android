@@ -33,12 +33,28 @@ public class VideoClipRV_Fragment extends Fragment {
         String emailuseridId = VideoClipRV_FragmentArgs.fromBundle(getArguments()).getUseremailId();
         String categoryId = VideoClipRV_FragmentArgs.fromBundle(getArguments()).getCategoryid();
         mViewModel = ViewModelProviders.of(this.getActivity()).get(HomeViewModel.class);
-        List<Business>catList= mViewModel.getBusinessByCategory(categoryId);
+//        List<Business>catList= mViewModel.getBusinessByCategory(categoryId);
+
 
 
         final ViewPager2 videosViewPager= view.findViewById(R.id.videoViewPagger);
         List<VideoItem> videoItemList=new ArrayList<>();
-        videoItemList=mViewModel.createVideoList(catList);
+//        videoItemList=mViewModel.createVideoList(catList);
+
+        switch (categoryId){
+            case "Pedi&Medi":
+                videoItemList=mViewModel.getPathsPedi();
+                break;
+            case "Cosmetics":
+                videoItemList=mViewModel.getPathsCos();
+                break;
+            case "Hair Styling":
+                videoItemList=mViewModel.getPathsHair();
+                break;
+            case "Leisure":
+                videoItemList=mViewModel.getPathsLei();
+                break;
+        }
 
         VideoAdapter videoAdapter = new VideoAdapter(videoItemList);
         videosViewPager.setAdapter(videoAdapter);

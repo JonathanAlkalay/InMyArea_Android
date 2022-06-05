@@ -14,6 +14,7 @@ import com.example.inmyarea_android.R;
 import com.example.inmyarea_android.model.VideoItem;
 import com.google.android.exoplayer2.ExoPlayer;
 import com.google.android.exoplayer2.MediaItem;
+import com.google.android.exoplayer2.Player;
 import com.google.android.exoplayer2.ui.PlayerView;
 
 import java.util.List;
@@ -97,7 +98,10 @@ public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.VideoViewHol
 
              MediaItem mediaItem = MediaItem.fromUri(videoItem.videoURL);
              player.setMediaItem(mediaItem);
+             player.setRepeatMode(Player.REPEAT_MODE_ONE);
              videoView.setPlayer(player);
+             player.prepare();
+             videoPB.setVisibility(View.GONE);
              player.play();
 //             videoView.setVideoPath(videoItem.videoURL);
 //             videoView.setOnPreparedListener(mediaPlayer -> {

@@ -86,6 +86,8 @@ public class EditAppointmentFragment extends Fragment {
                     }else if(month<monthNow){
                         dateError();
                         return;
+                    }else{
+                        dateSelect.setText(date);
                     }
                 }else if(year<yearNow){
                     dateError();
@@ -142,7 +144,7 @@ public class EditAppointmentFragment extends Fragment {
                     String phone = (String) data.getAccount().get("phoneNumber");
                     ;
                     Appointment appointment = new Appointment(businessId, userId, service, date, name, time, phone);
-                    Listeners.instance.updateAppointment(userId, businessId, date, time, appointment, data1 -> {save.setEnabled(true);
+                    Listeners.instance.updateAppointment(userId, businessId, datep, timep, appointment, data1 -> {save.setEnabled(true);
                         if(data1.getStatus().equals("false"))
                         {
                             Toast.makeText(getActivity(), data1.getMessage(), Toast.LENGTH_LONG).show();

@@ -78,31 +78,19 @@ public class HomeViewModel extends ViewModel {
 
     }
 
-
-
     public List<Business> getBusinessByCategory(String category){
         List<Business> list=new ArrayList<>();
+        if(businesses.getValue()!=null){
         List<Business> busi=businesses.getValue();
         for(int i=0;i<busi.size();i++) {
             if (busi.get(i).getCategory().equals(category)) {
                 list.add(busi.get(i));
             }
         }
+        }
         return list;
     }
 
-//    public List<VideoItem> createVideoList(List<Business> businesses){
-//        List<VideoItem> videoItemList=new ArrayList<>();
-//        for(int i=0;i<businesses.size();i++){
-//            VideoItem videoItem =new VideoItem();
-//            videoItem.videoTitle=businesses.get(i).getName();
-//            videoItem.videoDesc=businesses.get(i).getDescription();
-//            videoItem.owmerId=businesses.get(i).getEmail();
-//            videoItemList.add(videoItem);
-//
-//        }
-//        return videoItemList;
-//    }
 
 
 

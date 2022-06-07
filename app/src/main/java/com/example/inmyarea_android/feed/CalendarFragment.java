@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.CalendarView;
 import android.widget.ImageButton;
 import android.widget.ProgressBar;
@@ -46,6 +47,10 @@ public class CalendarFragment extends Fragment {
         ProgressBar calPB=view.findViewById(R.id.progressBar_calendar);
         CalendarView calendarView=view.findViewById(R.id.calendarView_calendar);
         calendarView.setClickable(false);
+//        Button editS=view.findViewById(R.id.calendar_editscheduleBT);
+////        editS.setOnClickListener(v -> {
+//            Navigation.findNavController(view).navigate(CalendarFragmentDirections.actionCalendarFragmentToBusinessScheduleFragment(busId));
+//        });
 
 
         calPB.setVisibility(View.VISIBLE);

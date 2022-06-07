@@ -12,8 +12,8 @@
 
         <ImageView
             android:id="@+id/imageView_editbus"
-            android:layout_width="204dp"
-            android:layout_height="161dp"
+            android:layout_width="182dp"
+            android:layout_height="128dp"
             android:src="@drawable/ima_login_photo"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".feed.EditVideoFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <VideoView
+            android:id="@+id/video_editvideoVV"
+            android:layout_width="316dp"
+            android:layout_height="226dp"
+            android:layout_marginTop="44dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.494"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/title_editvideoTv" />
+
+        <TextView
+            android:id="@+id/title_editvideoTv"
+            android:layout_width="266dp"
+            android:layout_height="58dp"
+            android:layout_marginTop="56dp"
+            android:fontFamily="@font/encode_sans"
+            android:text="Edit Video"
+            android:textAlignment="center"
+            android:textColor="#E91E1E"
+            android:textSize="40sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/choosevideo_editvideoB"
+            android:layout_width="212dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="40dp"
+            android:background="@drawable/button_shape"
+            android:fontFamily="@font/encode_sans"
+            android:text="Choose Video"
+            android:textColor="@color/red"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:backgroundTint="@color/black"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/video_editvideoVV" />
+
+        <Button
+            android:id="@+id/save_editvideoB"
+            android:layout_width="121dp"
+            android:layout_height="49dp"
+            android:background="@drawable/button_shape"
+            android:fontFamily="@font/encode_sans"
+            android:text="Save"
+            android:textColor="@color/red"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:backgroundTint="@color/black"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/choosevideo_editvideoB" />
+
+        <ProgressBar
+            android:id="@+id/progressbar_editvideo"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="71dp"
+            android:layout_height="56dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.429" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</FrameLayout>

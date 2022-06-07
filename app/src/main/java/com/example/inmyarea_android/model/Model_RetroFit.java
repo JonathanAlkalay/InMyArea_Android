@@ -294,4 +294,24 @@ public class Model_RetroFit {
             }
         });
     }
+
+
+    public void updateVideoPath(String email, String updatedPath, Listeners.updateVideoPathListener listener) {
+
+        Call<MainResponseMessage> call = nodeApiServer.updateVideoPath(email, updatedPath);
+        call.enqueue(new Callback<MainResponseMessage>() {
+            @Override
+            public void onResponse(Call<MainResponseMessage> call, Response<MainResponseMessage> response) {
+
+                listener.onComplete(response.body());
+            }
+
+            @Override
+            public void onFailure(Call<MainResponseMessage> call, Throwable t) {
+                try { throw t; }
+                catch (Throwable throwable) { throwable.printStackTrace(); }
+            }
+        });
+    }
+
 }

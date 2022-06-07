@@ -64,4 +64,8 @@ public interface NodeApiServerRequests {
     @GET("getVideoPath={email}")
     Call<GetVideoPathResponseMessage> getVideoPath(@Path("email")String email);
 
+    @POST("updateVideoPath={email}&{path}")
+    Call<MainResponseMessage> updateVideoPath(@Path("email")String email, @Path("path")String path);
+
+
 }

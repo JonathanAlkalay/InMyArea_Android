@@ -3,17 +3,17 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:background="@drawable/layout_border">
 
     <TextView
         android:id="@+id/name_servicerowTV"
-        android:layout_width="374dp"
-        android:layout_height="37dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginBottom="15dp"
+        android:layout_width="347dp"
+        android:layout_height="30dp"
         android:fontFamily="@font/abel"
         android:text="TextView"
-        android:textSize="24sp"
+        android:textAlignment="textStart"
+        android:textSize="20sp"
         app:drawableLeftCompat="@drawable/dot"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

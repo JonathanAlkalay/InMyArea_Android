@@ -1,7 +1,5 @@
 package com.example.inmyarea_android.feed;
 
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -12,24 +10,19 @@ import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.provider.CalendarContract;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.inmyarea_android.MainActivity;
 import com.example.inmyarea_android.R;
 import com.example.inmyarea_android.model.Appointment;
 import com.example.inmyarea_android.model.Listeners;
-import com.example.inmyarea_android.model.ResponseMessages.GetAccountResponseMessage;
-import com.example.inmyarea_android.model.ResponseMessages.GetAppointmentsRespMsg;
-import com.example.inmyarea_android.model.ResponseMessages.MainResponseMessage;
 
-import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -57,9 +50,10 @@ public class ProfileFragment extends Fragment {
 
         TextView userName= view.findViewById(R.id.profile_nameTV);
         TextView desc= view.findViewById(R.id.profile_descTV);
-        TextView calendar= view.findViewById(R.id.calendar_clickTV);
+        ImageView calendar= view.findViewById(R.id.calendar_profileIV);
         TextView serOrApoTV= view.findViewById(R.id.profile_serorhisTV);
         TextView phone=view.findViewById(R.id.profilePhone_TV);
+        TextView address=view.findViewById(R.id.profileaddress_TV);
         Button editBt= view.findViewById(R.id.profile_editBT);
         Button apoBt= view.findViewById(R.id.profile_apointmentBT);
         RecyclerView list=view.findViewById(R.id.serorapo_RV);
@@ -70,7 +64,8 @@ public class ProfileFragment extends Fragment {
         editBt.setVisibility(View.GONE);
 
 
-
+        Button preview=view.findViewById(R.id.profile_previewvideoBT);
+        preview.setVisibility(View.GONE);
         Button logout=view.findViewById(R.id.logout_BT);
         logout.setVisibility(View.GONE);
         logout.setOnClickListener(v -> {
@@ -81,6 +76,9 @@ public class ProfileFragment extends Fragment {
             getActivity().finish();
             startActivity(intent);
         });
+        preview.setOnClickListener(v -> {
+            Navigation.findNavController(view).navigate(ProfileFragmentDirections.actionProfileFragmentToBusinessVideoPreviewFragment(profileEmailId));
+        });
 
         calendar.setVisibility(View.GONE);
 
@@ -88,6 +86,7 @@ public class ProfileFragment extends Fragment {
             apoBt.setVisibility(View.GONE);
             if (emailUseridId.equals(profileEmailId)){
                 logout.setVisibility(View.VISIBLE);
+                preview.setVisibility(View.VISIBLE);
                 serOrApo=false;
                 editBt.setVisibility(View.VISIBLE);
                 calendar.setVisibility(View.VISIBLE);
@@ -101,6 +100,7 @@ public class ProfileFragment extends Fragment {
                 userName.setText((String)data.getAccount().get("name"));
                 desc.setText((String)data.getAccount().get("description"));
                 phone.setText((String)data.getAccount().get("phoneNumber"));
+                address.setText((String)data.getAccount().get("location"));
                 serviceArr=(List<String>) data.getAccount().get("services");
                 refresh();
             });
@@ -113,9 +113,10 @@ public class ProfileFragment extends Fragment {
                 apoBt.setVisibility(View.GONE);
                 editBt.setVisibility(View.VISIBLE);
                 serOrApoTV.setText("Appointments");
+                address.setVisibility(View.GONE);
                 Listeners.instance.getAccountByEmail(profileEmailId, type, data -> {
                     userName.setText((String)data.getAccount().get("name"));
-                    desc.setText((String)data.getAccount().get("email"));
+                    address.setText((String)data.getAccount().get("email"));
                     phone.setText((String)data.getAccount().get("phoneNumber"));
                 });
                 Listeners.instance.AppointmentsByUser(profileEmailId, data -> {
@@ -138,6 +139,7 @@ public class ProfileFragment extends Fragment {
                     userName.setText((String)data.getAccount().get("name"));
                     desc.setText((String)data.getAccount().get("description"));
                     phone.setText((String)data.getAccount().get("phoneNumber"));
+                    address.setText((String)data.getAccount().get("location"));
                     serviceArr=(List<String>) data.getAccount().get("services");
                     refresh();
                 });

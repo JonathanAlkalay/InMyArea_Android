@@ -94,9 +94,6 @@ public class RegisterBusinessFragment2 extends Fragment {
             mCurrentPosition = savedInstanceState.getInt(PLAYBACK_TIME);
         }
 
-//        MediaController controller = new MediaController(getContext());
-//        controller.setMediaPlayer(mVideoView);
-//        mVideoView.setMediaController(controller);
 
         //services
         Service service=new Service();
@@ -208,8 +205,7 @@ public class RegisterBusinessFragment2 extends Fragment {
                 progressBar.setVisibility(View.GONE);
                 register.setEnabled(true);
 
-            }
-             if(stringBuilder.length()==0){
+            }else if(stringBuilder.length()==0){
                 Toast.makeText(getActivity(), "please select services ", Toast.LENGTH_LONG).show();
                 progressBar.setVisibility(View.GONE);
                 register.setEnabled(true);

@@ -70,6 +70,10 @@
             android:id="@+id/action_profileFragment_to_editAppointmentFragment"
             app:destination="@id/editAppointmentFragment"
             app:popUpTo="@id/profileFragment" />
+        <action
+            android:id="@+id/action_profileFragment_to_businessVideoPreviewFragment"
+            app:destination="@id/businessVideoPreviewFragment"
+            app:popUpTo="@id/profileFragment" />
     </fragment>
     <fragment
         android:id="@+id/editClientFragment"
@@ -132,6 +136,28 @@
             app:argType="string" />
         <argument
             android:name="service"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/businessVideoPreviewFragment"
+        android:name="com.example.inmyarea_android.feed.BusinessVideoPreviewFragment"
+        android:label="fragment_business_video_preview"
+        tools:layout="@layout/fragment_business_video_preview" >
+        <action
+            android:id="@+id/action_businessVideoPreviewFragment_to_editVideoFragment"
+            app:destination="@id/editVideoFragment"
+            app:popUpTo="@id/businessVideoPreviewFragment" />
+        <argument
+            android:name="businessid"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/editVideoFragment"
+        android:name="com.example.inmyarea_android.feed.EditVideoFragment"
+        android:label="fragment_edit_video"
+        tools:layout="@layout/fragment_edit_video" >
+        <argument
+            android:name="businessid"
             app:argType="string" />
     </fragment>
 </navigation>

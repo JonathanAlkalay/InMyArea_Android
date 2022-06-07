@@ -27,6 +27,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -58,6 +59,7 @@ public class HomeFragment extends Fragment {
     Double longitude,latitude;
     FusedLocationProviderClient mFusedLocationClient;
     int PERMISSION_ID = 44;
+    ProgressBar progressBar;
 
 
     @Override
@@ -67,12 +69,14 @@ public class HomeFragment extends Fragment {
         email = getArguments().getString("useremail_id");
         type = getArguments().getString("type");
         mViewModel = ViewModelProviders.of(this.getActivity()).get(HomeViewModel.class);
+        progressBar=view.findViewById(R.id.progressBar_homefeed);
+        progressBar.setVisibility(View.VISIBLE);
 
         TextView greet = view.findViewById(R.id.home_TV);
         Listeners.instance.getAccountByEmail(email, "user", new Listeners.getAccountByEmailListener() {
             @Override
             public void onComplete(GetAccountResponseMessage data) throws IOException {
-                greet.setText("Hello "+(String)data.getAccount().get("name"));
+                greet.setText("Hello "+(String)data.getAccount().get("name")+"");
             }
         });
         mFusedLocationClient = LocationServices.getFusedLocationProviderClient(getActivity());
@@ -134,6 +138,7 @@ public class HomeFragment extends Fragment {
                 busList.add(business.fromJson(map));
             }
             mViewModel.setBusinesses(busList);
+            progressBar.setVisibility(View.GONE);
         });
     }
 

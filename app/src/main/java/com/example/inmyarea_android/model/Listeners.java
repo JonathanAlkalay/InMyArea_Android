@@ -117,5 +117,13 @@ public class Listeners {
         retroFit.getVideoPath(email, listener);
     }
 
+    public interface updateVideoPathListener{
+        void onComplete(MainResponseMessage data);
+    }
+    public void updateVideoPath(String email, String updatedPath, updateVideoPathListener listener){
+        retroFit.updateVideoPath(email, updatedPath, listener);
+    }
+
+
 
 }

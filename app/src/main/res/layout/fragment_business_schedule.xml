@@ -1,0 +1,288 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".feed.BusinessScheduleFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/schedule_titleTV"
+                    android:layout_width="405dp"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="40dp"
+                    android:fontFamily="@font/encode_sans"
+                    android:text="Enter your schedule"
+                    android:textAlignment="center"
+                    android:textColor="#E91E1E"
+                    android:textSize="24sp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <Button
+                    android:id="@+id/register_schedule"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="54dp"
+                    android:text="Save"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/schedule_saturdayswitch" />
+
+                <Button
+                    android:id="@+id/closetimesun_scheduleBT"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginEnd="36dp"
+                    android:onClick="showTimePickerDialog"
+                    android:text="Close time"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/schedule_sundayswitch" />
+
+                <Button
+                    android:id="@+id/closetimemon_scheduleBT"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="36dp"
+                    android:onClick="showTimePickerDialog"
+                    android:text="Close time"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/schedule_mondayswitch" />
+
+                <Button
+                    android:id="@+id/closetimetues_scheduleBT"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="36dp"
+                    android:onClick="showTimePickerDialog"
+                    android:text="Close time"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/schedule_tuesdayswitch" />
+
+                <Button
+                    android:id="@+id/closetimethurs_scheduleBT"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="36dp"
+                    android:onClick="showTimePickerDialog"
+                    android:text="Close time"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/schedule_thursdayswitch" />
+
+                <Button
+                    android:id="@+id/closetimefri_scheduleBT"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="36dp"
+                    android:onClick="showTimePickerDialog"
+                    android:text="Close time"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/schedule_fridayswitch" />
+
+                <Button
+                    android:id="@+id/closetimesatur_scheduleBT"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginEnd="36dp"
+                    android:onClick="showTimePickerDialog"
+                    android:text="Close time"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/schedule_saturdayswitch" />
+
+                <Button
+                    android:id="@+id/closetimewednes_scheduleBT"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="36dp"
+                    android:onClick="showTimePickerDialog"
+                    android:text="Close time"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/schedule_wednesdayswitch" />
+
+                <Button
+                    android:id="@+id/opentimesun_scheduleBT"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="36dp"
+                    android:layout_marginTop="4dp"
+                    android:onClick="showTimePickerDialog"
+                    android:text="Open time"
+                    app:layout_constraintEnd_toStartOf="@+id/closetimesun_scheduleBT"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/schedule_sundayswitch" />
+
+                <Button
+                    android:id="@+id/opentimewednes_scheduleBT"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="36dp"
+                    android:onClick="showTimePickerDialog"
+                    android:text="Open time"
+                    app:layout_constraintEnd_toStartOf="@+id/closetimewednes_scheduleBT"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/schedule_wednesdayswitch" />
+
+                <Button
+                    android:id="@+id/opentimethurs_scheduleBT"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:onClick="showTimePickerDialog"
+                    android:text="Open time"
+                    app:layout_constraintEnd_toStartOf="@+id/closetimethurs_scheduleBT"
+                    app:layout_constraintHorizontal_bias="0.264"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/schedule_thursdayswitch" />
+
+                <Button
+                    android:id="@+id/opentimefri_scheduleBT"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="99dp"
+                    android:onClick="showTimePickerDialog"
+                    android:text="Open time"
+                    app:layout_constraintEnd_toStartOf="@+id/closetimefri_scheduleBT"
+                    app:layout_constraintHorizontal_bias="0.972"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/schedule_fridayswitch" />
+
+                <Button
+                    android:id="@+id/opentimesatur_scheduleBT"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="99dp"
+                    android:onClick="showTimePickerDialog"
+                    android:text="Open time"
+                    app:layout_constraintEnd_toStartOf="@+id/closetimesatur_scheduleBT"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/schedule_saturdayswitch" />
+
+                <Button
+                    android:id="@+id/opentimemon_scheduleBT"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:onClick="showTimePickerDialog"
+                    android:text="Open time"
+                    app:layout_constraintEnd_toStartOf="@+id/closetimemon_scheduleBT"
+                    app:layout_constraintHorizontal_bias="0.272"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/schedule_mondayswitch" />
+
+                <Button
+                    android:id="@+id/opentimetues_scheduleBT"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:onClick="showTimePickerDialog"
+                    android:text="Open time"
+                    app:layout_constraintEnd_toStartOf="@+id/closetimetues_scheduleBT"
+                    app:layout_constraintHorizontal_bias="0.264"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/schedule_tuesdayswitch" />
+
+                <Switch
+                    android:id="@+id/schedule_tuesdayswitch"
+                    android:layout_width="338dp"
+                    android:layout_height="52dp"
+                    android:layout_marginTop="52dp"
+                    android:text="Tuesday"
+                    android:textSize="18sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/schedule_mondayswitch" />
+
+                <Switch
+                    android:id="@+id/schedule_fridayswitch"
+                    android:layout_width="338dp"
+                    android:layout_height="52dp"
+                    android:layout_marginTop="48dp"
+                    android:text="Friday"
+                    android:textSize="18sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/schedule_thursdayswitch" />
+
+                <Switch
+                    android:id="@+id/schedule_wednesdayswitch"
+                    android:layout_width="338dp"
+                    android:layout_height="52dp"
+                    android:layout_marginTop="52dp"
+                    android:text="Wednesday"
+                    android:textSize="18sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/schedule_tuesdayswitch" />
+
+                <Switch
+                    android:id="@+id/schedule_saturdayswitch"
+                    android:layout_width="338dp"
+                    android:layout_height="52dp"
+                    android:layout_marginTop="52dp"
+                    android:text="Saturday"
+                    android:textSize="18sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/schedule_fridayswitch" />
+
+                <Switch
+                    android:id="@+id/schedule_thursdayswitch"
+                    android:layout_width="338dp"
+                    android:layout_height="52dp"
+                    android:layout_marginTop="48dp"
+                    android:text="Thursday"
+                    android:textSize="18sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/schedule_wednesdayswitch" />
+
+                <Switch
+                    android:id="@+id/schedule_mondayswitch"
+                    android:layout_width="338dp"
+                    android:layout_height="52dp"
+                    android:layout_marginTop="52dp"
+                    android:text="Monday"
+                    android:textSize="18sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/schedule_sundayswitch" />
+
+                <Switch
+                    android:id="@+id/schedule_sundayswitch"
+                    android:layout_width="338dp"
+                    android:layout_height="52dp"
+                    android:layout_marginTop="24dp"
+                    android:text="Sunday"
+                    android:textSize="18sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.493"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/schedule_titleTV" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </ScrollView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</FrameLayout>

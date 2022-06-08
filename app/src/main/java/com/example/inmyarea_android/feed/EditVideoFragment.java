@@ -48,6 +48,7 @@ public class EditVideoFragment extends Fragment {
 
     // Tag for the instance state bundle.
     private static final String PLAYBACK_TIME = "play_time";
+    Activity activity;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -60,6 +61,7 @@ public class EditVideoFragment extends Fragment {
         progressDialog=new ProgressDialog(getActivity());
         Button videoB=view.findViewById(R.id.choosevideo_editvideoB);
         Button save= view.findViewById(R.id.save_editvideoB);
+        activity=getActivity();
 
         mVideoView = view.findViewById(R.id.video_editvideoVV);
 
@@ -181,30 +183,38 @@ public class EditVideoFragment extends Fragment {
                 @Override
                 public void onSuccess(Void aVoid) {
                     // File deleted successfully
-                    Listeners.instance.GetStorageReference(email).putFile(video)
-                            .addOnSuccessListener(taskSnapshot -> {
-                                Task<Uri> uriTask = taskSnapshot.getStorage().getDownloadUrl();
-                                while (!uriTask.isSuccessful()) ;
-                                progressDialog.dismiss();
-                                String downloadUri =uriTask.getResult().toString();
-                                Listeners.instance.updateVideoPath(email, downloadUri, data -> {
-                                    Toast.makeText(getActivity(), "Video updated", Toast.LENGTH_SHORT).show();
-                                    Navigation.findNavController(view).popBackStack();
-                                });
+                    progressBar.setVisibility(View.GONE);
+                    upload(email);
 
-                            })
-                            .addOnFailureListener(e -> Toast.makeText(getActivity(), "Failed " + e.getMessage(), Toast.LENGTH_SHORT).show())
-                            .addOnProgressListener(taskSnapshot -> {
-                                // show the progress bar
-                                double progress = (100.0 * taskSnapshot.getBytesTransferred() / taskSnapshot.getTotalByteCount());
-                                progressDialog.setMessage("Uploaded " + (int) progress + "%");
-                            });
                 }
             }).addOnFailureListener(exception -> {
                 Toast.makeText(getActivity(), "Failed " + exception.getMessage(), Toast.LENGTH_SHORT).show();
             });
 
+
+
         }
+    }
+
+    public void upload(String email){
+        Listeners.instance.GetStorageReference(email).putFile(video)
+                .addOnSuccessListener(taskSnapshot -> {
+                    Task<Uri> uriTask = taskSnapshot.getStorage().getDownloadUrl();
+                    while (!uriTask.isSuccessful()) ;
+                    progressDialog.dismiss();
+                    String downloadUri =uriTask.getResult().toString();
+                    Listeners.instance.updateVideoPath(email, downloadUri, data -> {
+                        Toast.makeText(getActivity(), "Video updated", Toast.LENGTH_SHORT).show();
+                        Navigation.findNavController(view).popBackStack();
+                    });
+
+                })
+                .addOnFailureListener(e -> Toast.makeText(getActivity(), "Failed " + e.getMessage(), Toast.LENGTH_SHORT).show())
+                .addOnProgressListener(taskSnapshot -> {
+                    // show the progress bar
+                    double progress = (100.0 * taskSnapshot.getBytesTransferred() / taskSnapshot.getTotalByteCount());
+                    progressDialog.setMessage("Uploaded " + (int) progress + "%");
+                });
     }
 
 

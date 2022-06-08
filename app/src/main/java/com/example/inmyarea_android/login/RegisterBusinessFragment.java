@@ -257,7 +257,9 @@ public class RegisterBusinessFragment extends Fragment {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            locationET.setText(addresses.get(0).getAddressLine(0));
+            if(addresses.size()!=0) {
+                locationET.setText(addresses.get(0).getAddressLine(0));
+            }
             cont.setEnabled(true);
             progressBar.setVisibility(View.GONE);
         }

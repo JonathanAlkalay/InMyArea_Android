@@ -16,7 +16,7 @@ public class Business extends User {
 
 
 
-    HashMap<String , HashSet<Integer>> businessHours;
+    //HashMap<String , HashSet<Integer>> businessHours;
 
 
 
@@ -78,13 +78,13 @@ public class Business extends User {
         this.latitude = latitude;
     }
 
-    public HashMap<String, HashSet<Integer>> getBusinessHours() {
-        return businessHours;
-    }
-
-    public void setBusinessHours(HashMap<String, HashSet<Integer>> businessHours) {
-        this.businessHours = businessHours;
-    }
+//    public HashMap<String, HashSet<Integer>> getBusinessHours() {
+//        return businessHours;
+//    }
+//
+//    public void setBusinessHours(HashMap<String, HashSet<Integer>> businessHours) {
+//        this.businessHours = businessHours;
+//    }
 
     public HashMap<String, Object> toJson() {
 
@@ -100,7 +100,7 @@ public class Business extends User {
         json.put("services", this.services);
         json.put("longitude",this.longitude);
         json.put("latitude",this.latitude);
-        json.put("businessHours",this.businessHours);
+        //json.put("businessHours",this.businessHours);
 
 
         return json;
@@ -116,7 +116,7 @@ public class Business extends User {
         business.setServices((ArrayList<String>)json.get("services"));
         business.setLongitude((Double)json.get("longitude") );
         business.setLatitude((Double)json.get("latitude") );
-        business.setBusinessHours((HashMap<String, HashSet<Integer>>) json.get("businessHours"));
+        //business.setBusinessHours((HashMap<String, HashSet<Integer>>) json.get("businessHours"));
 
         return business;
     }

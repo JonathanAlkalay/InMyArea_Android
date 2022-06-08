@@ -14,7 +14,7 @@ public class Service {
     "Eye lifting","Medium facial peeling treatment","Medium body peeling treatment","Deep facial peeling treatment","Deep body peeling treatment",
     "Laser peeling","Hair remove by Laser","Hair remove by WAX"};
 
-    public String [] Leisure={"Yoga","Pilates","Kickboxing","GYM","Pool","workout","museums"};
+    public String [] Leisure={"Yoga","Pilates","Kickboxing","GYM","Pool","workout","massages"};
 
 
 }

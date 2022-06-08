@@ -116,7 +116,7 @@ public class ProfileFragment extends Fragment {
                 address.setVisibility(View.GONE);
                 Listeners.instance.getAccountByEmail(profileEmailId, type, data -> {
                     userName.setText((String)data.getAccount().get("name"));
-                    address.setText((String)data.getAccount().get("email"));
+                    desc.setText((String)data.getAccount().get("email"));
                     phone.setText((String)data.getAccount().get("phoneNumber"));
                 });
                 Listeners.instance.AppointmentsByUser(profileEmailId, data -> {

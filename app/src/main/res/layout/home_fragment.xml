@@ -10,6 +10,19 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <ImageView
+            android:id="@+id/photoLogin_IV2"
+            android:layout_width="190dp"
+            android:layout_height="193dp"
+            android:layout_marginTop="4dp"
+            app:layout_constraintBottom_toTopOf="@+id/Login_TV"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.497"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0"
+            app:srcCompat="@drawable/ima_login_photo" />
+
         <ProgressBar
             android:id="@+id/progressBar_homefeed"
             style="?android:attr/progressBarStyle"
@@ -21,7 +34,7 @@
             app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.47" />
+            app:layout_constraintVertical_bias="0.499" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/catagory3_BT"
@@ -40,7 +53,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/catagory1_BT"
-            app:layout_constraintVertical_bias="0.061" />
+            app:layout_constraintVertical_bias="0.21" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/catagory4_BT"
@@ -60,13 +73,13 @@
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toEndOf="@+id/catagory3_BT"
             app:layout_constraintTop_toBottomOf="@+id/catagory2_BT"
-            app:layout_constraintVertical_bias="0.061" />
+            app:layout_constraintVertical_bias="0.218" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/catagory2_BT"
             android:layout_width="166dp"
             android:layout_height="166dp"
-            android:layout_marginTop="68dp"
+            android:layout_marginTop="64dp"
             android:layout_marginEnd="28dp"
             android:background="@drawable/button_bk"
             android:drawableBottom="@drawable/cocktail"
@@ -78,7 +91,8 @@
             android:textStyle="bold"
             app:iconGravity="textTop"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/home_TV" />
+            app:layout_constraintTop_toBottomOf="@+id/photohome_TV" />
+
 
         <Button
             android:id="@+id/toProflie_BT"
@@ -91,18 +105,16 @@
             android:textSize="18sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.949"
+            app:layout_constraintHorizontal_bias="0.967"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
-
-
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/catagory1_BT"
             android:layout_width="166dp"
             android:layout_height="166dp"
             android:layout_marginStart="28dp"
-            android:layout_marginTop="68dp"
+            android:layout_marginTop="64dp"
             android:layout_marginEnd="24dp"
             android:background="@drawable/button_bk"
             android:drawableBottom="@drawable/nail"
@@ -113,22 +125,23 @@
             android:textStyle="bold"
             app:iconGravity="textTop"
             app:layout_constraintEnd_toStartOf="@+id/catagory2_BT"
-            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/home_TV" />
+            app:layout_constraintTop_toBottomOf="@+id/photohome_TV" />
 
         <TextView
-            android:id="@+id/home_TV"
+            android:id="@+id/photohome_TV"
             android:layout_width="347dp"
             android:layout_height="36dp"
-            android:layout_marginTop="80dp"
-            android:fontFamily="@font/abel"
+            android:layout_marginTop="184dp"
+            android:fontFamily="@font/encode_sans"
             android:text="TextView"
             android:textAlignment="center"
             android:textColor="#000000"
-            android:textSize="20sp"
+            android:textSize="25sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.437"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 

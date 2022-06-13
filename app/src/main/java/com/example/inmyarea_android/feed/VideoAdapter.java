@@ -65,6 +65,7 @@ public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.VideoViewHol
         TextView title,des;
         ProgressBar videoPB;
         ExoPlayer player;
+        
 
 
         public VideoViewHolder(@NonNull View itemView,VideoClipRV_Fragment.OnItemClickListener listener) {

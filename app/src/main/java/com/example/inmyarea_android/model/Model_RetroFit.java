@@ -29,7 +29,7 @@ public class Model_RetroFit {
     //example "http://10.100.102.7:8080/"
 
     private Retrofit retrofit = new Retrofit.Builder()
-            .baseUrl("http:/10.160.12.224:8080/")
+            .baseUrl("http:/192.168.14.165:8080/")
             .addConverterFactory(GsonConverterFactory.create())
             .build();
 

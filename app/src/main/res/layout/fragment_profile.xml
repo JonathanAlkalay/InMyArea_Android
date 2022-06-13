@@ -35,10 +35,10 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/serorapo_RV"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.004"
+        app:layout_constraintHorizontal_bias="0.092"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/constraintLayout_profile"
-        app:layout_constraintVertical_bias="0.704" />
+        app:layout_constraintVertical_bias="0.688" />
 
     <Button
         android:id="@+id/profile_editBT"
@@ -52,15 +52,15 @@
         app:iconGravity="textEnd"
         app:iconTint="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.989"
+        app:layout_constraintHorizontal_bias="0.942"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="SpeakableTextPresentCheck" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout_profile"
-        android:layout_width="406dp"
-        android:layout_height="125dp"
+        android:layout_width="373dp"
+        android:layout_height="119dp"
         android:background="@drawable/layout_border"
         android:orientation="vertical"
         android:padding="15dp"
@@ -70,8 +70,8 @@
 
         <TextView
             android:id="@+id/profile_descTV"
-            android:layout_width="324dp"
-            android:layout_height="51dp"
+            android:layout_width="351dp"
+            android:layout_height="48dp"
             android:fontFamily="@font/abel"
             android:text="TextView"
             android:textAlignment="center"
@@ -99,7 +99,7 @@
 
         <TextView
             android:id="@+id/profileaddress_TV"
-            android:layout_width="390dp"
+            android:layout_width="372dp"
             android:layout_height="31dp"
             android:text="TextView"
             android:textAlignment="center"
@@ -117,27 +117,28 @@
         android:layout_width="159dp"
         android:layout_height="62dp"
         android:layout_marginBottom="28dp"
-        android:backgroundTint="@color/black"
+        android:backgroundTint="@color/white"
         android:fontFamily="@font/encode_sans"
         android:text="Schedule Appointment"
         android:textColor="@color/red"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/serorapo_RV"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.625"
         app:layout_constraintStart_toEndOf="@+id/profile_serorhisTV"
         app:layout_constraintTop_toBottomOf="@+id/constraintLayout_profile"
-        app:layout_constraintVertical_bias="0.293" />
+        app:layout_constraintVertical_bias="0.29"
+        tools:ignore="DuplicateClickableBoundsCheck" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/serorapo_RV"
-        android:layout_width="416dp"
-        android:layout_height="311dp"
-        android:scrollbars="vertical"
+        android:layout_width="368dp"
+        android:layout_height="310dp"
         android:fadeScrollbars="false"
+        android:scrollbars="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.511"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/constraintLayout_profile"
         app:layout_constraintVertical_bias="1.0" />
@@ -150,7 +151,7 @@
         android:backgroundTint="#3399ff"
         android:text="Logout"
         app:layout_constraintEnd_toStartOf="@+id/profile_editBT"
-        app:layout_constraintHorizontal_bias="0.003"
+        app:layout_constraintHorizontal_bias="0.088"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -165,7 +166,7 @@
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.103"
+        app:layout_constraintHorizontal_bias="0.071"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/profile_nameTV" />
 
@@ -177,26 +178,26 @@
         android:src="@drawable/calendar"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.983"
+        app:layout_constraintHorizontal_bias="0.943"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/profile_editBT"
-        app:layout_constraintVertical_bias="0.017" />
+        app:layout_constraintVertical_bias="0.029" />
 
     <Button
         android:id="@+id/profile_previewvideoBT"
         android:layout_width="159dp"
         android:layout_height="62dp"
         android:layout_marginBottom="28dp"
-        android:backgroundTint="@color/black"
+        android:backgroundTint="@color/white"
         android:fontFamily="@font/encode_sans"
         android:text="Preview video"
         android:textColor="@color/red"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/serorapo_RV"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.625"
         app:layout_constraintStart_toEndOf="@+id/profile_serorhisTV"
         app:layout_constraintTop_toBottomOf="@+id/constraintLayout_profile"
-        app:layout_constraintVertical_bias="0.293" />
+        app:layout_constraintVertical_bias="0.29" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

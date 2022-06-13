@@ -3,7 +3,6 @@ package com.example.inmyarea_android.feed;
 
 
 import androidx.core.app.ActivityCompat;
-import androidx.lifecycle.ViewModelProvider;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
@@ -31,13 +30,9 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.inmyarea_android.MainActivity;
 import com.example.inmyarea_android.R;
-import com.example.inmyarea_android.login.LoginFragmentDirections;
-import com.example.inmyarea_android.model.Appointment;
 import com.example.inmyarea_android.model.Listeners;
 import com.example.inmyarea_android.model.ResponseMessages.GetAccountResponseMessage;
-import com.example.inmyarea_android.model.ResponseMessages.GetBusinessesRespMsg;
 import com.example.inmyarea_android.model.Users.Business;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationCallback;
@@ -72,7 +67,7 @@ public class HomeFragment extends Fragment {
         progressBar=view.findViewById(R.id.progressBar_homefeed);
         progressBar.setVisibility(View.VISIBLE);
 
-        TextView greet = view.findViewById(R.id.home_TV);
+        TextView greet = view.findViewById(R.id.photohome_TV);
         Listeners.instance.getAccountByEmail(email, "user", new Listeners.getAccountByEmailListener() {
             @Override
             public void onComplete(GetAccountResponseMessage data) throws IOException {

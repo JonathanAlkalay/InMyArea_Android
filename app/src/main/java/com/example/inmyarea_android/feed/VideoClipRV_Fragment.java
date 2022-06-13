@@ -57,6 +57,7 @@ public class VideoClipRV_Fragment extends Fragment {
         }
 
         VideoAdapter videoAdapter = new VideoAdapter(videoItemList);
+        videosViewPager.setOffscreenPageLimit(2);
         videosViewPager.setAdapter(videoAdapter);
 
         List<VideoItem> finalVideoItemList = videoItemList;

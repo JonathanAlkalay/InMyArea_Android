@@ -25,6 +25,7 @@
 
         <activity
             android:name=".feed.BaseActivity"
+            android:largeHeap="true"
             android:exported="false"
             android:label="@string/title_activity_base"
             android:theme="@style/FullScreen" />

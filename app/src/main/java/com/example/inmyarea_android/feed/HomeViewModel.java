@@ -69,7 +69,7 @@ public class HomeViewModel extends ViewModel {
                         break;
                     case "Leisure":
                         tempPathsLei.add(videoItem);
-                        this.pathsHair.setValue(tempPathsLei);
+                        this.pathsLei.setValue(tempPathsLei);
                         break;
                 }
             });

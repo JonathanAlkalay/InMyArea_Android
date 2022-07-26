@@ -85,17 +85,20 @@ public class RegisterClientFragment extends Fragment {
 
                 Client client = new Client(email, pas1, name, phone);
                 //server call
-                Listeners.instance.createAccount(email, "user", client, data -> {
-                    if (data.getStatus().equals("true")) {
-                        progressBar.setVisibility(View.GONE);
-                        toFeedActivity(email);
-                    } else {
-                        progressBar.setVisibility(View.GONE);
-                        email_register.setError(data.getMessage());
-                        regis_But.setEnabled(true);
+                Listeners.instance.registerFirebase(email, client.getPassWord(), () -> {
+                    Listeners.instance.createAccount(email, "user", client, data -> {
+                        if (data.getStatus().equals("true")) {
+                            progressBar.setVisibility(View.GONE);
+                            toFeedActivity(email);
+                        } else {
+                            progressBar.setVisibility(View.GONE);
+                            email_register.setError(data.getMessage());
+                            regis_But.setEnabled(true);
 
-                    }
+                        }
+                    });
                 });
+
             }
         });
 

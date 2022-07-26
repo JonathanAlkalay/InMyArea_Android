@@ -82,6 +82,9 @@ public class LoginFragment extends Fragment {
             }
 
             if(type.get()==1) {
+                Listeners.instance.logInFirebase(email, password, new Listeners.logInFirebaseListener() {
+                    @Override
+                    public void onComplete() {
                 Listeners.instance.logIn(email, password, "user", data -> {
 
                     String s = data.getStatus();
@@ -99,24 +102,32 @@ public class LoginFragment extends Fragment {
                         toFeedActivity(email, "user");
                     }
                 });
+                    }
+                    });
             }else {
-                Listeners.instance.logIn(email, password, "business", data -> {
+                Listeners.instance.logInFirebase(email, password, new Listeners.logInFirebaseListener() {
+                    @Override
+                    public void onComplete() {
+                        Listeners.instance.logIn(email, password, "business", data -> {
 
-                    String s = data.getStatus();
-                    String m = data.getMessage();
-                    ///check if status is good and than pass to feed if not display massage
-                    if(s.equals("false"))
-                    {
-                        progressBar.setVisibility(View.GONE);
-                        email_Login.setError(m);
-                        email_Login.requestFocus();
-                        login_But.setEnabled(true);
-                    }else {
-                        progressBar.setVisibility(View.GONE);
-                        login_But.setEnabled(true);
-                        toFeedActivity(email, "business");
+                            String s = data.getStatus();
+                            String m = data.getMessage();
+                            ///check if status is good and than pass to feed if not display massage
+                            if(s.equals("false"))
+                            {
+                                progressBar.setVisibility(View.GONE);
+                                email_Login.setError(m);
+                                email_Login.requestFocus();
+                                login_But.setEnabled(true);
+                            }else {
+                                progressBar.setVisibility(View.GONE);
+                                login_But.setEnabled(true);
+                                toFeedActivity(email, "business");
+                            }
+                        });
                     }
                 });
+
             }
 
         });

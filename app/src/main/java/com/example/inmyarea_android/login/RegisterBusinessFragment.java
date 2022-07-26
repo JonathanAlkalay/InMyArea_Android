@@ -155,17 +155,23 @@ public class RegisterBusinessFragment extends Fragment {
                 buss.setLocation(clocation);
                 buss.setLatitude(lati);
                 buss.setLongitude(longi);
-                Listeners.instance.createAccount(cemail, "business", buss, data -> {
-                    if(data.getStatus().equals("true")){
-                        progressBar.setVisibility(View.GONE);
-                        Navigation.findNavController(view).navigate((NavDirections) RegisterBusinessFragmentDirections.actionRegisterBusinessFragmentToRegisteBusinessFragment2(ccategory,cemail));
+                Listeners.instance.registerFirebase(cemail, buss.getPassWord(), new Listeners.registerFirebaseListener() {
+                    @Override
+                    public void onComplete() {
+                        Listeners.instance.createAccount(cemail, "business", buss, data -> {
+                            if(data.getStatus().equals("true")){
+                                progressBar.setVisibility(View.GONE);
+                                Navigation.findNavController(view).navigate((NavDirections) RegisterBusinessFragmentDirections.actionRegisterBusinessFragmentToRegisteBusinessFragment2(ccategory,cemail));
 
-                    }else{
-                        progressBar.setVisibility(View.GONE);
-                        email.setError(data.getMessage());
-                        cont.setEnabled(true);
+                            }else{
+                                progressBar.setVisibility(View.GONE);
+                                email.setError(data.getMessage());
+                                cont.setEnabled(true);
+                            }
+                        });
                     }
                 });
+
 
             }
 

@@ -1,5 +1,9 @@
 package com.example.inmyarea_android.model;
 
+import android.util.Log;
+
+import androidx.annotation.NonNull;
+
 import com.example.inmyarea_android.model.ResponseMessages.GetBusinessesRespMsg;
 import com.example.inmyarea_android.model.ResponseMessages.GetAccountResponseMessage;
 import com.example.inmyarea_android.model.ResponseMessages.GetAppointmentsRespMsg;
@@ -8,11 +12,17 @@ import com.example.inmyarea_android.model.ResponseMessages.MainResponseMessage;
 import com.example.inmyarea_android.model.Users.Business;
 import com.example.inmyarea_android.model.Users.Client;
 import com.example.inmyarea_android.model.Users.User;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import java.io.File;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.util.HashMap;
+import java.util.concurrent.Executor;
 
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
@@ -29,7 +39,7 @@ public class Model_RetroFit {
     //example "http://10.100.102.7:8080/"
 
     private Retrofit retrofit = new Retrofit.Builder()
-            .baseUrl("http:/10.0.0.32:8080/")
+            .baseUrl("http:/10.0.0.49:8080/")
             .addConverterFactory(GsonConverterFactory.create())
             .build();
 
@@ -314,4 +324,42 @@ public class Model_RetroFit {
         });
     }
 
+    public void registerFirebase(String email, String password, Listeners.registerFirebaseListener listener) {
+        Listeners.instance.GetMAuth().createUserWithEmailAndPassword(email, password)
+                .addOnCompleteListener( task -> {
+                    if (task.isSuccessful()) {
+                     listener.onComplete();
+                    } else {
+                        try {
+                            throw new Exception();
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
+
+
+    }
+
+    public void logInFirebase(String email, String password, Listeners.logInFirebaseListener listener) {
+        Listeners.instance.GetMAuth().signInWithEmailAndPassword(email, password)
+                .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                           listener.onComplete();
+
+                        } else {
+                            try {
+                                throw new Exception();
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
+                        }
+
+                    }
+                });
+
+
+    }
 }
